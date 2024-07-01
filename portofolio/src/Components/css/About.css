@@ -1,0 +1,59 @@
+/* src/Components/css/About.css */
+@import url('https://fonts.googleapis.com/css2?family=pixelifysans:wght@400;500;700&display=swap');
+
+
+.about-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #04364A;
+    color: #DAFFFB; /* Ensure text is readable against the black background */
+    min-height: 100vh; /* Ensure the container takes up the full viewport height */
+    padding: 20px; /* Add some padding for better aesthetics */
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+  }
+  
+  .about-container h1, .about-container h2, .about-container p {
+    background: #64CCC5;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px; /* Optional: Rounded corners */
+    max-width: 800px; /* Limit the width of the text content */
+  }
+  
+  .about-container h1 {
+    text-align: center;
+    font-size: 50px;
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  .about-container h2 {
+    margin-top: 20px;
+    font-size: 40px;
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  .about-container p {
+    font-family: "Coming Soon", cursive;
+    font-weight: 800;
+    font-style: normal;
+    font-size: 22px;
+  }
+  
+  .about-container a {
+    color: #003253; /* Adjust the link color */
+    text-decoration: none;
+  }
+  
+  .about-container a:hover {
+    text-decoration: underline;
+  }
+  

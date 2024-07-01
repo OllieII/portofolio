@@ -1,0 +1,23 @@
+/* src/css/ProjectDetail.css */
+.project-detail-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    font-family: 'Oswald', sans-serif; /* Apply the Oswald font */
+  }
+  
+  .project-detail-container h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+  
+  .project-detail-container p {
+    font-size: 1.2em;
+    line-height: 1.6;
+  }
+  
+  .extra-content {
+    margin-top: 20px;
+  }
+  
