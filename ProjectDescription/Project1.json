@@ -1,0 +1,15 @@
+{
+    "title": "Project 1",
+    "media": "media1.png", 
+    "subtitles": [
+      {
+        "title": "Project Description",
+        "content": "This is the description of Project 1."
+      },
+      {
+        "title": "My Responsibility",
+        "content": "These were my responsibilities in Project 1."
+      }
+    ]
+  }
+  

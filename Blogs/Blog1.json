@@ -1,10 +1,20 @@
 [
-    {
-      "id": 1,
-      "title": "First Blog Post",
-      "author": "John Doe",
-      "date": "2024-06-01",
-      "content": "This is the content of the first blog post."
-    }
-  ]
-  
+  {
+    "id": 1,
+    "title": "Introduction to Artificial Intelligence",
+    "content": "This is a blog post about AI...",
+    "tags": ["Artificial Intelligence", "Machine Learning"]
+  },
+  {
+    "id": 2,
+    "title": "Getting Started with React",
+    "content": "This is a blog post about React...",
+    "tags": ["Web Development", "React"]
+  },
+  {
+    "id": 3,
+    "title": "Advanced CSS Techniques",
+    "content": "This is a blog post about advanced CSS techniques...",
+    "tags": ["Web Development", "CSS"]
+  }
+]
