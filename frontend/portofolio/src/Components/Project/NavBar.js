@@ -43,10 +43,10 @@ const NavBar = ({ subtitles }) => {
   };
 
   return (
-    <Nav isOpen={isOpen}>
-      <ToggleButton onClick={() => setIsOpen(!isOpen)}>
-        {isOpen ? 'Close' : 'Open'}
-      </ToggleButton>
+    <Nav isOpen={isOpen}
+        onMouseEnter={() => setIsOpen(true)}
+        onMouseLeave={() => setIsOpen(false)}
+    >
       {isOpen && subtitles.map((subtitle, index) => (
         <NavItem key={index} onClick={() => handleNavClick(index)}>
           {subtitle.title}

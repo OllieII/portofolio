@@ -6,9 +6,15 @@ import MediaSection from './MediaSection';
 import SubTitleSection from './SubTitleSection';
 
 const Container = styled.div`
-    width: 80%;
+  width: 80%;
+  max-width: 1200px;
   display: flex;
-
+  flex-direction: column; /* Ensure column layout */
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  align-items: center;
 `;
 
 const Content = styled.div`
@@ -16,6 +22,7 @@ const Content = styled.div`
   padding: 20px;
   background-color: #fff;
   overflow-y: auto; /* Ensure content is scrollable if it overflows */
+  width: 100%;
 `;
 
 export const ProjectDetail = () => {
@@ -34,7 +41,7 @@ export const ProjectDetail = () => {
         <>
           <NavBar subtitles={projectData.subtitles} />
           <Content>
-            <MediaSection media={projectData.media} />
+            <MediaSection mediaList={projectData.mediaList} />
             <SubTitleSection subtitles={projectData.subtitles} />
           </Content>
         </>

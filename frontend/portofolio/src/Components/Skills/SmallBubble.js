@@ -22,30 +22,39 @@ const Bubble = styled.div.attrs(props => ({
   }
 }))`
   background-color:  #E1F7F537; /* Make the background transparent */
-  border: 2px solid #E1F7F5; /* Border color for the hollow circle */
+  border: 3px solid #E1F7F5; /* Thicker border for larger bubbles */
   border-radius: 50%;
-  font-size: 20px;
+  font-size: clamp(14px, ${props => props.position.size * 0.15}px, 28px); /* Scale font with bubble size */
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s, z-index 0s;
   animation: ${popIn} 0.5s ease-out;
-  box-shadow: 0 0 15px rgba(100, 204, 197, 0.5); /* Add initial shadow for the hollow circle */
-  z-index: 100;
+  box-shadow: 0 0 20px rgba(100, 204, 197, 0.6); /* Stronger shadow for larger bubbles */
+  z-index: ${props => props.bubbleZIndex || 100};
+  text-align: center;
+  padding: ${props => Math.max(5, props.position.size * 0.05)}px;
+  box-sizing: border-box;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  line-height: 1.1;
+  
   &:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 15px rgba(100, 204, 197, 1); /* Shadow on hover */
+    transform: scale(1.15);
+    box-shadow: 0 0 25px rgba(100, 204, 197, 1); /* Stronger shadow on hover */
+    border-width: 4px;
   }
 `;
 
-const SmallBubble = ({ skill, position }) => {
+const SmallBubble = ({ skill, position, bubbleZIndex, infoBoxZIndex }) => {
   const [hovered, setHovered] = useState(false);
 
   return (
     <>
       <Bubble
         position={position}
+        bubbleZIndex={bubbleZIndex}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
@@ -56,6 +65,7 @@ const SmallBubble = ({ skill, position }) => {
           title={skill}
           content={`Details about ${skill}`}
           position={position}
+          zIndex={infoBoxZIndex}
         />
       )}
     </>

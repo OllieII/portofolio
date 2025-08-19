@@ -11,7 +11,9 @@ const GridWrapper = styled.div`
 `;
 
 const GridItem = styled.div`
-  height: 400px;
+  height: calc((100vh - 200px) / 3);
+  min-height: 180px;
+  max-height: 400px;
   text-align: center;
   font-family: "Ubuntu Sans Mono", monospace;
   font-optical-sizing: auto;

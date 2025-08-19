@@ -86,7 +86,7 @@ const Icon = styled.img`
 const SelfIntro = styled.div`
     font-size: 22px;
     color: white;
-    margin-top: 30px;
+    margin-top: 20px;
     font-family: "Ubuntu Sans Mono", monospace;
     font-optical-sizing: auto;
     font-weight: 700;

@@ -6,7 +6,12 @@ import GridSection from './GridSection';
 
 const AppWrapper = styled.div`
   background: linear-gradient(#FFE6E6,#E1AFD1,#AD88C6);
-  min-height: 100vh; /* Ensure it covers the full height of the viewport */
+  max-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
 `;
 
 export const Home = () => {

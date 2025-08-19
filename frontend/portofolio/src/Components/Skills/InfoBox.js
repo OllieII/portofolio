@@ -11,10 +11,11 @@ const Box = styled.div`
   background-color: white;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   position: absolute;
-  z-index: 1000;
+  z-index: ${props => props.zIndex || 1000};
   top: ${props => props.position.y + props.position.size}px; // Position below the small bubble
   left: ${props => props.position.x + props.position.size}px; // Position to the right of the small bubble
-
+  pointer-events: none; /* Allow clicking through the info box */
+  transition: opacity 0.2s ease-in-out;
 `;
 
 const Title = styled.h3`
@@ -30,9 +31,9 @@ const Content = styled.p`
   font-size: 14px;
 `;
 
-const InfoBox = ({ title, content, position }) => {
+const InfoBox = ({ title, content, position, zIndex }) => {
   return (
-    <Box position={position}>
+    <Box position={position} zIndex={zIndex}>
       <Title>{title}</Title>
       <Content>{content}</Content>
     </Box>

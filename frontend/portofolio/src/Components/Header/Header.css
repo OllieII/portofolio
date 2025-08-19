@@ -7,7 +7,9 @@
   /*font-optical-sizing: auto;*/
   font-weight: 900;
   font-style: normal;
-  font-size: 45px;
+  font-size: clamp(20px, 4vw, 45px);
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .nav-list {
@@ -15,21 +17,28 @@
   display: flex;
   justify-content: space-around;
   margin: 0;
-  padding: 0;
+  padding: 0 10px;
+  flex-wrap: wrap;
+  box-sizing: border-box;
 }
 
 .nav-item {
   flex: 1;
   text-align: center;
+  min-width: 0;
 }
 
 .nav-item a {
   display: block;
   color: #FFF;
   text-decoration: none;
-  font-size: 35px;
-  padding: 8px;
+  font-size: clamp(16px, 3vw, 35px);
+  padding: clamp(4px, 1vw, 8px);
   transition: background-color 0.3s ease, color 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
 }
 
 .nav-item:hover {
@@ -38,4 +47,31 @@
 
 .nav-item a:hover {
   color: #FFF;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 768px) {
+  .header {
+    padding: 8px 0;
+  }
+  
+  .nav-list {
+    padding: 0 5px;
+  }
+  
+  .nav-item a {
+    padding: 6px 4px;
+    font-size: clamp(14px, 2.5vw, 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 5px 0;
+  }
+  
+  .nav-item a {
+    padding: 4px 2px;
+    font-size: clamp(12px, 2vw, 16px);
+  }
 }

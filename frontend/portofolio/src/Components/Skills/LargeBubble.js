@@ -1,132 +1,65 @@
-import React, { useState, useEffect } from 'react';
-import styled, { keyframes } from 'styled-components';
-import SmallBubble from './SmallBubble';
-import { getRandomInt, generateNonOverlappingPosition, fetchPositionsFromFile } from './utils';
+import React from 'react';
+import styled from 'styled-components';
 
-const pulse = keyframes`
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 5px rgba(218, 255, 251, 0.5);
-  }
-  50% {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(218, 255, 251, 1);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 5px rgba(218, 255, 251, 0.5);
-  }
-`;
-
-const Bubble = styled.div.attrs(props => ({
-  style: {
-    width: `${props.size}px`,
-    height: `${props.size}px`,
-    top: `${props.position.y}px`,
-    left: `${props.position.x}px`,
-    backgroundImage: `url(${props.image})`,
-  }
-}))`
+const BubbleContainer = styled.div`
+  position: absolute;
+  cursor: pointer;
+  transition: transform 0.3s, filter 0.3s;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(100, 204, 197, 0.4);
   background-size: cover;
   background-position: center;
-  font-size: 1.5em;
-  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
-  position: absolute;
-  transition: transform 0.3s, opacity 0.3s;
-  animation: ${pulse} 2s infinite;
-
+  font-size: ${props => Math.max(14, props.size * 0.08)}px;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: ${props => Math.max(10, props.size * 0.05)}px;
+  box-sizing: border-box;
+  line-height: 1.2;
+  
   &:hover {
-    transform: scale(1.1);
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 0 30px rgba(100, 204, 197, 0.8);
+  }
+  
+  @media (max-width: 768px) {
+    font-size: ${props => Math.max(12, props.size * 0.06)}px;
   }
 `;
 
-const SmallBubblesContainer = styled.div`
-  position: absolute;
-  width: ${props => props.size * 1.2}px;
-  height: ${props => props.size * 1.2}px;
-  top: ${props => props.position.y + props.size / 2}px;
-  left: ${props => props.position.x + props.size / 2}px;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-`;
-
-const HighlightArea = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border: 20px dashed rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-`;
-
-const LargeBubble = ({ skill, subSkills, image, size, position, existingPositions }) => {
-  const [expanded, setExpanded] = useState(false);
-  const [smallBubblePositions, setSmallBubblePositions] = useState([]);
-
-  useEffect(() => {
-    const loadPositions = async () => {
-      if (expanded) {
-        const containerSize = { width: size * 1.2, height: size * 1.2 };
-        const newPositions = [];
-        const newSizes = [];
-        let success = true;
-
-        subSkills.forEach((skillName) => {
-          const newSize = getRandomInt(skillName.length * 2 + 60, skillName.length * 3 + 60);
-          const { position: newPosition, overlap } = generateNonOverlappingPosition(newSize, newPositions.concat(existingPositions), containerSize, position);
-          if (overlap) {
-            success = false;
-          }
-          newPositions.push(newPosition);
-          newSizes.push(newSize);
-        });
-
-        if (success) {
-          let finalPos = newPositions.map((pos, index) => ({ ...pos, size: newSizes[index] }));
-          setSmallBubblePositions(finalPos);
-        } else {
-          try {
-            let storedPositions = await fetchPositionsFromFile(`smallPos_${skill}.json`);
-            setSmallBubblePositions(storedPositions);
-          } catch (error) {
-            console.error('Failed to fetch positions:', error);
-          }
-        }
-      }
-    };
-
-    loadPositions();
-  }, [expanded, subSkills, size, existingPositions, position, skill]);
-
+const LargeBubble = ({ 
+  skill, 
+  image, 
+  size, 
+  position, 
+  onExpand 
+}) => {
   const handleClick = () => {
-    setExpanded(true);
+    if (onExpand) {
+      onExpand(skill);
+    }
   };
 
   return (
-    <>
-      {!expanded && (
-        <Bubble onClick={handleClick} size={size} position={position} image={image}>
-          {skill}
-        </Bubble>
-      )}
-      {expanded && (
-        <SmallBubblesContainer size={size} position={position}>
-          <HighlightArea />
-          {smallBubblePositions.length > 0 && subSkills.map((subSkill, index) => (
-            <SmallBubble key={index} skill={subSkill} position={smallBubblePositions[index]} />
-          ))}
-        </SmallBubblesContainer>
-      )}
-    </>
+    <BubbleContainer
+      style={{
+        left: position.x,
+        top: position.y,
+        width: size,
+        height: size,
+        backgroundImage: `url(${image})`,
+      }}
+      size={size}
+      onClick={handleClick}
+    >
+      {skill}
+    </BubbleContainer>
   );
 };
 

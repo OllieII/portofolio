@@ -9,11 +9,12 @@ import { Skill } from './Components/Skills/Skill';
 import Projects from './Components/Project/Projects';
 import BlogList from './Components/Blog/BlogList';
 import { ProjectDetail } from './Components/Project/ProjectDetail';
+import CV from './Components/CV/CV';
 
 
 function App() {
   return (
-    <Router>
+    <Router basename='/portofolio'>
       <Helmet>
         <title>Home</title>
         <link rel="icon" type="image/png" href={`${process.env.PUBLIC_URL}/favicon/homeicon.png`} />
@@ -23,7 +24,8 @@ function App() {
         <main>
           <Routes>
             <Route path="/portofolio/about" element={<Home />} />
-            <Route path="/portofolio" element={<Home />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/portofolio/cv" element={<CV />} />
             <Route path="/portofolio/projects" element={<Projects />} />
             <Route path="/portofolio/projects/:id" element={<ProjectDetail />} />
             <Route path="/portofolio/skills" element={<Skill />} />
