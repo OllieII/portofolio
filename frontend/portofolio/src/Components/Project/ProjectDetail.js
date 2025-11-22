@@ -27,23 +27,36 @@ const MainContent = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
   min-height: 100%;
 `;
 
-const ProjectHeader = styled.div`
-  background: linear-gradient(90deg, #A855F7 0%, #22D3EE 100%);
-  padding: 1.25rem 2.5rem;
-  border-radius: 24px;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+const ProjectHeroWrapper = styled.div`
+  background: #0B1120;
+  border-radius: 20px;
+  border: 1px solid #374151;
+  padding: 0.75rem 1.5rem 1.25rem;
+  margin-bottom: 0;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.6);
+`;
+
+const ProjectHeroTitle = styled.div`
+  background: linear-gradient(90deg,
+    #312E81 0%,
+    #7C3AED 50%,
+    #0EA5E9 100%
+  );
+  padding: 0.6rem 1.5rem;
+  border-radius: 999px;
+  text-align: center;
+  box-shadow: 0 0 18px rgba(14, 165, 233, 0.35);
   
   h1 {
     margin: 0;
     color: #F9FAFB;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
-    font-size: 2.4rem;
+    font-size: 1.6rem;
     font-weight: 700;
-    text-align: center;
     letter-spacing: 0.06em;
   }
 `;
@@ -70,9 +83,11 @@ export const ProjectDetail = () => {
         <Container>
           <NavBar subtitles={projectData.subtitles} />
           <MainContent>
-            <ProjectHeader>
-              <h1>{projectData.title || 'Project Details'}</h1>
-            </ProjectHeader>
+            <ProjectHeroWrapper>
+              <ProjectHeroTitle>
+                <h1>{projectData.title || 'Project Details'}</h1>
+              </ProjectHeroTitle>
+            </ProjectHeroWrapper>
             <Content>
               <MediaSection mediaList={projectData.mediaList || projectData.media} />
               <SubTitleSection subtitles={projectData.subtitles} />

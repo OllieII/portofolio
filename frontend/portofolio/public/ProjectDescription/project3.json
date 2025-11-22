@@ -1,0 +1,39 @@
+{
+    "title": "Virtual Theatre: Beyond the Garden of Adrian",
+    "media": [
+        "/img/GOA/2.png" ,
+        "/img/GOA/6.png" ,
+        "/img/GOA/7.png" ,
+        "/img/GOA/8.png" ,
+        "/img/GOA/9.png" ,
+        "/img/GOA/11.png" ,
+        "/img/GOA/12.png" ,
+        "/img/GOA/13.png" ,
+        "/img/GOA/14.png" ,
+        "/img/GOA/16.png" ,
+        "/img/GOA/17.png" ,
+        "/img/GOA/18.png" ,
+        "/img/GOA/21.png" ,
+        "/img/GOA/23.png" ,
+        "/img/GOA/24.png" ,
+        "/img/GOA/25.png" ,
+        "/img/GOA/27.png" ,
+        "/img/GOA/28.png" ,
+        "/img/GOA/29.png" ,
+        "/img/GOA/32.png"
+    ],
+    "subtitles": [
+        {
+            "title": "Project Description",
+            "content": "Beyond the Garden of Adrian is a virtual theatre experience created in Unity adapted from a 1 on 1 immersive theatre performance by Adrian Howells. The experiment aims to explore the potential of building intimate experience in a virtual environment, and explore how each elements in the virtual environment each uniquely contribute to the immersiona and embodiment of each audiences."
+        },
+        {
+            "title": "My Responsibility",
+            "content": "I resiponsible for listening to the onpnions of the professionals and organize them into an actionable design and feasible development plan. I collaborated closely with the team to design and implement various interactive elements within the virtual environment, ensuring that the technical aspects aligned with the artistic vision of the project. Additionally, I assisted in optimizing the performance of the VR experience to provide a smooth and immersive experience for users."
+        },
+        {
+            "title": "Tech Stack",
+            "content": "Unity, C#, Blender, Adobe Photoshop, Oculus VR"
+        }
+    ]
+}

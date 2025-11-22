@@ -6,6 +6,7 @@ const FlipCard = styled.div`
   width: 100%;
   height: 100%;
   perspective: 1000px;
+  cursor: pointer;
 `;
 
 const FlipCardInner = styled.div`

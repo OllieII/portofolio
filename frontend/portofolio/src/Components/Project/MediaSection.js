@@ -4,7 +4,11 @@ import styled from 'styled-components';
 const MediaContainer = styled.div
 `
   width: 100%;
+  max-width: 100%;
   min-height: 500px;
+  max-height: 90vh;
+  max-width: 1200px;
+  align-self: center;
   background: #0B1120;
   border: 1px solid #4B5563;
   border-radius: 15px;
@@ -21,7 +25,7 @@ const CarouselContainer = styled.div
 `
   position: relative;
   width: 100%;
-  height: 600px;
+  height: ${props => props.height ? `${props.height}px` : '600px'};
   min-height: 500px;
   max-height: 70vh;
   border-radius: 12px;
@@ -54,24 +58,42 @@ const MediaItem = styled.div
   pointer-events: ${props => props.active ? 'auto' : 'none'};
 `;
 
+const ThumbnailWrapper = styled.div`
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+`;
+
 const ThumbnailContainer = styled.div`
   display: flex;
   gap: 10px;
   overflow-x: auto;
+  overflow-y: hidden;
   padding: 10px 0;
+  width: 100%;
+  flex-wrap: nowrap;
   
   &::-webkit-scrollbar {
-    height: 6px;
+    height: 8px;
   }
   
   &::-webkit-scrollbar-track {
     background: #1F2937;
-    border-radius: 3px;
+    border-radius: 4px;
   }
   
   &::-webkit-scrollbar-thumb {
     background: #22D3EE;
-    border-radius: 3px;
+    border-radius: 4px;
+  }
+  
+  &::-webkit-scrollbar-thumb:hover {
+    background: #A855F7;
+  }
+  
+  @media (max-width: 768px) {
+    gap: 8px;
   }
 `;
 
@@ -142,6 +164,7 @@ const NavigationButton = styled.button`
   color: #050814;
   border: none;
   border-radius: 50%;
+  cursor: pointer;
   width: 50px;
   height: 50px;
   font-size: 24px;
@@ -168,7 +191,7 @@ const NavigationButton = styled.button`
 const Image = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: transform 0.3s ease, opacity 0.3s ease;
   opacity: ${props => props.loaded ? 1 : 0};
 `;
@@ -214,11 +237,28 @@ const EmptyState = styled.div`
 const MediaSection = ({ mediaList = [] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loadedImages, setLoadedImages] = useState(new Set());
+  const [imageDimensions, setImageDimensions] = useState({});
+  const [maxDimensions, setMaxDimensions] = useState({ width: 0, height: 0 });
   const imageTimerRef = useRef(null);
   const videoRef = useRef(null);
 
-  const handleImageLoad = (index) => {
+  const handleImageLoad = (index, event) => {
     setLoadedImages(prev => new Set(prev).add(index));
+    
+    // Track image dimensions
+    const img = event.target;
+    const aspectRatio = img.naturalWidth / img.naturalHeight;
+    const newDimensions = {
+      ...imageDimensions,
+      [index]: { width: img.naturalWidth, height: img.naturalHeight, aspectRatio }
+    };
+    setImageDimensions(newDimensions);
+    
+    // Update max dimensions
+    setMaxDimensions(prev => ({
+      width: Math.max(prev.width, img.naturalWidth),
+      height: Math.max(prev.height, img.naturalHeight)
+    }));
   };
 
   const isEmbedCode = (media) => {
@@ -287,9 +327,14 @@ const MediaSection = ({ mediaList = [] }) => {
     );
   }
 
+  // Calculate container height based on max dimensions and aspect ratio
+  const containerHeight = maxDimensions.height > 0 
+    ? Math.min(Math.max(maxDimensions.height * 0.6, 500), 700) 
+    : 600;
+
   return (
     <MediaContainer>
-      <CarouselContainer>
+      <CarouselContainer height={containerHeight}>
         {mediaList.map((media, index) => {
           const isActive = index === currentIndex;
           
@@ -324,7 +369,7 @@ const MediaSection = ({ mediaList = [] }) => {
                 src={`${process.env.PUBLIC_URL}${media}`}
                 alt={`Project Media ${index + 1}`}
                 loaded={isLoaded}
-                onLoad={() => handleImageLoad(index)}
+                onLoad={(e) => handleImageLoad(index, e)}
               />
             </MediaItem>
           );
@@ -343,8 +388,9 @@ const MediaSection = ({ mediaList = [] }) => {
       </CarouselContainer>
       
       {mediaList.length > 1 && (
-        <ThumbnailContainer>
-          {mediaList.map((media, index) => {
+        <ThumbnailWrapper>
+          <ThumbnailContainer>
+            {mediaList.map((media, index) => {
             const isVideo = isEmbedCode(media);
             
             if (isVideo) {
@@ -400,7 +446,8 @@ const MediaSection = ({ mediaList = [] }) => {
               </Thumbnail>
             );
           })}
-        </ThumbnailContainer>
+          </ThumbnailContainer>
+        </ThumbnailWrapper>
       )}
     </MediaContainer>
   );

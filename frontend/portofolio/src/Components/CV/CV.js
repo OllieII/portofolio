@@ -78,6 +78,7 @@ const DownloadSection = styled.div`
 
 const DownloadButton = styled.a`
   background: linear-gradient(135deg, #22D3EE, #A855F7);
+  cursor: pointer;
   color: white;
   padding: clamp(10px 20px, 2vw, 15px 30px);
   border-radius: 50px;
