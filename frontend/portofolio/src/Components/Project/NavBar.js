@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const Nav = styled.div`
@@ -59,12 +59,6 @@ const NavItem = styled.div`
     transform: translateX(5px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
-`;
-
-const ToggleButton = styled.button`
-  width: 100%;
-  height: 40px;
-  margin-bottom: 20px;
 `;
 
 const NavBar = ({ subtitles }) => {

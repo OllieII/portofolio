@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import bubble from '../Skills/bubble.png';
 
 const MainContentWrapper = styled.div`
   display: flex;

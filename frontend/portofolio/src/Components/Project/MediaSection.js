@@ -199,15 +199,6 @@ const LoadingSpinner = styled.div`
   }
 `;
 
-const ErrorMessage = styled.div`
-  color: #fff;
-  font-size: 14px;
-  text-align: center;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-`;
-
 const EmptyState = styled.div`
   grid-column: 1 / -1; /* Span all columns */
   text-align: center;
@@ -219,7 +210,6 @@ const EmptyState = styled.div`
 const MediaSection = ({ mediaList = [] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loadedImages, setLoadedImages] = useState(new Set());
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const imageTimerRef = useRef(null);
   const videoRef = useRef(null);
 
@@ -265,21 +255,19 @@ const MediaSection = ({ mediaList = [] }) => {
     const isVideo = isEmbedCode(currentMedia);
 
     if (!isVideo) {
+      const goToNextSlide = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % mediaList.length);
+      };
+      
       // Set timer for images
       imageTimerRef.current = setTimeout(() => {
-        goToNext();
+        goToNextSlide();
       }, 5000); // 5 seconds
 
       return () => {
         if (imageTimerRef.current) {
           clearTimeout(imageTimerRef.current);
         }
-      };
-    } else {
-      // For videos, we'll handle auto-advance differently
-      setIsVideoPlaying(true);
-      return () => {
-        setIsVideoPlaying(false);
       };
     }
   }, [currentIndex, mediaList]);
