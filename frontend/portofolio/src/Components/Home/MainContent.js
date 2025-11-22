@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import styled, { keyframes } from 'styled-components';
 
 const MainContentWrapper = styled.div`
   display: flex;
@@ -14,17 +14,107 @@ const MainContentWrapper = styled.div`
   width: 100%;
 `;
 
+const rotate = keyframes`
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+`;
+
+const ProfileSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+  perspective: 1000px;
+`;
+
+const ProfileImageWrapper = styled.div`
+  position: relative;
+  width: 280px;
+  height: 280px;
+  margin-bottom: 20px;
+  cursor: pointer;
+`;
+
+const Ring = styled.div`
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid;
+  animation: ${rotate} ${props => props.duration}s linear infinite;
+  
+  &.outer-ring {
+    width: 280px;
+    height: 280px;
+    border-color: #A855F7 transparent #22D3EE transparent;
+    top: 0;
+    left: 0;
+  }
+  
+  &.inner-ring {
+    width: 240px;
+    height: 240px;
+    border-color: #22D3EE transparent #A855F7 transparent;
+    top: 20px;
+    left: 20px;
+    animation-direction: reverse;
+  }
+`;
+
+const FlipCard = styled.div`
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  top: 40px;
+  left: 40px;
+  transform-style: preserve-3d;
+  transition: transform 0.8s;
+  transform: ${props => props.isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'};
+`;
+
+const FlipCardFace = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0B1120;
+  border: 3px solid #4B5563;
+`;
+
+const FlipCardFront = styled(FlipCardFace)`
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+
+const FlipCardBack = styled(FlipCardFace)`
+  transform: rotateY(180deg);
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 10px;
+  }
+`;
+
 const Name = styled.h1`
   font-size: clamp(3em, 8vw, 6em);
-  color: white;
+  color: #F9FAFB;
   margin: 0 0 30px 0;
   font-family: "Pixelify Sans", sans-serif;
   font-weight: 900;
+  text-shadow: 0 0 18px rgba(34, 211, 238, 0.35);
 `;
 
 const SelfIntro = styled.div`
   font-size: clamp(18px, 2vw, 24px);
-  color: white;
+  color: #E5E7EB;
   margin-bottom: 30px;
   font-family: "Ubuntu Sans Mono", monospace;
   font-optical-sizing: auto;
@@ -35,9 +125,15 @@ const SelfIntro = styled.div`
   max-width: 900px;
 `;
 
+const Highlight = styled.span`
+  color: ${props => props.color || '#22D3EE'};
+  font-weight: 900;
+  text-shadow: 0 0 10px ${props => props.color === '#A855F7' ? 'rgba(168, 85, 247, 0.4)' : 'rgba(34, 211, 238, 0.4)'};
+`;
+
 const IconWrapper = styled.div`
   font-size: 20px;
-  color: white;
+  color: #E5E7EB;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,7 +156,8 @@ const IconContainer = styled.div`
   border-radius: 5px;
 
   &:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: #1F2937;
+    color: #22D3EE;
   }
 `;
 
@@ -70,6 +167,8 @@ const Icon = styled.img`
 `;
 
 const MainContent = () => {
+    const [isFlipped, setIsFlipped] = useState(false);
+    
     const handleEmailClick = () => {
       window.location.href = 'mailto:zguo295@wisc.edu'; // Update with your email address
     };
@@ -80,9 +179,23 @@ const MainContent = () => {
   
     return (
       <MainContentWrapper>
-        <Name>I'm Olly Guo.</Name>
+        <ProfileSection>
+          <ProfileImageWrapper onClick={() => setIsFlipped(!isFlipped)}>
+            <Ring className="outer-ring" duration={8} />
+            <Ring className="inner-ring" duration={6} />
+            <FlipCard isFlipped={isFlipped}>
+              <FlipCardFront>
+                <img src={`${process.env.PUBLIC_URL}/favicon/human_me.jpg`} alt="Olly Guo" />
+              </FlipCardFront>
+              <FlipCardBack>
+                <img src={`${process.env.PUBLIC_URL}/favicon/homeicon.png`} alt="Animated Icon" />
+              </FlipCardBack>
+            </FlipCard>
+          </ProfileImageWrapper>
+          <Name>I'm Olly Guo.</Name>
+        </ProfileSection>
         <SelfIntro>
-          Seeking roles in AI, Game Design, and Full Stack Development. I aim to use my expertise to better understand user needs and create user-friendly, emotionally engaging products.
+          I aim to use <Highlight color="#A855F7">AI/ML methods</Highlight> to understand <Highlight>human behavior</Highlight> and create <Highlight>virtual interaction systems</Highlight> that treat each user as a <Highlight color="#A855F7">unique individual</Highlight> rather than a normal user.
         </SelfIntro>
         <IconWrapper>
           <IconContainer onClick={handleEmailClick}>

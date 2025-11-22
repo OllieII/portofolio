@@ -30,9 +30,8 @@ export function Header(){
         <nav>
           <ul className="nav-list">
             <li className="nav-item"><a href="#about" onClick={handleNavClick('about')}>About</a></li>
-            <li className="nav-item"><Link to = "/portofolio/cv">CV</Link></li>
             <li className="nav-item"><a href="#projects" onClick={handleNavClick('projects')}>Project</a></li>
-            <li className="nav-item"><a href="#blog" onClick={handleNavClick('blog')}>Blog</a></li>
+            <li className="nav-item"><Link to = "/portofolio/cv">CV</Link></li>
           </ul>
         </nav>
       </header>

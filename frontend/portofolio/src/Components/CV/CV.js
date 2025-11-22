@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Container = styled.div`
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(#FFE6E6, #E1AFD1, #AD88C6);
+  background: #050814;
   padding: 20px;
   font-family: "Ubuntu Sans Mono", monospace;
   font-optical-sizing: auto;
@@ -77,7 +77,7 @@ const DownloadSection = styled.div`
 `;
 
 const DownloadButton = styled.a`
-  background: linear-gradient(135deg, #7469B6, #AD88C6);
+  background: linear-gradient(135deg, #22D3EE, #A855F7);
   color: white;
   padding: clamp(10px 20px, 2vw, 15px 30px);
   border-radius: 50px;
@@ -94,8 +94,8 @@ const DownloadButton = styled.a`
   
   &:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(116, 105, 182, 0.4);
-    background: linear-gradient(135deg, #8A7BC8, #B896D1);
+    box-shadow: 0 8px 25px rgba(34, 211, 238, 0.6);
+    background: linear-gradient(135deg, #F97316, #22D3EE);
   }
   
   &:active {

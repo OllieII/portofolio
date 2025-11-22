@@ -10,15 +10,15 @@
     "subtitles": [
         {
             "title": "Project Description",
-            "content": "Telemetry data from virtual reality (VR) applications can provide valuable insights into user behavior and performance. In this project, we analyzed head movement data collected from VR users to predict their performance and likelihood of early quitting. By applying machine learning techniques to the telemetry data, we were able to identify patterns that correlate with user engagement and performance metrics. This research has implications for improving user experience in VR applications by enabling developers to tailor content and interactions based on predicted user behavior."
+            "content": "This project builds interpretable early-quit detectors from VR head-movement telemetry. We extract quaternion-based head rotations (and positions when available) from gameplay logs, convert them to per-frame Euler deltas, and segment the stream into direction-consistent intervals in yaw, pitch, and roll. These interval durations and movement magnitudes are then binned on power-of-two time scales to produce length-invariant histograms of “how often” and “how long” different kinds of head turns occur. Using these features, we construct balanced session-level datasets in HDF5 and train group-aware classifiers (Random Forest, XGBoost, Logistic Regression) to distinguish completing vs. quitting sessions, with t-tests, simple hand-crafted detectors, SHAP, and partial-dependence plots used to interpret which rotation patterns are most predictive."
         },
         {
             "title": "My Responsibility",
-            "content": "As the Lead Game Designer for Waddle: A Penguin's Tale, I was responsible for designing the core gameplay mechanics, level design, and overall game flow. I collaborated closely with the art team to ensure that the visual elements complemented the gameplay experience. Additionally, I worked on creating engaging puzzles that would challenge players while also being accessible to a wide audience. I also contributed to the narrative development of the game, ensuring that the story was integrated seamlessly with the gameplay."
+            "content": "I led the end-to-end modeling side of the project: implementing the head-rotation feature pipeline, constructing balanced session-level datasets (quit vs. non-quit), training and comparing multiple classifiers (Random Forest, XGBoost, Logistic Regression), and running SHAP/interpretability analyses to identify which movement patterns distinguish finishing players from early quitters."
         },
         {
             "title": "Tech Stack",
-            "content": "Unity, C#, Aseprite, GitHub, System Design"
+            "content": "Python, NumPy, pandas, SciPy, scikit-learn, XGBoost, h5py (HDF5), matplotlib"
         }
     ]
 }

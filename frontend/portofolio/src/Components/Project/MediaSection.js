@@ -5,12 +5,13 @@ const MediaContainer = styled.div
 `
   width: 100%;
   min-height: 500px;
-  background: linear-gradient(135deg, #AD88C6, #7d5a7d);
+  background: #0B1120;
+  border: 1px solid #4B5563;
   border-radius: 15px;
   overflow: hidden;
   position: relative;
   padding: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -25,7 +26,7 @@ const CarouselContainer = styled.div
   max-height: 70vh;
   border-radius: 12px;
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: #050814;
   
   @media (max-width: 768px) {
     height: 400px;
@@ -64,12 +65,12 @@ const ThumbnailContainer = styled.div`
   }
   
   &::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
+    background: #1F2937;
     border-radius: 3px;
   }
   
   &::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
+    background: #22D3EE;
     border-radius: 3px;
   }
 `;
@@ -82,18 +83,19 @@ const Thumbnail = styled.div`
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
-  border: 3px solid ${props => props.active ? 'white' : 'transparent'};
+  border: 3px solid ${props => props.active ? '#22D3EE' : '#4B5563'};
   transition: all 0.3s ease;
   position: relative;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: #050814;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   
   &:hover {
-    border-color: white;
+    border-color: #22D3EE;
     transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
   }
   
   img {
@@ -117,13 +119,13 @@ const VideoThumbnailOverlay = styled.div`
   transform: translate(-50%, -50%);
   width: 30px;
   height: 30px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: #22D3EE;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 16px;
-  color: #7d5a7d;
+  color: #050814;
   
   &::before {
     content: '▶';
@@ -136,7 +138,8 @@ const NavigationButton = styled.button`
   top: 50%;
   transform: translateY(-50%);
   ${props => props.direction === 'left' ? 'left: 20px;' : 'right: 20px;'}
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(34, 211, 238, 0.9);
+  color: #050814;
   border: none;
   border-radius: 50%;
   width: 50px;
@@ -150,8 +153,9 @@ const NavigationButton = styled.button`
   z-index: 10;
   
   &:hover {
-    background-color: white;
+    background-color: #F97316;
     transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.5);
   }
   
   @media (max-width: 768px) {
@@ -188,8 +192,8 @@ const VideoFrame = styled.iframe`
 const LoadingSpinner = styled.div`
   width: 40px;
   height: 40px;
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  border-top: 3px solid #fff;
+  border: 3px solid #1F2937;
+  border-top: 3px solid #22D3EE;
   border-radius: 50%;
   animation: spin 1s linear infinite;
   

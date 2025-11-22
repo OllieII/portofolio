@@ -5,7 +5,7 @@ import GridSection from './GridSection';
 
 
 const AppWrapper = styled.div`
-  background: linear-gradient(#FFE6E6,#E1AFD1,#AD88C6);
+  background: linear-gradient(180deg, #050814 0%, #111827 45%, #1F2937 100%);
   min-height: calc(100vh - 80px);
   width: 100%;
   box-sizing: border-box;

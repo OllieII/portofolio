@@ -28,7 +28,7 @@ const BlogList = () => {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(#FFE6E6, #E1AFD1, #AD88C6)',
+      background: '#050814',
       padding: '40px 20px',
       position: 'relative'
     }}>
@@ -50,7 +50,7 @@ const BlogList = () => {
           {selectedTag && (
             <button
               onClick={() => setSelectedTag(null)}
-              style={{ margin: '10px', backgroundColor: '#e1afd1', color: '#fff', padding: '5px', border: 'none', borderRadius: '3px' }}
+              style={{ margin: '10px', backgroundColor: '#22D3EE', color: '#050814', padding: '5px', border: 'none', borderRadius: '3px' }}
             >
               Clear Filter
             </button>

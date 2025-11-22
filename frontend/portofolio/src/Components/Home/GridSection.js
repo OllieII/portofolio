@@ -2,6 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import FlippableCard from './FlippableCard';
 
+const Highlight = styled.span`
+  color: ${props => props.color || '#22D3EE'};
+  font-weight: 900;
+  text-shadow: 0 0 8px ${props => props.color === '#A855F7' ? 'rgba(168, 85, 247, 0.4)' : 'rgba(34, 211, 238, 0.4)'};
+`;
+
 const GridWrapper = styled.div`
   padding: 30px 40px 40px 40px;
   display: grid;
@@ -20,20 +26,19 @@ const GridItem = styled.div`
   font-style: normal;
   text-align: left;
   line-height: 1.5;
-  font-size: 2em;
 `;
 
 const GridSection = () => {
   return (
     <GridWrapper>
       <GridItem>
-        <FlippableCard frontText={<span>Junior Student graduating <strong>December 2025</strong> in University of Wisconsin in Madison.</span>} backText={<span>Majoring in Computer Science with Minors of Game Design and Theatre</span>} />
+        <FlippableCard frontText = {<span><Highlight color="#A855F7">Computer Science</Highlight> student with <Highlight>Game design Minor</Highlight> Graduating <Highlight color="#A855F7">Dec 2025</Highlight> from <Highlight>University of Wisconsin in Madison.</Highlight></span>} backText={<span>Prospective <Highlight color="#A855F7">PhD Student</Highlight> in <Highlight>Fall 2026</Highlight></span>} />
       </GridItem>
       <GridItem>
-        <FlippableCard frontText={<span>Experience working in Game Studio and as Independent Developer.</span>} backText={<span>For Desktop Rogue-Like 2D game and Mixed Reality Horror Game</span>} />
+        <FlippableCard frontText={<span>Experience working in <Highlight>Game Studio</Highlight> and as <Highlight color="#A855F7">Independent Developer</Highlight>.</span>} backText={<span>Developed <Highlight>various games</Highlight> including titles <Highlight color="#A855F7">shipped to Steam</Highlight></span>} />
       </GridItem>
       <GridItem>
-        <FlippableCard frontText={<span>Experience using Machine Learning to Analyze User Experience and more complicated correlations.</span>} backText={<span>Also individual projects in Computer Visison and Natural Language Processing.</span>} />
+        <FlippableCard frontText={<span>Experience using <Highlight color="#A855F7">Machine Learning</Highlight> to Analyze <Highlight>User Experience</Highlight> and more complicated correlations.</span>} backText={<span>Interested in <Highlight>Behavioral Analysis</Highlight> and <Highlight color="#A855F7">Adaptive Systems</Highlight></span>} />
       </GridItem>
     </GridWrapper>
   );

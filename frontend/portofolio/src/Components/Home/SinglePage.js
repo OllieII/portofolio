@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { Home } from './Home';
 import Projects from '../Project/Projects';
-import BlogList from '../Blog/BlogList';
 
 const PageContainer = styled.div`
   width: 100%;
@@ -15,7 +14,7 @@ const Section = styled.section`
 const Separator = styled.div`
   width: 100%;
   height: 80px;
-  background: linear-gradient(#FFE6E6, #E1AFD1, #AD88C6);
+  background: linear-gradient(90deg, #111827, #1F2937, #111827);
   position: relative;
   display: flex;
   align-items: center;
@@ -45,8 +44,8 @@ const Separator = styled.div`
     position: relative;
     z-index: 1;
     font-size: 24px;
-    color: white;
-    background: linear-gradient(#E1AFD1, #AD88C6);
+    color: #F9FAFB;
+    background: linear-gradient(135deg, #22D3EE, #A855F7);
     width: 50px;
     height: 50px;
     display: flex;
@@ -66,10 +65,6 @@ export function SinglePage() {
       <Separator />
       <Section id="projects">
         <Projects />
-      </Section>
-      <Separator />
-      <Section id="blog">
-        <BlogList />
       </Section>
     </PageContainer>
   );

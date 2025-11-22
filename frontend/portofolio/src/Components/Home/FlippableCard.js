@@ -28,20 +28,27 @@ const FlipCardFace = styled.div`
   justify-content: center;
   align-items: center;
   
-  box-sizing: border-box; /* Ensure the padding and border are included in the element's total width and height */
-  padding: 20px; /* Adjust padding as needed */
+  box-sizing: border-box;
+  padding: 20px;
+  font-size: clamp(1rem, 1.5vw, 2em);
+  
+  @media (max-width: 768px) {
+    font-size: clamp(0.9rem, 2vw, 1.5em);
+  }
 `;
 
 const FlipCardFront = styled(FlipCardFace)`
-  background-color: white;
-  color: #AD88C6;
-  border: 8px solid #AD88C6;
+  background-color: #0B1120;
+  color: #F9FAFB;
+  border: 2px solid #4B5563;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.6);
 `;
 
 const FlipCardBack = styled(FlipCardFace)`
-  background-color: #AD88C6;
-  border: 8px solid #FFF;
-  color: white;
+  background-color: #1F2937;
+  border: 2px solid #A855F7;
+  color: #F9FAFB;
+  box-shadow: 0 12px 30px rgba(168, 85, 247, 0.3);
   transform: rotateY(180deg);
 `;
 

@@ -3,8 +3,10 @@ import styled from 'styled-components';
 
 const Nav = styled.div`
   width: 250px;
-  background: linear-gradient(180deg, #AD88C6, #7d5a7d);
-  border-radius: 15px;
+  background: #050814;
+  border: 1px solid #4B5563;
+  border-radius: 18px;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.7);
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -24,12 +26,12 @@ const Nav = styled.div`
   }
   
   &::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
+    background: #1F2937;
     border-radius: 3px;
   }
   
   &::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
+    background: #22D3EE;
     border-radius: 3px;
   }
 `;
@@ -37,27 +39,30 @@ const Nav = styled.div`
 const NavItem = styled.div`
   width: 90%;
   min-height: 45px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background: #0B1120;
+  border: 1px solid #374151;
   margin: 8px 0;
-  border-radius: 10px;
+  border-radius: 999px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   transition: all 0.3s ease;
   padding: 10px;
-  color: #5a3a5a;
+  color: #E5E7EB;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
   font-weight: 600;
-  font-size: 0.9em;
+  font-size: 0.9rem;
   text-align: center;
   white-space: normal;
   word-wrap: break-word;
   
   &:hover {
-    background-color: #FFE6E6;
+    background: linear-gradient(90deg, #A855F7, #22D3EE);
+    color: #F9FAFB;
+    border: none;
     transform: translateX(5px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
   }
 `;
 

@@ -7,7 +7,7 @@ import SubTitleSection from './SubTitleSection';
 
 const PageWrapper = styled.div`
   min-height: 100vh;
-  background-color: #E1AFD1;
+  background: #050814;
   padding: 40px 20px;
   display: flex;
   flex-direction: column;
@@ -32,18 +32,19 @@ const MainContent = styled.div`
 `;
 
 const ProjectHeader = styled.div`
-  background: linear-gradient(135deg, #FFE6E6, #E1AFD1);
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(90deg, #A855F7 0%, #22D3EE 100%);
+  padding: 1.25rem 2.5rem;
+  border-radius: 24px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
   
   h1 {
     margin: 0;
-    color: #5a3a5a;
+    color: #F9FAFB;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
-    font-size: 2.5em;
+    font-size: 2.4rem;
     font-weight: 700;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    letter-spacing: 0.06em;
   }
 `;
 
