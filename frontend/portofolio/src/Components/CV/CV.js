@@ -114,8 +114,8 @@ const DownloadButton = styled.a`
 export function CV() {
   const handleDownload = () => {
     const link = document.createElement('a');
-    link.href = `${process.env.PUBLIC_URL}/Resume_OllyGuo.pdf`;
-    link.download = 'Resume_OllyGuo.pdf';
+    link.href = `${process.env.PUBLIC_URL}/CV_Olly.pdf`;
+    link.download = 'CV_Olly.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -125,14 +125,14 @@ export function CV() {
     <Container>
       <PDFContainer>
         <PDFViewer
-          src={`${process.env.PUBLIC_URL}/Resume_OllyGuo.pdf`}
+          src={`${process.env.PUBLIC_URL}/CV_Olly.pdf`}
           title="Resume PDF Viewer"
         />
       </PDFContainer>
       
       <DownloadSection>
         <DownloadButton onClick={handleDownload}>
-          📄 Download Resume (PDF)
+          Download CV (PDF)
         </DownloadButton>
       </DownloadSection>
     </Container>
