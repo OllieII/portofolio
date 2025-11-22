@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  position: relative;
   width: 100%;
   min-height: 100vh;
   background: linear-gradient(#FFE6E6, #E1AFD1, #AD88C6);
@@ -17,21 +16,53 @@ const Container = styled.div`
   align-items: center;
   box-sizing: border-box;
   overflow-x: hidden;
+  gap: 20px;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.05) 35px, rgba(255,255,255,.05) 70px),
+      repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(255,255,255,.03) 35px, rgba(255,255,255,.03) 70px);
+    pointer-events: none;
+    z-index: 0;
+  }
+`;
+
+const PDFContainer = styled.div`
+  width: 100%;
+  max-width: 1200px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  position: relative;
+  z-index: 1;
 `;
 
 const PDFViewer = styled.iframe`
   width: 100%;
-  height: clamp(600px, 80vh, 800px);
+  height: calc(100vh - 200px);
+  min-height: 500px;
   border: none;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  background: white;
   
   @media (max-width: 768px) {
-    height: 60vh;
+    height: calc(100vh - 180px);
+    min-height: 400px;
   }
   
   @media (max-width: 480px) {
-    height: 50vh;
+    height: calc(100vh - 160px);
+    min-height: 350px;
+    border-radius: 10px;
   }
 `;
 
@@ -41,6 +72,8 @@ const DownloadSection = styled.div`
   align-items: center;
   gap: 20px;
   margin-top: 20px;
+  position: relative;
+  z-index: 1;
 `;
 
 const DownloadButton = styled.a`
@@ -89,17 +122,18 @@ export function CV() {
 
   return (
     <Container>
-        
+      <PDFContainer>
         <PDFViewer
           src={`${process.env.PUBLIC_URL}/Resume_OllyGuo.pdf`}
           title="Resume PDF Viewer"
         />
-        
-        <DownloadSection>
-          <DownloadButton onClick={handleDownload}>
-            📄 Download Resume (PDF)
-          </DownloadButton>
-        </DownloadSection>
+      </PDFContainer>
+      
+      <DownloadSection>
+        <DownloadButton onClick={handleDownload}>
+          📄 Download Resume (PDF)
+        </DownloadButton>
+      </DownloadSection>
     </Container>
   );
 }

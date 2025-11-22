@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import FlippableCard from './FlippableCard';
 
 const GridWrapper = styled.div`
-  background-color: #E1AFD1;
-  padding: 40px;
+  padding: 30px 40px 40px 40px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;

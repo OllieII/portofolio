@@ -4,10 +4,7 @@ import { Helmet } from 'react-helmet';
 import './App.css';
 
 import { Header } from './Components/Header/Header';
-import { Home } from './Components/Home/Home';
-import { Skill } from './Components/Skills/Skill';
-import Projects from './Components/Project/Projects';
-import BlogList from './Components/Blog/BlogList';
+import { SinglePage } from './Components/Home/SinglePage';
 import { ProjectDetail } from './Components/Project/ProjectDetail';
 import CV from './Components/CV/CV';
 
@@ -23,13 +20,9 @@ function App() {
         <Header />
         <main>
           <Routes>
-            <Route path="/portofolio/about" element={<Home />} />
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<SinglePage />} />
             <Route path="/portofolio/cv" element={<CV />} />
-            <Route path="/portofolio/projects" element={<Projects />} />
             <Route path="/portofolio/projects/:id" element={<ProjectDetail />} />
-            <Route path="/portofolio/skills" element={<Skill />} />
-            <Route path="/portofolio/blog" element={<BlogList />} />
           </Routes>
         </main>
       </div>

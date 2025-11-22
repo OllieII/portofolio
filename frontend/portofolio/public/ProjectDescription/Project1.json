@@ -1,22 +1,27 @@
 {
-  "title": "Project 1",
+  "title": "Library of Meialia",
   "media": [
-    "/img/Abyss0.png",
-    "/img/Abyss0.png",
-    "/img/Abyss0.png"
+    "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/bmvixL7_W3U?si=n01pKqSLFrixn6K4\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+    "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/phOQqNVjwQc?si=Ax3zJgtA3FK0zCYz\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+    "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/O75uy3WHBLg?si=pIvCF0UF4TefT6pz\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+    "/img/LOM/1.jpg",
+    "/img/LOM/2.jpg",
+    "/img/LOM/3.jpg",
+    "/img/LOM/4.jpg",
+    "/img/LOM/5.jpg"
   ],
   "subtitles": [
     {
       "title": "Project Description",
-      "content": "This is a comprehensive web application built using modern technologies. The project demonstrates full-stack development capabilities with a focus on user experience and performance optimization. It features a responsive design that works seamlessly across all devices and includes advanced functionality for data management and real-time updates."
+      "content": "Library of Meialia is a 2D rogue-like pixel game developed by Minerva Studio, where the player play as a dragon Almos exploring the ancient library of Meialia to uncover its secrets gradually. The game features 80+ skills, 50+ unique items, 20+ mobs in 4 different environmental biomes, which each having their unique bosses. While still in early access stage, this game has already earned 3000+ players. Actively updating based on user feedback, we are looking for a formal release around June 2026. \n Steam page at <a href=\"https://store.steampowered.com/app/3102950/Library_of_Meialia/\" target=\"_blank\" rel=\"noopener noreferrer\">https://store.steampowered.com/app/3102950/Library_of_Meialia/</a>"
     },
     {
       "title": "My Responsibility",
-      "content": "In Project 1, my responsibilities included leading the development team, coordinating with stakeholders, and ensuring the timely delivery of project milestones."
+      "content": "Due to the nature of small individual studio, I took on multiple roles in the development of Library of Meialia. Other than being the Lead Narrative Designer, I was also responsible for game design, programming, marketing and project management. I collaborated closely with other group leads to ensure a smooth and immersive experience for players in both the battle game flow and the story development. I led the development of the game’s story, world-building, character development, and dialogue writing. And also the in game tool development and implementation for displaying the storylines. I also actively contributes in level design and enemy design to ensure a cohesive game play experience."
     },
     {
-      "title": "Technologies Used",
-      "content": "Project 1 utilized technologies such as React, Node.js, Express, and MongoDB."
+      "title": "Tech Stack",
+      "content": "Unity, C#, Lua, Aseprite, Inky, GitHub, System Design"
     }
   ]
 }

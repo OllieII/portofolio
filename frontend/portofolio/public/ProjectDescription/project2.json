@@ -1,0 +1,24 @@
+{
+    "title": "Using Head Movements to Predict Performance and Early Quitting in Virtual Reality",
+    "media": [
+        "/img/Waddle/1.jpg",
+        "/img/Waddle/2.png",
+        "/img/Waddle/3.png",
+        "/img/Waddle/4.png",
+        "/img/Waddle/5.png"
+    ],
+    "subtitles": [
+        {
+            "title": "Project Description",
+            "content": "Telemetry data from virtual reality (VR) applications can provide valuable insights into user behavior and performance. In this project, we analyzed head movement data collected from VR users to predict their performance and likelihood of early quitting. By applying machine learning techniques to the telemetry data, we were able to identify patterns that correlate with user engagement and performance metrics. This research has implications for improving user experience in VR applications by enabling developers to tailor content and interactions based on predicted user behavior."
+        },
+        {
+            "title": "My Responsibility",
+            "content": "As the Lead Game Designer for Waddle: A Penguin's Tale, I was responsible for designing the core gameplay mechanics, level design, and overall game flow. I collaborated closely with the art team to ensure that the visual elements complemented the gameplay experience. Additionally, I worked on creating engaging puzzles that would challenge players while also being accessible to a wide audience. I also contributed to the narrative development of the game, ensuring that the story was integrated seamlessly with the gameplay."
+        },
+        {
+            "title": "Tech Stack",
+            "content": "Unity, C#, Aseprite, GitHub, System Design"
+        }
+    ]
+}

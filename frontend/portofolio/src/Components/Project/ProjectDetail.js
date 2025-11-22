@@ -5,24 +5,52 @@ import NavBar from './NavBar';
 import MediaSection from './MediaSection';
 import SubTitleSection from './SubTitleSection';
 
-const Container = styled.div`
-  width: 80%;
-  max-width: 1200px;
+const PageWrapper = styled.div`
+  min-height: 100vh;
+  background-color: #E1AFD1;
+  padding: 40px 20px;
   display: flex;
-  flex-direction: column; /* Ensure column layout */
+  flex-direction: column;
+`;
+
+const Container = styled.div`
+  max-width: 1400px;
+  width: 100%;
+  display: flex;
+  gap: 20px;
   margin: 0 auto;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  align-items: center;
+  position: relative;
+  flex: 1;
+`;
+
+const MainContent = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  min-height: 100%;
+`;
+
+const ProjectHeader = styled.div`
+  background: linear-gradient(135deg, #FFE6E6, #E1AFD1);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  
+  h1 {
+    margin: 0;
+    color: #5a3a5a;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
+    font-size: 2.5em;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
 `;
 
 const Content = styled.div`
-  flex: 1;
-  padding: 20px;
-  background-color: #fff;
-  overflow-y: auto; /* Ensure content is scrollable if it overflows */
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 `;
 
 export const ProjectDetail = () => {
@@ -36,17 +64,22 @@ export const ProjectDetail = () => {
   }, [id]);
 
   return (
-    <Container>
+    <PageWrapper>
       {projectData && (
-        <>
+        <Container>
           <NavBar subtitles={projectData.subtitles} />
-          <Content>
-            <MediaSection mediaList={projectData.mediaList} />
-            <SubTitleSection subtitles={projectData.subtitles} />
-          </Content>
-        </>
+          <MainContent>
+            <ProjectHeader>
+              <h1>{projectData.title || 'Project Details'}</h1>
+            </ProjectHeader>
+            <Content>
+              <MediaSection mediaList={projectData.mediaList || projectData.media} />
+              <SubTitleSection subtitles={projectData.subtitles} />
+            </Content>
+          </MainContent>
+        </Container>
       )}
-    </Container>
+    </PageWrapper>
   );
 };
 
