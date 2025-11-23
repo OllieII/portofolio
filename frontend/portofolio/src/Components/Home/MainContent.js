@@ -242,7 +242,7 @@ const MainContent = () => {
           </IconContainer>
           <IconContainer onClick={handleLinkClick('https://github.com/OllieII')}>
             <Icon
-              src={`${process.env.PUBLIC_URL}/Icons/github.png`}
+              src={`${process.env.PUBLIC_URL}/Icons/Github.png`}
               alt="GitHub"
             />
             <div>GitHub</div>

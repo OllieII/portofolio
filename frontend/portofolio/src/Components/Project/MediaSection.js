@@ -56,6 +56,19 @@ const MediaItem = styled.div
   opacity: ${props => props.active ? 1 : 0};
   transition: opacity 0.5s ease-in-out;
   pointer-events: ${props => props.active ? 'auto' : 'none'};
+  
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+  
+  iframe {
+    max-width: 100%;
+    max-height: 100%;
+  }
 `;
 
 const ThumbnailWrapper = styled.div`

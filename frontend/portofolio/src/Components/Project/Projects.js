@@ -12,7 +12,7 @@ function Projects() {
 
   const gameProjects = [
     { id: 1, media: `${process.env.PUBLIC_URL}/img/LOM/Lom0.png`, title: 'Library of Meialia', brief: '2D rogue-like pixel game with 80+ skills, 50+ items, and 20+ mobs across 4 biomes. Lead Narrative Designer role.' },
-    {id: 6, media: `${process.env.PUBLIC_URL}/img/Otherside/0.png`, title: 'The Otherside', brief: 'Puzzle game combining word solving, chase mechanics, and maze exploration. Game and level design lead.' },
+    {id: 6, media: `${process.env.PUBLIC_URL}/img/OtherSide/0.png`, title: 'The Otherside', brief: 'Puzzle game combining word solving, chase mechanics, and maze exploration. Game and level design lead.' },
   ];
 
   const experienceProjects = [

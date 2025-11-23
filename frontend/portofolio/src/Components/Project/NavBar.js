@@ -21,6 +21,16 @@ const Nav = styled.div`
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
   z-index: 50;
   
+  @media (max-width: 1024px) {
+    width: 200px;
+    left: 10px;
+    padding: 15px 8px;
+  }
+  
+  @media (max-width: 768px) {
+    display: none;
+  }
+  
   &::-webkit-scrollbar {
     width: 6px;
   }

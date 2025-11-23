@@ -25,6 +25,10 @@ const Container = styled.div`
   position: relative;
   flex: 1;
   flex-direction: row-reverse;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const MainContent = styled.div`
@@ -33,6 +37,14 @@ const MainContent = styled.div`
   flex-direction: column;
   gap: 20px;
   min-height: 100%;
+  
+  @media (max-width: 1024px) {
+    margin-left: 0;
+  }
+  
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const DetailHeader = styled.div`
