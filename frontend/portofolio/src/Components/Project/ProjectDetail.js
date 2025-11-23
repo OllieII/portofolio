@@ -187,6 +187,22 @@ export const ProjectDetail = () => {
   const [projectData, setProjectData] = useState(null);
   const [fontSize, setFontSize] = useState(130);
 
+  // Map project IDs to their categories
+  const projectCategories = {
+    '1': 'games',
+    '2': 'research',
+    '3': 'research',
+    '4': 'research',
+    '5': 'research',
+    '6': 'games',
+    '7': 'experience'
+  };
+
+  useEffect(() => {
+    // Scroll to top when component mounts or id changes
+    window.scrollTo(0, 0);
+  }, [id]);
+
   useEffect(() => {
     const url = `${process.env.PUBLIC_URL}/ProjectDescription/project${id}.json`;
     
@@ -197,7 +213,11 @@ export const ProjectDetail = () => {
         }
         return response.json();
       })
-      .then(setProjectData)
+      .then((data) => {
+        setProjectData(data);
+        // Scroll to top after content loads to prevent browser from jumping to bottom
+        setTimeout(() => window.scrollTo(0, 0), 0);
+      })
       .catch((err) => {
         console.error('Failed to load project data:', err);
         setProjectData(null);
@@ -205,7 +225,8 @@ export const ProjectDetail = () => {
   }, [id]);
 
   const handleGoBack = () => {
-    navigate(-1);
+    const category = projectCategories[id];
+    navigate('/', { state: { scrollTo: category } });
   };
 
   const increaseFontSize = () => {

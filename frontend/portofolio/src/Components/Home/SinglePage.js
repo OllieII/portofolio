@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { useLocation } from 'react-router-dom';
 import { Home } from './Home';
 import Projects from '../Project/Projects';
 
@@ -134,6 +135,21 @@ const Separator = styled.div`
 `;
 
 export function SinglePage() {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Handle scroll to specific category when coming from project detail
+    if (location.state?.scrollTo) {
+      const category = location.state.scrollTo;
+      setTimeout(() => {
+        const element = document.querySelector(`.section.${category}`);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    }
+  }, [location]);
+
   return (
     <PageContainer>
       <Section id="about">
