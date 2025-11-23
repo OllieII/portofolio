@@ -1,5 +1,6 @@
 {
     "title": "Behavioral Analysis in Virtual Reality",
+    "brief": "VR research analyzing user interaction quit patterns via behavioral in immersive environments.",
     "media": [
         "/img/Waddle/1.jpg",
         "/img/Waddle/2.png",
@@ -14,8 +15,7 @@
         },
         {
             "title": "My Responsibility",
-            "content": "I led the end-to-end modeling side of the project: implementing the head-rotation feature pipeline, constructing balanced session-level datasets (quit vs. non-quit), training and comparing multiple classifiers (Random Forest, XGBoost, Logistic Regression), and running SHAP/interpretability analyses to identify which movement patterns distinguish finishing players from early quitters."
-        },
+            "content": "Implemented the head-rotation feature pipeline from raw VR telemetry\nConstructed balanced session-level datasets (quit vs. non-quit)\nTrained and compared multiple classifiers (Random Forest, XGBoost, Logistic Regression)\n\nRan SHAP and other interpretability analyses to identify which movement patterns distinguish finishing players from early quitters"        },
         {
             "title": "Tech Stack",
             "content": "Python, NumPy, pandas, SciPy, scikit-learn, XGBoost, h5py (HDF5), matplotlib"

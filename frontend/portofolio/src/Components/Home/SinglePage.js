@@ -8,7 +8,84 @@ const PageContainer = styled.div`
 `;
 
 const Section = styled.section`
-  scroll-margin-top: 80px;
+  scroll-margin-top: 100px;
+  
+  @media (max-width: 768px) {
+    scroll-margin-top: 80px;
+  }
+`;
+
+const AboutSection = styled.div`
+  background: #050814;
+  padding: 60px 40px;
+  width: 100%;
+  margin: 0 auto;
+`;
+
+const AboutTitle = styled.h2`
+  font-size: clamp(2em, 4vw, 3em);
+  color: #F9FAFB;
+  font-family: "Pixelify Sans", sans-serif;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 40px;
+  text-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+`;
+
+const CardsContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+  
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const InfoCard = styled.div`
+  background: #0B1120;
+  border: 1px solid #4B5563;
+  border-radius: 16px;
+  padding: 30px;
+  transition: all 0.3s ease;
+  cursor: default;
+  
+  &:hover {
+    transform: translateY(-5px);
+    border-color: ${props => props.accentColor || '#22D3EE'};
+    box-shadow: 0 8px 24px ${props => props.accentColor === '#A855F7' 
+      ? 'rgba(168, 85, 247, 0.3)' 
+      : props.accentColor === '#F97316'
+        ? 'rgba(249, 115, 22, 0.3)'
+        : 'rgba(34, 211, 238, 0.3)'};
+  }
+`;
+
+const CardTitle = styled.h3`
+  font-size: clamp(1.3em, 2vw, 1.6em);
+  color: ${props => props.accentColor || '#22D3EE'};
+  font-family: "Pixelify Sans", sans-serif;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-shadow: 0 0 8px ${props => props.accentColor === '#A855F7' 
+    ? 'rgba(168, 85, 247, 0.4)' 
+    : props.accentColor === '#F97316'
+      ? 'rgba(249, 115, 22, 0.4)'
+      : 'rgba(34, 211, 238, 0.4)'};
+`;
+
+const CardText = styled.p`
+  font-size: clamp(15px, 1.5vw, 18px);
+  color: #E5E7EB;
+  font-family: "Ubuntu Sans Mono", monospace;
+  line-height: 1.6;
+  margin: 0;
 `;
 
 const Separator = styled.div`
@@ -61,6 +138,33 @@ export function SinglePage() {
     <PageContainer>
       <Section id="about">
         <Home />
+        <AboutSection>
+          <AboutTitle>About Me</AboutTitle>
+          <CardsContainer>
+            <InfoCard accentColor="#A855F7">
+              <CardTitle accentColor="#A855F7">Student</CardTitle>
+              <CardText>
+                Computer Science student with Game Design minor. 
+                Graduating Dec 2025 from UW–Madison. 
+                Prospective PhD student in Fall 2026.
+              </CardText>
+            </InfoCard>
+            <InfoCard accentColor="#22D3EE">
+              <CardTitle accentColor="#22D3EE">Game Studio</CardTitle>
+              <CardText>
+                Experience working in game studios and as an independent developer. 
+                Developed various games including titles shipped to Steam.
+              </CardText>
+            </InfoCard>
+            <InfoCard accentColor="#F97316">
+              <CardTitle accentColor="#F97316">ML + UX</CardTitle>
+              <CardText>
+                Using Machine Learning to analyze User Experience and complex behavioral correlations. 
+                Interested in adaptive systems.
+              </CardText>
+            </InfoCard>
+          </CardsContainer>
+        </AboutSection>
       </Section>
       <Separator />
       <Section id="projects">

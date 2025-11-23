@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from './NavBar';
 import MediaSection from './MediaSection';
 import SubTitleSection from './SubTitleSection';
 
+export const FontSizeContext = createContext();
+
 const PageWrapper = styled.div`
   min-height: 100vh;
   background: #050814;
   padding: 40px 20px;
-  padding-top: 80px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -34,6 +35,56 @@ const MainContent = styled.div`
   min-height: 100%;
 `;
 
+const DetailHeader = styled.div`
+  position: sticky;
+  top: 80px;
+  z-index: 90;
+  background: rgba(5, 8, 20, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #374151;
+  padding: 16px 0;
+  margin: 0 0 20px 0;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 20px;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    top: 60px;
+  }
+`;
+
+const BackLink = styled.button`
+  background: transparent;
+  border: 1px solid #4B5563;
+  border-radius: 999px;
+  padding: 8px 16px;
+  color: #E5E7EB;
+  font-size: 14px;
+  font-family: "Ubuntu Sans Mono", monospace;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  justify-self: start;
+  width: fit-content;
+  
+  &:hover {
+    border-color: #22D3EE;
+    color: #22D3EE;
+    background: rgba(34, 211, 238, 0.1);
+  }
+  
+  &:active {
+    transform: scale(0.98);
+  }
+`;
+
 const ProjectHeroWrapper = styled.div`
   background: #0B1120;
   border-radius: 20px;
@@ -43,63 +94,20 @@ const ProjectHeroWrapper = styled.div`
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.6);
 `;
 
-const BackButton = styled.button`
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  background: linear-gradient(135deg, #22D3EE, #A855F7);
-  color: #050814;
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 26px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 16px rgba(34, 211, 238, 0.5);
-  font-weight: bold;
-  z-index: 1000;
-  
-  &:hover {
-    background: linear-gradient(135deg, #F97316, #FB923C);
-    transform: scale(1.15);
-    box-shadow: 0 6px 24px rgba(249, 115, 22, 0.7);
-  }
-  
-  &:active {
-    transform: scale(0.95);
-  }
+const ProjectTitle = styled.h1`
+  margin: 0;
+  color: #F9FAFB;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-align: center;
+  grid-column: 2;
   
   @media (max-width: 768px) {
-    width: 42px;
-    height: 42px;
-    font-size: 22px;
-    top: 15px;
-    left: 15px;
-  }
-`;
-
-const ProjectHeroTitle = styled.div`
-  background: linear-gradient(90deg,
-    #312E81 0%,
-    #7C3AED 50%,
-    #0EA5E9 100%
-  );
-  padding: 0.6rem 1.5rem;
-  border-radius: 999px;
-  text-align: center;
-  box-shadow: 0 0 18px rgba(14, 165, 233, 0.35);
-  
-  h1 {
-    margin: 0;
-    color: #F9FAFB;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
-    font-size: 1.6rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
+    font-size: 1.2rem;
+    grid-column: 1;
+    text-align: left;
   }
 `;
 
@@ -109,10 +117,72 @@ const Content = styled.div`
   gap: 30px;
 `;
 
+const FontControls = styled.div`
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 100;
+  
+  @media (max-width: 768px) {
+    bottom: 20px;
+    right: 20px;
+  }
+`;
+
+const FontButton = styled.button`
+  background: rgba(17, 24, 39, 0.95);
+  border: 1px solid #4B5563;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  color: #E5E7EB;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  
+  &:hover {
+    border-color: #22D3EE;
+    color: #22D3EE;
+    background: rgba(31, 41, 55, 0.95);
+    transform: scale(1.1);
+  }
+  
+  &:active {
+    transform: scale(0.95);
+  }
+  
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    &:hover {
+      border-color: #4B5563;
+      color: #E5E7EB;
+      background: rgba(17, 24, 39, 0.95);
+      transform: scale(1);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+`;
+
 export const ProjectDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [projectData, setProjectData] = useState(null);
+  const [fontSize, setFontSize] = useState(130);
 
   useEffect(() => {
     fetch(`${process.env.PUBLIC_URL}/ProjectDescription/project${id}.json`)
@@ -124,28 +194,44 @@ export const ProjectDetail = () => {
     navigate(-1);
   };
 
+  const increaseFontSize = () => {
+    setFontSize(prev => Math.min(prev + 10, 150));
+  };
+
+  const decreaseFontSize = () => {
+    setFontSize(prev => Math.max(prev - 10, 70));
+  };
+
   return (
-    <PageWrapper>
-      <BackButton onClick={handleGoBack} title="Go back to projects">
-        ←
-      </BackButton>
-      {projectData && (
-        <Container>
-          <NavBar subtitles={projectData.subtitles} />
-          <MainContent>
-            <ProjectHeroWrapper>
-              <ProjectHeroTitle>
-                <h1>{projectData.title || 'Project Details'}</h1>
-              </ProjectHeroTitle>
-            </ProjectHeroWrapper>
-            <Content>
-              <MediaSection mediaList={projectData.mediaList || projectData.media} />
-              <SubTitleSection subtitles={projectData.subtitles} />
-            </Content>
-          </MainContent>
-        </Container>
-      )}
-    </PageWrapper>
+    <FontSizeContext.Provider value={fontSize}>
+      <PageWrapper fontSize={fontSize}>
+        <FontControls>
+          <FontButton onClick={increaseFontSize} disabled={fontSize >= 150} title="Increase font size">
+            A+
+          </FontButton>
+          <FontButton onClick={decreaseFontSize} disabled={fontSize <= 70} title="Decrease font size">
+            A-
+          </FontButton>
+        </FontControls>
+        {projectData && (
+          <Container>
+            <NavBar subtitles={projectData.subtitles} />
+            <MainContent>
+              <DetailHeader>
+                <BackLink onClick={handleGoBack}>
+                  ← Back to Projects
+                </BackLink>
+                <ProjectTitle>{projectData.title || 'Project Details'}</ProjectTitle>
+              </DetailHeader>
+              <Content>
+                <MediaSection mediaList={projectData.mediaList || projectData.media} />
+                <SubTitleSection subtitles={projectData.subtitles} />
+              </Content>
+            </MainContent>
+          </Container>
+        )}
+      </PageWrapper>
+    </FontSizeContext.Provider>
   );
 };
 

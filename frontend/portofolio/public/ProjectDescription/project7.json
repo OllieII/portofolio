@@ -1,0 +1,23 @@
+{
+    "title":"CS639 Deep Learning for Computer Vision",
+    "brief": "Implemented CNNs, GANs, and object detection algorithms from scratch using PyTorch and NumPy.",
+    "media": [
+        "/img/CS639/0.png",
+        "/img/CS639/1.png",
+        "/img/CS639/2.png"
+    ],
+    "subtitles": [
+        {
+            "title": "Project Description",
+            "content": "This is the work me and my partner(Yibo Kong) have done in the CS639 in University of Wisconsin in Madison, in year 2024, which is well adapted from Stanford's CS231n (CNNs for Visual Recognition) and Michigan's EECS 498-007/598-005 (Deep Learning for Computer Vision). These projects involve implementing classical and fundamental deep learning algorithms/architectures/strategies (including neural network forward and backward pass) from scratch.\n\nGitHub repository at <a href=\"https://github.com/OllieII/-CS639-Deep-Learning-for-Computer-Vision/tree/main\" target=\"_blank\" rel=\"noopener noreferrer\">https://github.com/OllieII/-CS639-Deep-Learning-for-Computer-Vision</a>"
+        },
+        {
+            "title": "My Responsibility",
+            "content": "Image Classification, k-Nearest Neighbors (kNN), Support vector machine (SVM), Softmax, ReLU, Fully-Connected Neural Network.\nFully-Connected Networks, Convolutional Networks, Batch Normalization, Kaiming Initialization, Max Pooling\nFeature Pyramid Network (FPN), Fully Convolutional One-Stage Object Detection (FCOS), Box/Centerness Regression, Non-Maximum Suppression (NMS)\nGenerative Adversarial Networks (GAN), GAN Loss, Deeply Convolutional GANs, Style Transfer, Total-variation regularization, Gram Matrix"
+        },
+        {
+            "title": "Tech Stack",
+            "content": "Python, PyTorch, NumPy, Matplotlib, Jupyter Notebook"
+        }
+    ]
+}

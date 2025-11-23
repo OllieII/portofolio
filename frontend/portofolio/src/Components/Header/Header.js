@@ -14,13 +14,19 @@ export function Header(){
         setTimeout(() => {
           const element = document.getElementById(sectionId);
           if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
+            const headerOffset = 80;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
           }
         }, 100);
       } else {
         const element = document.getElementById(sectionId);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
+          const headerOffset = 80;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
         }
       }
     };
@@ -32,11 +38,16 @@ export function Header(){
         setTimeout(() => {
           const projectsElement = document.getElementById('projects');
           if (projectsElement) {
-            projectsElement.scrollIntoView({ behavior: 'smooth' });
+            const headerOffset = 80;
+            const elementPosition = projectsElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
             setTimeout(() => {
               const categoryElement = document.querySelector(`.section-title.${category}`);
               if (categoryElement) {
-                categoryElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                const categoryPosition = categoryElement.getBoundingClientRect().top;
+                const categoryOffset = categoryPosition + window.pageYOffset - headerOffset - 20;
+                window.scrollTo({ top: categoryOffset, behavior: 'smooth' });
               }
             }, 300);
           }
@@ -44,11 +55,16 @@ export function Header(){
       } else {
         const projectsElement = document.getElementById('projects');
         if (projectsElement) {
-          projectsElement.scrollIntoView({ behavior: 'smooth' });
+          const headerOffset = 80;
+          const elementPosition = projectsElement.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
           setTimeout(() => {
             const categoryElement = document.querySelector(`.section-title.${category}`);
             if (categoryElement) {
-              categoryElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              const categoryPosition = categoryElement.getBoundingClientRect().top;
+              const categoryOffset = categoryPosition + window.pageYOffset - headerOffset - 20;
+              window.scrollTo({ top: categoryOffset, behavior: 'smooth' });
             }
           }, 300);
         }
@@ -62,7 +78,7 @@ export function Header(){
             <li className="nav-item"><a href="#about" onClick={handleNavClick('about')}>About</a></li>
             <li className="nav-item"><a href="#research" onClick={handleProjectSubNavClick('research')}>Research</a></li>
             <li className="nav-item"><a href="#games" onClick={handleProjectSubNavClick('games')}>Games</a></li>
-            <li className="nav-item"><a href="#experience" onClick={handleProjectSubNavClick('experience')}>Experience</a></li>
+            <li className="nav-item"><a href="#experience" onClick={handleProjectSubNavClick('experience')}>Other Projects</a></li>
             <li className="nav-item"><Link to = "/portofolio/cv">CV</Link></li>
           </ul>
         </nav>

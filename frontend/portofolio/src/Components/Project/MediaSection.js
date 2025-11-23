@@ -188,6 +188,88 @@ const NavigationButton = styled.button`
   }
 `;
 
+const FullScreenButton = styled.button`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(34, 211, 238, 0.9);
+  color: #050814;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+  z-index: 10;
+  
+  &:hover {
+    background-color: #F97316;
+    box-shadow: 0 0 16px rgba(249, 115, 22, 0.6);
+  }
+`;
+
+const FullScreenOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
+`;
+
+const FullScreenContent = styled.div`
+  position: relative;
+  max-width: 95vw;
+  max-height: 95vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  img {
+    max-width: 100%;
+    max-height: 95vh;
+    object-fit: contain;
+  }
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: -50px;
+  right: 0;
+  background: rgba(34, 211, 238, 0.9);
+  color: #050814;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: #F97316;
+  }
+  
+  @media (max-width: 768px) {
+    top: -40px;
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+`;
+
 const Image = styled.img`
   width: 100%;
   height: 100%;
@@ -239,6 +321,7 @@ const MediaSection = ({ mediaList = [] }) => {
   const [loadedImages, setLoadedImages] = useState(new Set());
   const [imageDimensions, setImageDimensions] = useState({});
   const [maxDimensions, setMaxDimensions] = useState({ width: 0, height: 0 });
+  const [isFullScreen, setIsFullScreen] = useState(false);
   const imageTimerRef = useRef(null);
   const videoRef = useRef(null);
 
@@ -293,12 +376,12 @@ const MediaSection = ({ mediaList = [] }) => {
     setCurrentIndex(index);
   };
 
-  // Auto-advance for images (5 seconds)
+  // Auto-advance for images (5 seconds) - but not in full-screen mode
   useEffect(() => {
     const currentMedia = mediaList[currentIndex];
     const isVideo = isEmbedCode(currentMedia);
 
-    if (!isVideo) {
+    if (!isVideo && !isFullScreen) {
       const goToNextSlide = () => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % mediaList.length);
       };
@@ -314,7 +397,7 @@ const MediaSection = ({ mediaList = [] }) => {
         }
       };
     }
-  }, [currentIndex, mediaList]);
+  }, [currentIndex, mediaList, isFullScreen]);
 
   // Handle empty or invalid mediaList
   if (!mediaList || mediaList.length === 0) {
@@ -385,6 +468,11 @@ const MediaSection = ({ mediaList = [] }) => {
             </NavigationButton>
           </>
         )}
+        {!isEmbedCode(mediaList[currentIndex]) && (
+          <FullScreenButton onClick={() => setIsFullScreen(true)}>
+            ⛶ View Full Size
+          </FullScreenButton>
+        )}
       </CarouselContainer>
       
       {mediaList.length > 1 && (
@@ -448,6 +536,20 @@ const MediaSection = ({ mediaList = [] }) => {
           })}
           </ThumbnailContainer>
         </ThumbnailWrapper>
+      )}
+      
+      {isFullScreen && !isEmbedCode(mediaList[currentIndex]) && (
+        <FullScreenOverlay onClick={() => setIsFullScreen(false)}>
+          <FullScreenContent onClick={(e) => e.stopPropagation()}>
+            <CloseButton onClick={() => setIsFullScreen(false)}>
+              Close ✕
+            </CloseButton>
+            <img
+              src={`${process.env.PUBLIC_URL}${mediaList[currentIndex]}`}
+              alt={`Full size view ${currentIndex + 1}`}
+            />
+          </FullScreenContent>
+        </FullScreenOverlay>
       )}
     </MediaContainer>
   );

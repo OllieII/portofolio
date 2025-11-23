@@ -1,5 +1,6 @@
 {
     "title": "Virtual Theatre: Beyond the Garden of Adrian",
+    "brief": "Immersive VR theatre experiment exploring elements of intimacy and embodiment in virtual environments. Lead designer and developer role.",
     "media": [
         "/img/GOA/2.png" ,
         "/img/GOA/6.png" ,
@@ -29,8 +30,7 @@
         },
         {
             "title": "My Responsibility",
-            "content": "I resiponsible for listening to the onpnions of the professionals and organize them into an actionable design and feasible development plan. I collaborated closely with the team to design and implement various interactive elements within the virtual environment, ensuring that the technical aspects aligned with the artistic vision of the project. Additionally, I assisted in optimizing the performance of the VR experience to provide a smooth and immersive experience for users."
-        },
+            "content": "Designed and implemented two versions of BEyond the Garden of Adrian for A/B testing\nCollaborated closely with the team to design and implement various interactive elements within the virtual environment, ensuring that the technical aspects aligned with the artistic vision of the project.\nAssisted in optimizing the performance of the VR experience to provide a smooth and immersive experience for users according to audience feedback."},
         {
             "title": "Tech Stack",
             "content": "Unity, C#, Blender, Adobe Photoshop, Oculus VR"

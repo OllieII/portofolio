@@ -1,0 +1,23 @@
+{
+    "title": "The Otherside",
+    "brief": "Puzzle game combining word solving, chase mechanics, and maze exploration. Game and level design lead.",
+    "media": [
+        "/img/Otherside/1.png",
+        "/img/Otherside/2.png"
+    ],
+    "subtitles": [
+        {
+            "title": "Project Description",
+            "content": "The Otherside is a actively in developemtn puzzle game that combines word puzzle solving, chasing, and mazeexploration. The player play as a firefly who has lost their memmory and got spawned onto this strange maze with spiders chasing them around. They have to collect scattered characters in the maze to retrive their memory and find their way out of the maze.\n\nItch.io page at <a href=\"https://ollieii.itch.io/the-other-side\" target=\"_blank\" rel=\"noopener noreferrer\">https://ollieii.itch.io/the-other-side</a>"
+        },
+        {
+            "title": "My Responsibility",
+            "content": "Designed, iterated the game's mechanics and levels, ensuring a balanced and engaging player experience. \nCollaborated with the artist and programmer to create a cohesive and immersive atmosphere. \nManaged the team and the project timeline, ensuring that milestones were met and the project stayed on track. \nConducted playtesting sessions to gather feedback and make necessary adjustments to the game design."
+        },
+        {
+            "title": "Tech Stack",
+            "content": "Unity, C#, Game Design, Level Design, Project Management"
+        }
+    ]
+
+}

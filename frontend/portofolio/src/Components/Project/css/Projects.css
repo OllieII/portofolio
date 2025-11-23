@@ -1,37 +1,37 @@
 /* Projects Page Styles */
 .projects-container {
   min-height: 100vh;
-  background: #050814;
+  background: linear-gradient(180deg, #050814 0%, #111827 45%, #1F2937 100%);
   padding: 40px 20px;
   position: relative;
 }
 
-.projects-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.05) 35px, rgba(255,255,255,.05) 70px),
-    repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(255,255,255,.03) 35px, rgba(255,255,255,.03) 70px);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.projects-container > * {
-  position: relative;
-  z-index: 1;
-}
-
 .section {
   max-width: 1400px;
-  margin: 0 auto 40px auto;
+  margin: 0 auto 60px auto;
 }
 
 .section:last-child {
   margin-bottom: 0;
+}
+
+.section.research,
+.section.games,
+.section.experience {
+  background: rgba(11, 17, 32, 0.6);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(75, 85, 99, 0.3);
+}
+
+@media (max-width: 768px) {
+  .section.research,
+  .section.games,
+  .section.experience {
+    padding: 30px 20px;
+    border-radius: 20px;
+  }
 }
 
 .section-title {

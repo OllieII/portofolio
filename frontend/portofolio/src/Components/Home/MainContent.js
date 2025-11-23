@@ -115,7 +115,7 @@ const Name = styled.h1`
 const SelfIntro = styled.div`
   font-size: clamp(18px, 2vw, 24px);
   color: #E5E7EB;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   font-family: "Ubuntu Sans Mono", monospace;
   font-optical-sizing: auto;
   font-weight: 700;
@@ -129,6 +129,34 @@ const Highlight = styled.span`
   color: ${props => props.color || '#22D3EE'};
   font-weight: 900;
   text-shadow: 0 0 10px ${props => props.color === '#A855F7' ? 'rgba(168, 85, 247, 0.4)' : 'rgba(34, 211, 238, 0.4)'};
+`;
+
+const ChipsRow = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+`;
+
+const Chip = styled.div`
+  background: rgba(17, 24, 39, 0.6);
+  border: 1px solid #4B5563;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: clamp(13px, 1.5vw, 16px);
+  color: #E5E7EB;
+  font-family: "Ubuntu Sans Mono", monospace;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(31, 41, 55, 0.8);
+    border-color: #22D3EE;
+    box-shadow: 0 0 12px rgba(34, 211, 238, 0.3);
+  }
 `;
 
 const IconWrapper = styled.div`
@@ -197,6 +225,11 @@ const MainContent = () => {
         <SelfIntro>
           I aim to use <Highlight color="#A855F7">AI/ML methods</Highlight> to understand <Highlight>human behavior</Highlight> and create <Highlight>virtual interaction systems</Highlight> that treat each user as a <Highlight color="#A855F7">unique individual</Highlight> rather than a normal user.
         </SelfIntro>
+        <ChipsRow>
+          <Chip>CS @ UW–Madison</Chip>
+          <Chip>Game Design + HCI</Chip>
+          <Chip>VR/ML for User Behavior</Chip>
+        </ChipsRow>
         <IconWrapper>
           <IconContainer onClick={handleEmailClick}>
             <Icon
