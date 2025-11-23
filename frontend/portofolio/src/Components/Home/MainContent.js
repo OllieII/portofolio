@@ -227,8 +227,8 @@ const MainContent = () => {
         </SelfIntro>
         <ChipsRow>
           <Chip>CS @ UW–Madison</Chip>
-          <Chip>Game Design + HCI</Chip>
           <Chip>VR/ML for User Behavior</Chip>
+          <Chip>Game Design + HCI</Chip>
         </ChipsRow>
         <IconWrapper>
           <IconContainer onClick={handleEmailClick}>

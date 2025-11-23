@@ -176,9 +176,20 @@ export const ProjectDetail = () => {
   const [fontSize, setFontSize] = useState(130);
 
   useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}/ProjectDescription/project${id}.json`)
-      .then(response => response.json())
-      .then(data => setProjectData(data));
+    const url = `${process.env.PUBLIC_URL}/ProjectDescription/project${id}.json`;
+    
+    fetch(url)
+      .then(async (response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status} while fetching ${url}`);
+        }
+        return response.json();
+      })
+      .then(setProjectData)
+      .catch((err) => {
+        console.error('Failed to load project data:', err);
+        setProjectData(null);
+      });
   }, [id]);
 
   const handleGoBack = () => {
