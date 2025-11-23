@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext, useContext } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from './NavBar';
@@ -83,15 +83,6 @@ const BackLink = styled.button`
   &:active {
     transform: scale(0.98);
   }
-`;
-
-const ProjectHeroWrapper = styled.div`
-  background: #0B1120;
-  border-radius: 20px;
-  border: 1px solid #374151;
-  padding: 0.75rem 1.5rem 1.25rem;
-  margin-bottom: 0;
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.6);
 `;
 
 const ProjectTitle = styled.h1`
