@@ -1,0 +1,15 @@
+{
+  "research": {
+    "title": "Research",
+    "description": "Every individual is different from each other and I aim to construct design patterns and tools that respects this individuality. My research focuses on understanding human behavior and decision-making via computational modeling to aid the designing process and make products for everyone. Common scenes that they might be useful are education, VR/AR, and games."
+  },
+  "games": {
+    "title": "Games",
+    "description": "I view game design as shaping the player's experience and emotions through interactive storytelling, mechanics, and level design. The constant question I ask myself in the designing process is 'What does this design choice add on to the game experience?. In my game design journey, I wish to make games that are not only fun to play but also meaningful and impactful to the players."
+  },
+  "experience": {
+    "title": "Other Projects",
+    "description": "Additional projects that showcase my technical skills and passion for learning. These include coursework and independent explorations in deep learning, computer vision, and software development."
+  },
+  "editor.wordWrap": "on"
+}

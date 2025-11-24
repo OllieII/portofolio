@@ -6,12 +6,16 @@ const MainContentWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 50px;
+  padding: 50px 50px 120px 50px;
   flex: 1;
   text-align: center;
   max-width: 1000px;
   margin: 0 auto;
   width: 100%;
+  
+  @media (max-width: 768px) {
+    padding: 50px 50px 100px 50px;
+  }
 `;
 
 const rotate = keyframes`
@@ -23,16 +27,21 @@ const ProfileSection = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   perspective: 1000px;
 `;
 
 const ProfileImageWrapper = styled.div`
   position: relative;
-  width: 280px;
-  height: 280px;
-  margin-bottom: 20px;
+  width: 220px;
+  height: 220px;
+  margin-bottom: 15px;
   cursor: pointer;
+  
+  @media (max-width: 768px) {
+    width: 180px;
+    height: 180px;
+  }
 `;
 
 const Ring = styled.div`
@@ -42,32 +51,39 @@ const Ring = styled.div`
   animation: ${rotate} ${props => props.duration}s linear infinite;
   
   &.outer-ring {
-    width: 280px;
-    height: 280px;
+    width: 220px;
+    height: 220px;
     border-color: #A855F7 transparent #22D3EE transparent;
     top: 0;
     left: 0;
   }
   
   &.inner-ring {
-    width: 240px;
-    height: 240px;
+    width: 190px;
+    height: 190px;
     border-color: #22D3EE transparent #A855F7 transparent;
-    top: 20px;
-    left: 20px;
+    top: 15px;
+    left: 15px;
     animation-direction: reverse;
   }
 `;
 
 const FlipCard = styled.div`
   position: absolute;
-  width: 200px;
-  height: 200px;
-  top: 40px;
-  left: 40px;
+  width: 160px;
+  height: 160px;
+  top: 30px;
+  left: 30px;
   transform-style: preserve-3d;
   transition: transform 0.8s;
   transform: ${props => props.isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'};
+  
+  @media (max-width: 768px) {
+    width: 130px;
+    height: 130px;
+    top: 25px;
+    left: 25px;
+  }
 `;
 
 const FlipCardFace = styled.div`
@@ -104,24 +120,24 @@ const FlipCardBack = styled(FlipCardFace)`
 `;
 
 const Name = styled.h1`
-  font-size: clamp(3em, 8vw, 6em);
+  font-size: clamp(2.5em, 7vw, 5em);
   color: #F9FAFB;
-  margin: 0 0 30px 0;
+  margin: 0 0 20px 0;
   font-family: "Pixelify Sans", sans-serif;
   font-weight: 900;
   text-shadow: 0 0 18px rgba(34, 211, 238, 0.35);
 `;
 
 const SelfIntro = styled.div`
-  font-size: clamp(18px, 2vw, 24px);
+  font-size: clamp(16px, 2vw, 22px);
   color: #E5E7EB;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   font-family: "Ubuntu Sans Mono", monospace;
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
   text-align: center;
-  line-height: 1.8;
+  line-height: 1.7;
   max-width: 900px;
 `;
 
@@ -135,8 +151,8 @@ const ChipsRow = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 30px;
+  gap: 10px;
+  margin-bottom: 20px;
   flex-wrap: wrap;
 `;
 
