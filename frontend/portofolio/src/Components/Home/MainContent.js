@@ -263,7 +263,7 @@ const MainContent = () => {
             />
             <div>GitHub</div>
           </IconContainer>
-          <IconContainer onClick={handleLinkClick('www.linkedin.com/in/olly-guo-62016b248')}>
+          <IconContainer onClick={handleLinkClick('https://www.linkedin.com/in/olly-guo-62016b248/')}>
             <Icon
               src={`${process.env.PUBLIC_URL}/Icons/linkedin.png`}
               alt="LinkedIn"
