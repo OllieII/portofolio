@@ -1,0 +1,127 @@
+{
+  "name": "Olly (Ziqi) Guo",
+  "title": "",
+  "contact": {
+    "email": "zguo295@wisc.edu",
+    "location": "Madison, WI",
+    "github": "github.com/OllieII",
+    "portfolio": "ollieii.github.io/portofolio"
+  },
+  "research_interests": [
+    "Modeling user state from behavioral and physiological signals in interactive systems",
+    "Adaptive MR/VR and educational experiences that respond to inferred user state in real time",
+    "Data-driven design principles and evaluation methods for \"user-state-aware\" interfaces and narratives",
+    "Mixed-methods HCI combining telemetry analysis, user studies, and field deployments in authentic settings"
+  ],
+  "education": [
+    {
+      "degree": "B.S. in Computer Science (Certificate in Game Design)",
+      "school": "University of Wisconsin--Madison",
+      "location": "Madison, WI",
+      "duration": "Expected Dec 2025",
+      "relevant_coursework": "Python (PyTorch, Pandas, TensorFlow, SciPy); Computer Graphics; full-stack game design and development (C#, Unity); Machine Learning, Computer Vision, Clustering, Reinforcement Learning."
+    }
+  ],
+  "publications": [
+    {
+      "authors": "Olly (Ziqi) Guo and Kevin Ponto",
+      "title": "Using Head Movements to Predict Performance and Early Quitting in Virtual Reality",
+      "venue": "Manuscript in preparation to IEEE Transactions on Visualization and Computer Graphics (TVCG), 2025"
+    },
+    {
+      "authors": "Megan Reilly and Olly (Ziqi) Guo",
+      "title": "Beyond the Garden of Adrian and the Authentic Actor--Audience Connection",
+      "venue": "Submitted to International Journal of Performance Arts and Digital Media, 2025"
+    }
+  ],
+  "posters": [
+    {
+      "title": "Observationally and Computationally Probing the Milky Way Galaxy Density Structure",
+      "authors": "Olly (Ziqi) Guo, Rachel McClure, Elena D'Onghia, Dominic Catherino"
+    }
+  ],
+  "research_experience": [
+    {
+      "title": "Undergraduate Researcher",
+      "company": "Wisconsin Institute for Discovery",
+      "location": "Madison, WI",
+      "duration": "Jan 2024--Present",
+      "responsibilities": [
+        "Built predictive models (KNN, Random Forest) over sequential VR gameplay data to identify early-quitting behavior; achieved 80% accuracy on original test data and 77% on new datasets.",
+        "Integrated models into gameplay for real-time adaptive feedback to improve user experience and collect online data for iterative, user-centered interventions.",
+        "Analyzed experimental results to surface factors correlated with early quitting and designed targeted intervention strategies; examined model generalization across diverse games, showing moderate transferability."
+      ]
+    },
+    {
+      "title": "Undergraduate Researcher",
+      "company": "Department of Theatre",
+      "location": "Madison, WI",
+      "duration": "May 2023--Present",
+      "responsibilities": [
+        "Prototyped and iterated a one-on-one VR environment (Beyond the Garden of Adrian) in Unity (C#), investigated factors in design that shape player-actor interaction.",
+        "Surveyed 30+ participants to study transformational VR gameplay and the relationships among environment, actor, and audience; the updated work was accepted to the Festival d'Avignon."
+      ]
+    },
+    {
+      "title": "Undergraduate Researcher",
+      "company": "Department of Astronomy",
+      "location": "Madison, WI",
+      "duration": "Oct 2022--Jul 2023",
+      "responsibilities": [
+        "Trained a deep neural network to identify Red Clump stars, addressing limitations of traditional observation pipelines.",
+        "Provided computational evidence supporting a correlation between Red Clump stars and galactic bars; used bar structures to probe Milky Way density and evaluate N-body simulations against observations."
+      ]
+    },
+    {
+      "title": "Undergraduate Researcher",
+      "company": "Department of Computer Science",
+      "location": "Madison, WI",
+      "duration": "Sep 2024--Present",
+      "responsibilities": [
+        "Applied Q-learning and policy-gradient methods to compute Nash-equilibrium strategies in multi-agent settings under partial observability.",
+        "Designed and implemented optimization routines in Java for partially observable Markov games.",
+        "Developed and visualized an exact POMG solver (belief-state discretization; iterative elimination of dominated strategies)."
+      ]
+    }
+  ],
+  "honors": [
+    "Beyond the Garden of Adrian (interactive VR performance): accepted at the Festival d'Avignon",
+    "Dean's List: 2022--2024"
+  ],
+  "involvement": [
+    {
+      "title": "Senior Narrative Designer & Developer",
+      "company": "Minerva Studio",
+      "location": "Madison, WI",
+      "duration": "Sep 2022--Present",
+      "responsibilities": [
+        "Led narrative and gameplay design for the 2D roguelike Library of Meialia; built interactive storytelling and dialogue systems and integrated encyclopedia interfaces (Unity, C#, Lua); released a public demo on Steam.",
+        "Collaborated with art, audio, and engineering to align narrative with mechanics and maintain a cohesive, player-centered experience; contributed to combat, UI/UX, and core systems refinement."
+      ]
+    }
+  ],
+  "teaching": [
+    {
+      "title": "Peer Mentor",
+      "company": "Computer Sciences 540: Introduction to Artificial Intelligence",
+      "school": "University of Wisconsin--Madison",
+      "duration": "Sep 2024--Present",
+      "responsibilities": [
+        "Supported instruction for Introduction to Artificial Intelligence.",
+        "Assisted students with principles of knowledge-based search, automatic deduction, predicate logic, machine learning, and probabilistic reasoning.",
+        "Helped apply AI methods to tasks such as problem solving, game playing, natural language understanding, computer vision, and robotics."
+      ]
+    },
+    {
+      "title": "Peer Mentor",
+      "company": "Computer Sciences 559: Computer Graphics",
+      "school": "University of Wisconsin--Madison",
+      "duration": "Sep 2024--Present",
+      "responsibilities": [
+        "Supported instruction for Computer Graphics.",
+        "Assisted students with fundamentals of image representation, geometric transformations, modeling, rendering, and animation.",
+        "Guided labs and projects involving curves, surfaces, visualization, and multimedia applications, building on vector mathematics and linear algebra."
+      ]
+    }
+  ]
+}
