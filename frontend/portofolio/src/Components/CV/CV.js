@@ -244,15 +244,6 @@ export function CV() {
     return <Container>Loading...</Container>;
   }
 
-  const handleDownload = () => {
-    const link = document.createElement('a');
-    link.href = `${process.env.PUBLIC_URL}/CV_Olly.pdf`;
-    link.download = 'CV_Olly.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
   return (
     <Container>
       <CVWrapper>

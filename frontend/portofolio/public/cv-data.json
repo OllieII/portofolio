@@ -47,9 +47,9 @@
       "location": "Madison, WI",
       "duration": "Jan 2024--Present",
       "responsibilities": [
-        "Built predictive models (KNN, Random Forest) over sequential VR gameplay data to identify early-quitting behavior; achieved 80% accuracy on original test data and 77% on new datasets.",
-        "Integrated models into gameplay for real-time adaptive feedback to improve user experience and collect online data for iterative, user-centered interventions.",
-        "Analyzed experimental results to surface factors correlated with early quitting and designed targeted intervention strategies; examined model generalization across diverse games, showing moderate transferability."
+        "Modeled early-quitting behavior from windowed head-rotation telemetry across multiple educational VR games; trained supervised models (e.g., Random Forests) achieving ROC-AUC ~0.80 within-game and ~0.73 on held-out games (>7,000 sessions).",
+        "Evaluated robustness under time-based and cross-game splits to approximate new-player populations, showing moderate but meaningful generalization across deployments and titles.",
+        "Applied SHAP-based feature attribution to surface interpretable movement patterns linked to quitting (e.g., oscillatory searching, frozen gaze), informing targeted adaptive interventions and a TVCG submission on early-quit prediction."
       ]
     },
     {
