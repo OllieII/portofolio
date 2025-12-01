@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import './App.css';
 
@@ -25,27 +25,42 @@ function Analytics() {
 }
 
 function App() {
+  const location = useLocation();
+  const isUCSCPage = location.pathname === '/ucsc-cm-portfolio-2026';
+
   return (
-    <Router basename='/portofolio'>
-      <Analytics />
+    <>
       <Helmet>
         <title>Home</title>
         <link rel="icon" type="image/png" href={`${process.env.PUBLIC_URL}/favicon/homeicon.png`} />
       </Helmet>
-      <div className="App">
-        <Header />
-        <main>
-          <Routes>
-            <Route path="/" element={<SinglePage />} />
-            <Route path="/portofolio/cv" element={<CV />} />
-            {/* Unlisted UCSC portfolio - not linked from main navigation */}
-            <Route path="/portofolio/ucsc-cm-portfolio-2026" element={<UCSCPortfolio />} />
-            <Route path="/portofolio/projects/:id" element={<ProjectDetail />} />
-          </Routes>
-        </main>
-      </div>
+      
+      {/* Hide header on UCSC portfolio page */}
+      {!isUCSCPage && (
+        <div className="App">
+          <Header />
+        </div>
+      )}
+      
+      <main>
+        <Routes>
+          <Route path="/" element={<SinglePage />} />
+          <Route path="/cv" element={<CV />} />
+          <Route path="/ucsc-cm-portfolio-2026" element={<UCSCPortfolio />} />
+          <Route path="/projects/:id" element={<ProjectDetail />} />
+        </Routes>
+      </main>
+    </>
+  );
+}
+
+function AppWrapper() {
+  return (
+    <Router>
+      <Analytics />
+      <App />
     </Router>
   );
 }
 
-export default App;
+export default AppWrapper;

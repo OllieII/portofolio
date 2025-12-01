@@ -79,7 +79,7 @@ export function Header(){
             <li className="nav-item"><a href="#research" onClick={handleProjectSubNavClick('research')}>Research</a></li>
             <li className="nav-item"><a href="#games" onClick={handleProjectSubNavClick('games')}>Games</a></li>
             <li className="nav-item"><a href="#experience" onClick={handleProjectSubNavClick('experience')}>Other Projects</a></li>
-            <li className="nav-item"><Link to = "/portofolio/cv">CV</Link></li>
+            <li className="nav-item"><Link to="/cv">CV</Link></li>
           </ul>
         </nav>
       </header>
