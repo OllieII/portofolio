@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import './App.css';
 
@@ -26,7 +26,16 @@ function Analytics() {
 
 function App() {
   const location = useLocation();
+  const navigate = useNavigate();
   const isUCSCPage = location.pathname === '/ucsc-cm-portfolio-2026';
+
+  useEffect(() => {
+    const currentHash = window.location.hash;
+
+    if (currentHash.includes('/ucsc-cm-portfolio-2026') && !isUCSCPage) {
+      navigate('/ucsc-cm-portfolio-2026', { replace: true });
+    }
+  }, [navigate, isUCSCPage]);
 
   return (
     <>
