@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import './App.css';
 
@@ -26,7 +26,24 @@ function Analytics() {
 
 function App() {
   const location = useLocation();
-  const isUCSCPage = location.pathname === '/ucsc-cm-portfolio-2026';
+  const navigate = useNavigate();
+  const isUCSCPage =
+    location.pathname === '/ucsc-cm-portfolio-2026' ||
+    location.pathname === '/portofolio/ucsc-cm-portfolio-2026';
+
+  useEffect(() => {
+    const currentHash = window.location.hash;
+
+    if (currentHash.includes('/ucsc-cm-portfolio-2026') && !isUCSCPage) {
+      navigate('/ucsc-cm-portfolio-2026', { replace: true });
+      return;
+    }
+
+    if (currentHash.includes('/projects/') && !location.pathname.includes('/projects/')) {
+      const projectPath = currentHash.replace('#', '');
+      navigate(projectPath, { replace: true });
+    }
+  }, [navigate, isUCSCPage, location.pathname]);
 
   return (
     <>
@@ -47,7 +64,9 @@ function App() {
           <Route path="/" element={<SinglePage />} />
           <Route path="/cv" element={<CV />} />
           <Route path="/ucsc-cm-portfolio-2026" element={<UCSCPortfolio />} />
+          <Route path="/portofolio/ucsc-cm-portfolio-2026" element={<UCSCPortfolio />} />
           <Route path="/projects/:id" element={<ProjectDetail />} />
+          <Route path="/portofolio/projects/:id" element={<ProjectDetail />} />
         </Routes>
       </main>
     </>
@@ -56,7 +75,7 @@ function App() {
 
 function AppWrapper() {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL || '/portofolio'}>
       <Analytics />
       <App />
     </Router>

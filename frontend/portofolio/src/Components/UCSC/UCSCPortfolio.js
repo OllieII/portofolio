@@ -358,7 +358,7 @@ export function UCSCPortfolio() {
 
             <LinkSection>
               <Link
-                href="https://ollieii.github.io/portofolio/portfolio/projects/4"
+                href="https://ollieii.github.io/portofolio/portofolio/projects/4"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -403,7 +403,7 @@ export function UCSCPortfolio() {
 
             <LinkSection>
               <Link
-                href="https://ollieii.github.io/portofolio/portfolio/projects/3"
+                href="https://ollieii.github.io/portofolio/portofolio/projects/3"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -453,7 +453,7 @@ export function UCSCPortfolio() {
 
             <LinkSection>
               <Link
-                href="https://ollieii.github.io/portofolio/portfolio/projects/1"
+                href="https://ollieii.github.io/portofolio/portofolio/projects/1"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -505,7 +505,7 @@ export function UCSCPortfolio() {
             <LinkSection>
 
               <Link
-                href="https://ollieii.github.io/portofolio/portfolio/projects/2"
+                href="https://ollieii.github.io/portofolio/portofolio/projects/2"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -548,7 +548,7 @@ export function UCSCPortfolio() {
             <LinkSection>
 
               <Link
-                href="https://ollieii.github.io/portofolio/portfolio/projects/3"
+                href="https://ollieii.github.io/portofolio/portofolio/projects/3"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -591,7 +591,7 @@ export function UCSCPortfolio() {
 
             <LinkSection>
               <Link
-                href="https://ollieii.github.io/portofolio/portfolio/projects/5"
+                href="https://ollieii.github.io/portofolio/portofolio/projects/5"
                 target="_blank"
                 rel="noreferrer"
               >
