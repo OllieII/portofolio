@@ -7,6 +7,7 @@ import { Header } from './Components/Header/Header';
 import { SinglePage } from './Components/Home/SinglePage';
 import { ProjectDetail } from './Components/Project/ProjectDetail';
 import CV from './Components/CV/CV';
+import UCSCPortfolio from './Components/UCSC/UCSCPortfolio';
 import { initGA, logPageView } from './analytics';
 
 function Analytics() {
@@ -37,6 +38,8 @@ function App() {
           <Routes>
             <Route path="/" element={<SinglePage />} />
             <Route path="/portofolio/cv" element={<CV />} />
+            {/* Unlisted UCSC portfolio - not linked from main navigation */}
+            <Route path="/portofolio/ucsc-cm-portfolio-2026" element={<UCSCPortfolio />} />
             <Route path="/portofolio/projects/:id" element={<ProjectDetail />} />
           </Routes>
         </main>
