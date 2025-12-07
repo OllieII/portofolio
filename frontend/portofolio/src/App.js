@@ -45,7 +45,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<SinglePage />} />
-          <Route path="/portofolio/cv" element={<CV />} />
+          <Route path="/cv" element={<CV />} />
           <Route path="/portofolio/ucsc-cm-portfolio-2026" element={<UCSCPortfolio />} />
           <Route path="/portofolio/projects/:id" element={<ProjectDetail />} />
         </Routes>
