@@ -1,0 +1,24 @@
+{
+    "title": "Behavioral Analysis in Virtual Reality",
+    "brief": "VR research analyzing user interaction quit patterns via behavioral in immersive environments.",
+    "media": [
+        "/img/Waddle/1.jpg",
+        "/img/Waddle/2.png",
+        "/img/Waddle/3.png",
+        "/img/Waddle/4.png",
+        "/img/Waddle/5.png"
+    ],
+    "subtitles": [
+        {
+            "title": "Project Description",
+            "content": "This project builds interpretable early-quit detectors from VR head-movement telemetry. We extract quaternion-based head rotations (and positions when available) from gameplay logs, convert them to per-frame Euler deltas, and segment the stream into direction-consistent intervals in yaw, pitch, and roll. These interval durations and movement magnitudes are then binned on power-of-two time scales to produce length-invariant histograms of “how often” and “how long” different kinds of head turns occur. Using these features, we construct balanced session-level datasets in HDF5 and train group-aware classifiers (Random Forest, XGBoost, Logistic Regression) to distinguish completing vs. quitting sessions, with t-tests, simple hand-crafted detectors, SHAP, and partial-dependence plots used to interpret which rotation patterns are most predictive."
+        },
+        {
+            "title": "My Responsibility",
+            "content": "Implemented the head-rotation feature pipeline from raw VR telemetry\nConstructed balanced session-level datasets (quit vs. non-quit)\nTrained and compared multiple classifiers (Random Forest, XGBoost, Logistic Regression)\n\nRan SHAP and other interpretability analyses to identify which movement patterns distinguish finishing players from early quitters"        },
+        {
+            "title": "Tech Stack",
+            "content": "Python, NumPy, pandas, SciPy, scikit-learn, XGBoost, h5py (HDF5), matplotlib"
+        }
+    ]
+}

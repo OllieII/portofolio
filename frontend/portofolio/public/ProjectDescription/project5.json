@@ -1,0 +1,23 @@
+{
+    "title": "Probe the Milky Way Density Structure",
+    "brief": "Astrophysics research analyzing galactic density distribution using computational modeling and data analysis.",
+    "media": [
+        "/img/Milky/Slide1.png",
+        "/img/Milky/Milky0.png",
+        "/img/Milky/Milky1.png"
+    ],
+    "subtitles": [
+        {
+            "title": "Project Description",
+            "content": "Used Gaia DR3 stellar catalogues and a Milky Way–like N-body simulation to probe the Galaxy’s bar and density structure. I trained a TensorFlow model on Gaia photometry to automatically identify red clump giants (standard-candle tracers), then applied the classifier to hundreds of millions of stars and to the simulation to locate bar-induced dark gaps and compare observed and simulated density patterns."
+        },
+        {
+            "title": "My Responsibility",
+            "content": "Cleaned and filtered Gaia DR data; constructed training and test samples. \nImplemented and tuned the TensorFlow red-clump classifier; evaluated accuracy on held-out data.\nApplied the trained model to both Gaia data and the N-body simulation and generated comparison plots/maps.\n\nInterpreted the density profiles of the bar and dark gaps with the team and designed the research poster summarizing results."
+        },
+        {
+            "title": "Tech Stack",
+            "content": "Python, NumPy, pandas, SciPy, Matplotlib, Astropy"
+        }
+    ]
+}

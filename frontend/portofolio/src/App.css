@@ -5,6 +5,16 @@
   overflow-x: hidden;
 }
 
+.App main {
+  padding-top: 80px;
+}
+
+@media (max-width: 768px) {
+  .App main {
+    padding-top: 60px;
+  }
+}
+
 /* Global responsive settings */
 * {
   box-sizing: border-box;

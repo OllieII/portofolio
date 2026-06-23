@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=pixelifysans:wght@400;500;700&display=swap');
 
 .header {
-  background-color:#7469B6;
+  background: linear-gradient(90deg, rgba(5, 8, 20, 0.98) 0%, rgba(17, 24, 39, 0.98) 50%, rgba(5, 8, 20, 0.98) 100%);
+  border-bottom: 2px solid transparent;
+  border-image: linear-gradient(90deg, #A855F7, #22D3EE, #A855F7) 1;
   padding: 10px 0;
   font-family: "Pixelify Sans", sans-serif;
   /*font-optical-sizing: auto;*/
@@ -10,6 +12,13 @@
   font-size: clamp(20px, 4vw, 45px);
   box-sizing: border-box;
   width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .nav-list {
@@ -26,27 +35,45 @@
   flex: 1;
   text-align: center;
   min-width: 0;
+  position: relative;
 }
 
 .nav-item a {
   display: block;
-  color: #FFF;
+  color: #E5E7EB;
   text-decoration: none;
   font-size: clamp(16px, 3vw, 35px);
   padding: clamp(4px, 1vw, 8px);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: all 0.3s ease;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   box-sizing: border-box;
+  border-radius: 8px;
+  position: relative;
+  cursor: pointer;
 }
 
-.nav-item:hover {
-  background-color: #AD88C6;
+.nav-item a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #A855F7, #22D3EE);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
 }
 
-.nav-item a:hover {
-  color: #FFF;
+.nav-item:hover a {
+  color: #22D3EE;
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+  background-color: rgba(31, 41, 55, 0.5);
+}
+
+.nav-item:hover a::after {
+  width: 80%;
 }
 
 /* Responsive breakpoints */
