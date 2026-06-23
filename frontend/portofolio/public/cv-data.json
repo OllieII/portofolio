@@ -1,9 +1,9 @@
 {
   "name": "Olly (Ziqi) Guo",
-  "title": "",
+  "title": "M.S. Computer Science student, University of Illinois Urbana-Champaign",
   "contact": {
-    "email": "zguo295@wisc.edu",
-    "location": "Madison, WI",
+    "email": "ziqiguo4@illinois.edu",
+    "location": "Urbana-Champaign, IL",
     "github": "github.com/OllieII",
     "portfolio": "ollieii.github.io/portofolio"
   },
@@ -15,10 +15,17 @@
   ],
   "education": [
     {
+      "degree": "M.S. in Computer Science",
+      "school": "University of Illinois Urbana-Champaign",
+      "location": "Urbana-Champaign, IL",
+      "duration": "Current",
+      "relevant_coursework": "Research interests: human-centered AI, user modeling, interactive systems, VR/MR, and data-driven design."
+    },
+    {
       "degree": "B.S. in Computer Science (Certificate in Game Design)",
       "school": "University of Wisconsin--Madison",
       "location": "Madison, WI",
-      "duration": "Expected Dec 2025",
+      "duration": "Dec 2025",
       "relevant_coursework": "Python (PyTorch, Pandas, TensorFlow, SciPy); Computer Graphics; full-stack game design and development (C#, Unity); Machine Learning, Computer Vision, Clustering, Reinforcement Learning."
     }
   ],
@@ -26,18 +33,21 @@
     {
       "authors": "Olly (Ziqi) Guo and Kevin Ponto",
       "title": "Using Head Movements to Predict Performance and Early Quitting in Virtual Reality",
-      "venue": "Manuscript in preparation to IEEE Transactions on Visualization and Computer Graphics (TVCG), 2025"
+      "venue": "Under review for IEEE Transactions on Visualization and Computer Graphics (TVCG), 2026",
+      "projectLink": "/portofolio/projects/2"
     },
     {
       "authors": "Megan Reilly and Olly (Ziqi) Guo",
       "title": "Beyond the Garden of Adrian and the Authentic Actor--Audience Connection",
-      "venue": "Submitted to International Journal of Performance Arts and Digital Media, 2025"
+      "venue": "Submitted to International Journal of Performance Arts and Digital Media, 2025",
+      "projectLink": "/portofolio/projects/3"
     }
   ],
   "posters": [
     {
       "title": "Observationally and Computationally Probing the Milky Way Galaxy Density Structure",
-      "authors": "Olly (Ziqi) Guo, Rachel McClure, Elena D'Onghia, Dominic Catherino"
+      "authors": "Olly (Ziqi) Guo, Rachel McClure, Elena D'Onghia, Dominic Catherino",
+      "projectLink": "/portofolio/projects/5"
     }
   ],
   "research_experience": [
@@ -46,6 +56,7 @@
       "company": "Wisconsin Institute for Discovery",
       "location": "Madison, WI",
       "duration": "Jan 2024--Present",
+      "projectLink": "/portofolio/projects/2",
       "responsibilities": [
         "Modeled early-quitting behavior from windowed head-rotation telemetry across multiple educational VR games; trained supervised models (e.g., Random Forests) achieving ROC-AUC ~0.80 within-game and ~0.73 on held-out games (>7,000 sessions).",
         "Evaluated robustness under time-based and cross-game splits to approximate new-player populations, showing moderate but meaningful generalization across deployments and titles.",
@@ -57,6 +68,7 @@
       "company": "Department of Theatre",
       "location": "Madison, WI",
       "duration": "May 2023--Present",
+      "projectLink": "/portofolio/projects/3",
       "responsibilities": [
         "Prototyped and iterated a one-on-one VR environment (Beyond the Garden of Adrian) in Unity (C#), investigated factors in design that shape player-actor interaction.",
         "Surveyed 30+ participants to study transformational VR gameplay and the relationships among environment, actor, and audience; the updated work was accepted to the Festival d'Avignon."
@@ -67,6 +79,7 @@
       "company": "Department of Astronomy",
       "location": "Madison, WI",
       "duration": "Oct 2022--Jul 2023",
+      "projectLink": "/portofolio/projects/5",
       "responsibilities": [
         "Trained a deep neural network to identify Red Clump stars, addressing limitations of traditional observation pipelines.",
         "Provided computational evidence supporting a correlation between Red Clump stars and galactic bars; used bar structures to probe Milky Way density and evaluate N-body simulations against observations."
@@ -77,6 +90,7 @@
       "company": "Department of Computer Science",
       "location": "Madison, WI",
       "duration": "Sep 2024--Present",
+      "projectLink": "/portofolio/projects/4",
       "responsibilities": [
         "Applied Q-learning and policy-gradient methods to compute Nash-equilibrium strategies in multi-agent settings under partial observability.",
         "Designed and implemented optimization routines in Java for partially observable Markov games.",
@@ -94,6 +108,7 @@
       "company": "Minerva Studio",
       "location": "Madison, WI",
       "duration": "Sep 2022--Present",
+      "projectLink": "/portofolio/projects/1",
       "responsibilities": [
         "Led narrative and gameplay design for the 2D roguelike Library of Meialia; built interactive storytelling and dialogue systems and integrated encyclopedia interfaces (Unity, C#, Lua); released a public demo on Steam.",
         "Collaborated with art, audio, and engineering to align narrative with mechanics and maintain a cohesive, player-centered experience; contributed to combat, UI/UX, and core systems refinement."

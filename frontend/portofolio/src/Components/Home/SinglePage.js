@@ -128,7 +128,7 @@ export function SinglePage() {
             <InfoCard>
               <CardTitle>Position</CardTitle>
               <CardText>
-                Computer Science student with a Game Design minor at UW-Madison, graduating Dec 2025 and preparing for PhD research in Fall 2026.
+                Master's student in Computer Science at UIUC, with a B.S. in Computer Science and Game Design from UW-Madison.
               </CardText>
             </InfoCard>
             <InfoCard>

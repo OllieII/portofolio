@@ -14,9 +14,9 @@ function Projects() {
 
   const researchProjects = [
     { id: 2, media: `${process.env.PUBLIC_URL}/img/Waddle/1.jpg`, title: 'Behavioral Analysis in Virtual Reality', brief: 'Head movement and telemetry analysis for predicting performance, hesitation, and early quitting in immersive tasks.', meta: 'VR telemetry / ML', signal: 'Predicting early quitting from motion traces' },
-    { id: 5, media: `${process.env.PUBLIC_URL}/img/Milky/Milky1.png`, title: 'Probe the Milky Way Density Structure', brief: 'Computational modeling of galactic density distributions, using data analysis to make structure visible.', meta: 'Astrophysics / modeling', signal: 'Turning observation data into structure' },
     { id: 3, media: `${process.env.PUBLIC_URL}/img/GOA/GOA0.png`, title: 'Virtual Theatre: Beyond the Garden of Adrian', brief: 'An immersive theatre study where narrative, embodiment, and spatial interaction become the research material.', meta: 'VR theatre / interaction', signal: 'Studying actor-audience presence in VR' },
     { id: 4, media: `${process.env.PUBLIC_URL}/img/POMDP/output.png`, title: 'Partially Observable Markov Decision Process', brief: 'Comparing Nash Q-learning, DQN, and fictitious play in multi-agent reinforcement learning environments.', meta: 'RL / multi-agent systems', signal: 'Solving strategy under uncertainty' },
+    { id: 5, media: `${process.env.PUBLIC_URL}/img/Milky/Milky1.png`, title: 'Probe the Milky Way Density Structure', brief: 'Computational modeling of galactic density distributions, using data analysis to make structure visible.', meta: 'Astrophysics / modeling', signal: 'Turning observation data into structure' },
   ];
 
   const gameProjects = [

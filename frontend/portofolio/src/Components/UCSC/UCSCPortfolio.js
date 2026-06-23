@@ -202,14 +202,14 @@ export function UCSCPortfolio() {
     <Container>
       <Helmet>
         <meta name="robots" content="noindex,nofollow" />
-        <title>UCSC Computational Media · Portfolio – Olly Guo</title>
+        <title>UCSC Computational Media · Portfolio �?Olly Guo</title>
       </Helmet>
       <PortfolioWrapper as="main" aria-labelledby="ucsc-portfolio-title">
         <Title id="ucsc-portfolio-title">
           UCSC Computational Media · Portfolio
         </Title>
         <Subtitle>
-          Olly (Ziqi) Guo · B.S. Computer Science (Game Design Certificate), UW–Madison (Dec 2025)
+          Olly (Ziqi) Guo - M.S. Computer Science, UIUC
           <br />
           VR, games, and computational models of user state in immersive media
         </Subtitle>
@@ -252,7 +252,7 @@ export function UCSCPortfolio() {
                     vs. frozen gaze) and stress-tested model robustness under time-based and cross-game splits
                     </li>
                     <li>
-                        Note: Manuscript in preparation for IEEE TVCG; draft available in links below; The Repository will
+                        Note: Under review for IEEE TVCG 2026; draft available in links below; the repository will
                         be made public upon publication.
                     </li>
                 </ul>
@@ -262,7 +262,7 @@ export function UCSCPortfolio() {
 
             <LinkSection>
               <Link
-                  href="https://ollieii.github.io/portofolio/portofolio/projects/2"
+                  href="https://ollieii.github.io/portofolio/projects/2"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -273,13 +273,13 @@ export function UCSCPortfolio() {
                 target="_blank"
                 rel="noreferrer"
               >
-                📄 TVCG Draft (2025)
+                📄 TVCG Draft (under review, 2026)
               </PDFLink>
             </LinkSection>
           </ProjectItem>
 
           <ProjectItem>
-            <ProjectTitle>Library of Meialia – Narrative Systems</ProjectTitle>
+            <ProjectTitle>Library of Meialia �?Narrative Systems</ProjectTitle>
             <ProjectImage
               src={`${process.env.PUBLIC_URL}/img/LOM/1.jpg`}
               alt="Screenshot from Library of Meialia"
@@ -309,7 +309,7 @@ export function UCSCPortfolio() {
 
             <LinkSection>
               <Link
-                  href="https://ollieii.github.io/portofolio/portofolio/projects/1"
+                  href="https://ollieii.github.io/portofolio/projects/1"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -329,7 +329,7 @@ export function UCSCPortfolio() {
           </ProjectItem>
 
           <ProjectItem>
-            <ProjectTitle>POMG Solver – Multi-Agent RL Framework</ProjectTitle>
+            <ProjectTitle>POMG Solver �?Multi-Agent RL Framework</ProjectTitle>
             <ProjectImage
               src={`${process.env.PUBLIC_URL}/img/POMDP/3.png`}
               alt="Visualization of a grid-world POMDP environment"
@@ -358,7 +358,7 @@ export function UCSCPortfolio() {
 
             <LinkSection>
               <Link
-                  href="https://ollieii.github.io/portofolio/portofolio/projects/4"
+                  href="https://ollieii.github.io/portofolio/projects/4"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -376,7 +376,7 @@ export function UCSCPortfolio() {
           <CategoryTitle>2. Computational Media &amp; Creative Practice</CategoryTitle>
 
           <ProjectItem>
-            <ProjectTitle>Beyond the Garden of Adrian – VR Theatre Performance</ProjectTitle>
+            <ProjectTitle>Beyond the Garden of Adrian �?VR Theatre Performance</ProjectTitle>
             <ProjectImage
               src={`${process.env.PUBLIC_URL}/img/GOA/2.png`}
               alt="Scene from Beyond the Garden of Adrian VR theatre"
@@ -403,7 +403,7 @@ export function UCSCPortfolio() {
 
             <LinkSection>
               <Link
-                  href="https://ollieii.github.io/portofolio/portofolio/projects/3"
+                  href="https://ollieii.github.io/portofolio/projects/3"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -420,7 +420,7 @@ export function UCSCPortfolio() {
           </ProjectItem>
 
           <ProjectItem>
-            <ProjectTitle>Library of Meialia – Narrative Design &amp; World-Building</ProjectTitle>
+            <ProjectTitle>Library of Meialia �?Narrative Design &amp; World-Building</ProjectTitle>
             <ProjectImage
               src={`${process.env.PUBLIC_URL}/img/LOM/2.jpg`}
               alt="Narrative scene from Library of Meialia"
@@ -453,7 +453,7 @@ export function UCSCPortfolio() {
 
             <LinkSection>
               <Link
-                  href="https://ollieii.github.io/portofolio/portofolio/projects/1"
+                  href="https://ollieii.github.io/portofolio/projects/1"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -484,7 +484,7 @@ export function UCSCPortfolio() {
               Empirical research paper analyzing head-movement patterns as proxies for engagement and quitting
               intent in educational VR. Combines ML pipeline design, interpretability analysis (SHAP), and
               discussion of ethical implications for adaptive systems that intervene on players in real time.
-              Manuscript in preparation for IEEE TVCG.
+              Under review for IEEE TVCG 2026.
             </ProjectSummary>
 
             <RoleSection>
@@ -504,7 +504,7 @@ export function UCSCPortfolio() {
 
             <LinkSection>
               <Link
-                href="https://ollieii.github.io/portofolio/portofolio/projects/2"
+                href="https://ollieii.github.io/portofolio/projects/2"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -515,13 +515,13 @@ export function UCSCPortfolio() {
                 target="_blank"
                 rel="noreferrer"
               >
-                📄 TVCG Draft (2025)
+                📄 TVCG Draft (under review, 2026)
               </PDFLink>
             </LinkSection>
           </ProjectItem>
 
           <ProjectItem>
-            <ProjectTitle>Beyond the Garden of Adrian – Performance Theory Analysis</ProjectTitle>
+            <ProjectTitle>Beyond the Garden of Adrian �?Performance Theory Analysis</ProjectTitle>
             <ProjectImage
               src={`${process.env.PUBLIC_URL}/img/GOA/6.png`}
               alt="Still image from Beyond the Garden of Adrian"
@@ -546,7 +546,7 @@ export function UCSCPortfolio() {
 
             <LinkSection>
               <Link
-                href="https://ollieii.github.io/portofolio/portofolio/projects/3"
+                href="https://ollieii.github.io/portofolio/projects/3"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -563,7 +563,7 @@ export function UCSCPortfolio() {
           </ProjectItem>
 
           <ProjectItem>
-            <ProjectTitle>Milky Way Density Structure – Computational Astrophysics</ProjectTitle>
+            <ProjectTitle>Milky Way Density Structure �?Computational Astrophysics</ProjectTitle>
             <ProjectImage
               src={`${process.env.PUBLIC_URL}/img/Milky/Slide1.png`}
               alt="Milky Way density map from research poster"
@@ -589,7 +589,7 @@ export function UCSCPortfolio() {
 
             <LinkSection>
               <Link
-                href="https://ollieii.github.io/portofolio/portofolio/projects/5"
+                href="https://ollieii.github.io/portofolio/projects/5"
                 target="_blank"
                 rel="noreferrer"
               >

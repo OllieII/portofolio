@@ -32,7 +32,7 @@ const GridSection = () => {
   return (
     <GridWrapper>
       <GridItem>
-        <FlippableCard frontText = {<span><Highlight color="#A855F7">Computer Science</Highlight> student with <Highlight>Game design Minor</Highlight> Graduating <Highlight color="#A855F7">Dec 2025</Highlight> from <Highlight>University of Wisconsin in Madison.</Highlight></span>} backText={<span>Prospective <Highlight color="#A855F7">PhD Student</Highlight> in <Highlight>Fall 2026</Highlight></span>} />
+        <FlippableCard frontText = {<span><Highlight color="#A855F7">Master's student</Highlight> in <Highlight>Computer Science</Highlight> at <Highlight color="#A855F7">UIUC</Highlight>.</span>} backText={<span>B.S. in <Highlight>Computer Science</Highlight> with <Highlight color="#A855F7">Game Design</Highlight> from UW-Madison.</span>} />
       </GridItem>
       <GridItem>
         <FlippableCard frontText={<span>Experience working in <Highlight>Game Studio</Highlight> and as <Highlight color="#A855F7">Independent Developer</Highlight>.</span>} backText={<span>Developed <Highlight>various games</Highlight> including titles <Highlight color="#A855F7">shipped to Steam</Highlight></span>} />

@@ -56,6 +56,16 @@ const Intro = styled.p`
   margin: 0 0 28px;
 `;
 
+const CurrentTitle = styled.p`
+  margin: 0 0 18px;
+  color: #7f4d2f;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+`;
+
 const ContactInfo = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -211,6 +221,27 @@ const CourseworkText = styled.div`
   color: #5c5549;
 `;
 
+const EntryLink = styled.a`
+  display: inline-block;
+  width: fit-content;
+  margin-top: 10px;
+  color: #25221d;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(37, 34, 29, 0.32);
+  padding-bottom: 4px;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-weight: 700;
+  transition: color 0.25s ease, border-color 0.25s ease;
+
+  &:hover {
+    color: #7f4d2f;
+    border-color: #7f4d2f;
+  }
+`;
+
 const Footer = styled.div`
   text-align: right;
   margin-top: 34px;
@@ -250,6 +281,9 @@ export function CV() {
   }
 
   const researchSummary = cvData.research_interests?.slice(0, 2).join(' ');
+  const renderProjectLink = (item) => item.projectLink && (
+    <EntryLink href={item.projectLink}>View related project</EntryLink>
+  );
 
   return (
     <Container>
@@ -260,6 +294,7 @@ export function CV() {
             <Name>{cvData.name}</Name>
           </div>
           <div>
+            {cvData.title && <CurrentTitle>{cvData.title}</CurrentTitle>}
             <Intro>{researchSummary}</Intro>
             <ContactInfo>
               <a href={`mailto:${cvData.contact.email}`}>{cvData.contact.email}</a>
@@ -313,6 +348,8 @@ export function CV() {
                 {cvData.publications.map((pub, idx) => (
                   <li key={idx}>
                     {pub.authors}. <em>{pub.title}</em> {pub.venue}
+                    <br />
+                    {renderProjectLink(pub)}
                   </li>
                 ))}
               </OrderedList>
@@ -329,6 +366,8 @@ export function CV() {
                   <li key={idx}>
                     <em>{poster.title}</em><br />
                     {poster.authors}
+                    <br />
+                    {renderProjectLink(poster)}
                   </li>
                 ))}
               </OrderedList>
@@ -356,6 +395,7 @@ export function CV() {
                       ))}
                     </BulletList>
                   )}
+                  {renderProjectLink(exp)}
                 </ExperienceItem>
               ))}
             </SectionBody>
@@ -395,6 +435,7 @@ export function CV() {
                       ))}
                     </BulletList>
                   )}
+                  {renderProjectLink(inv)}
                 </ExperienceItem>
               ))}
             </SectionBody>

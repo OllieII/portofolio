@@ -137,7 +137,7 @@ const TextBlock = styled.div`
 
 const MainContent = () => {
   const handleEmailClick = () => {
-    window.location.href = 'mailto:zguo295@wisc.edu';
+    window.location.href = 'mailto:ziqiguo4@illinois.edu';
   };
 
   const handleLinkClick = (link) => () => {
@@ -160,8 +160,8 @@ const MainContent = () => {
           I study how individual behavior appears inside interactive systems, then use AI/ML, VR, and game design to build experiences that adapt to people instead of flattening them into an average user.
         </SelfIntro>
         <ChipsRow>
-          <Chip>CS @ UW-Madison</Chip>
-          <Chip>Prospective PhD 2026</Chip>
+          <Chip>MSCS @ UIUC</Chip>
+          <Chip>UW-Madison CS alum</Chip>
           <Chip>VR / ML / HCI</Chip>
           <Chip>Game design</Chip>
         </ChipsRow>
