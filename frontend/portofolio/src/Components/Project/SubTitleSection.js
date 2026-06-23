@@ -5,71 +5,59 @@ import { FontSizeContext } from './ProjectDetail';
 const SectionContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1px;
+  border: 1px solid rgba(37, 34, 29, 0.16);
+  background: rgba(37, 34, 29, 0.16);
 `;
 
 const SubTitle = styled.div`
-  background: #0B1120;
-  border-radius: 16px;
-  border: 1px solid #374151;
-  padding: 2rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  background: #f8f4eb;
+  padding: clamp(28px, 5vw, 58px);
   width: 100%;
   font-size: ${props => props.fontSize}%;
-  
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
-    border-color: #A855F7;
-  }
-  
+
   h3 {
-    margin: 0 0 1.25rem 0;
-    color: #A855F7;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
-    font-size: 1.3em;
-    font-weight: 700;
-    text-align: center;
-    letter-spacing: 0.05em;
+    margin: 0 0 1.35rem 0;
+    color: #25221d;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.7rem, 3vw, 3.2rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
   }
-  
+
   p {
     margin: 0 0 1rem 0;
-    color: #E5E7EB;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
-    font-size: 1em;
-    line-height: 1.7;
+    color: #4d463c;
+    font-family: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 0.86em;
+    line-height: 1.75;
     text-align: left;
-    
+
     &:last-child {
       margin-bottom: 0;
     }
-    
+
     a {
-      color: #22D3EE;
+      color: #7f4d2f;
       text-decoration: underline;
+      text-underline-offset: 3px;
       font-weight: 600;
-      transition: color 0.2s ease;
-      
-      &:hover {
-        color: #F97316;
-      }
     }
   }
-  
+
   ul {
     margin: 0;
-    padding-left: 1.5rem;
+    padding-left: 1.2rem;
     text-align: left;
-    
+
     li {
-      color: #E5E7EB;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
-      font-size: 1em;
-      line-height: 1.7;
+      color: #4d463c;
+      font-family: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.86em;
+      line-height: 1.75;
       margin-bottom: 0.5rem;
-      
+
       &:last-child {
         margin-bottom: 0;
       }
@@ -80,26 +68,20 @@ const SubTitle = styled.div`
 const TechStackGrid = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
+  gap: 8px;
   margin-top: 0.5rem;
 `;
 
 const TechPill = styled.span`
-  background: rgba(34, 211, 238, 0.1);
-  border: 1px solid #22D3EE;
-  border-radius: 20px;
-  padding: 6px 14px;
-  color: #22D3EE;
-  font-size: 0.9em;
-  font-family: "Ubuntu Sans Mono", monospace;
-  font-weight: 500;
-  transition: all 0.2s ease;
-  
-  &:hover {
-    background: rgba(34, 211, 238, 0.2);
-    transform: translateY(-2px);
-  }
+  border: 1px solid rgba(37, 34, 29, 0.24);
+  border-radius: 999px;
+  padding: 7px 12px;
+  color: #7f4d2f;
+  font-size: 0.72em;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 `;
 
 const ContentWrapper = styled.div`
@@ -108,21 +90,18 @@ const ContentWrapper = styled.div`
 
 const SubTitleSection = ({ subtitles }) => {
   const fontSize = useContext(FontSizeContext);
-  
+
   const renderContent = (subtitle) => {
-    const isTechStack = subtitle.title.toLowerCase().includes('tech stack') || 
-                        subtitle.title.toLowerCase().includes('technology');
-    const isResponsibility = subtitle.title.toLowerCase().includes('responsibility') ||
-                             subtitle.title.toLowerCase().includes('contribution') ||
-                             subtitle.title.toLowerCase().includes('role');
-    
-    // Tech Stack - render as pills
+    const title = subtitle.title.toLowerCase();
+    const isTechStack = title.includes('tech stack') || title.includes('technology');
+    const isResponsibility = title.includes('responsibility') || title.includes('contribution') || title.includes('role');
+
     if (isTechStack) {
       const techs = subtitle.content
         .split(/[,;\n]/)
         .map(t => t.trim())
         .filter(t => t.length > 0);
-      
+
       return (
         <>
           <h3>{subtitle.title}</h3>
@@ -134,31 +113,29 @@ const SubTitleSection = ({ subtitles }) => {
         </>
       );
     }
-    
-    // Responsibility - render as bullet list if contains line breaks
+
     if (isResponsibility && subtitle.content.includes('\n')) {
       const items = subtitle.content
         .split('\n')
         .map(item => item.trim())
         .filter(item => item.length > 0);
-      
+
       return (
         <>
           <h3>{subtitle.title}</h3>
           <ContentWrapper>
             <ul>
               {items.map((item, i) => (
-                <li key={i} dangerouslySetInnerHTML={{ __html: item.replace(/^[-•]\s*/, '') }} />
+                <li key={i} dangerouslySetInnerHTML={{ __html: item.replace(/^[-*\s]*/, '') }} />
               ))}
             </ul>
           </ContentWrapper>
         </>
       );
     }
-    
-    // Default - render as left-aligned paragraphs
+
     const paragraphs = subtitle.content.split('\n\n').filter(p => p.trim().length > 0);
-    
+
     return (
       <>
         <h3>{subtitle.title}</h3>
@@ -170,7 +147,7 @@ const SubTitleSection = ({ subtitles }) => {
       </>
     );
   };
-  
+
   return (
     <SectionContainer>
       {subtitles.map((subtitle, index) => (

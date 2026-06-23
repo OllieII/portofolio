@@ -1,62 +1,49 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import styled from 'styled-components';
 
-const MediaContainer = styled.div
-`
+const MediaContainer = styled.div`
   width: 100%;
-  max-width: 100%;
-  min-height: 500px;
-  max-height: 90vh;
-  max-width: 1200px;
   align-self: center;
-  background: #0B1120;
-  border: 1px solid #4B5563;
-  border-radius: 15px;
+  background: #efe7da;
+  border: 1px solid rgba(37, 34, 29, 0.16);
   overflow: hidden;
   position: relative;
-  padding: 20px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+  padding: clamp(12px, 2vw, 22px);
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 14px;
 `;
 
-const CarouselContainer = styled.div
-`
+const CarouselContainer = styled.div`
   position: relative;
   width: 100%;
   height: ${props => props.height ? `${props.height}px` : '600px'};
-  min-height: 500px;
-  max-height: 70vh;
-  border-radius: 12px;
+  min-height: 460px;
+  max-height: 72vh;
   overflow: hidden;
-  background-color: #050814;
-  
+  background-color: #1f1c18;
+
   @media (max-width: 768px) {
     height: 400px;
-    min-height: 350px;
+    min-height: 320px;
   }
-  
+
   @media (max-width: 480px) {
     height: 300px;
-    min-height: 250px;
+    min-height: 240px;
   }
 `;
 
-const MediaItem = styled.div
-`
+const MediaItem = styled.div`
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: ${props => props.active ? 1 : 0};
   transition: opacity 0.5s ease-in-out;
   pointer-events: ${props => props.active ? 'auto' : 'none'};
-  
+
   img {
     max-width: 100%;
     max-height: 100%;
@@ -64,18 +51,6 @@ const MediaItem = styled.div
     height: auto;
     object-fit: contain;
   }
-  
-  iframe {
-    max-width: 100%;
-    max-height: 100%;
-  }
-`;
-
-const ThumbnailWrapper = styled.div`
-  width: 100%;
-  max-width: 100%;
-  overflow: hidden;
-  flex-shrink: 0;
 `;
 
 const ThumbnailContainer = styled.div`
@@ -83,88 +58,53 @@ const ThumbnailContainer = styled.div`
   gap: 10px;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 10px 0;
+  padding: 4px 0;
   width: 100%;
   flex-wrap: nowrap;
-  
-  &::-webkit-scrollbar {
-    height: 8px;
-  }
-  
-  &::-webkit-scrollbar-track {
-    background: #1F2937;
-    border-radius: 4px;
-  }
-  
-  &::-webkit-scrollbar-thumb {
-    background: #22D3EE;
-    border-radius: 4px;
-  }
-  
-  &::-webkit-scrollbar-thumb:hover {
-    background: #A855F7;
-  }
-  
-  @media (max-width: 768px) {
-    gap: 8px;
-  }
 `;
 
-const Thumbnail = styled.div`
-  width: 120px;
-  min-width: 120px;
-  max-width: 120px;
-  height: 80px;
-  border-radius: 8px;
+const Thumbnail = styled.button`
+  width: 112px;
+  min-width: 112px;
+  height: 72px;
   overflow: hidden;
   cursor: pointer;
-  border: 3px solid ${props => props.active ? '#22D3EE' : '#4B5563'};
-  transition: all 0.3s ease;
+  border: 1px solid ${props => props.active ? '#7f4d2f' : 'rgba(37, 34, 29, 0.24)'};
+  transition: opacity 0.25s ease, border-color 0.25s ease;
   position: relative;
-  background-color: #050814;
+  background-color: #f8f4eb;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  
+  padding: 0;
+  opacity: ${props => props.active ? 1 : 0.62};
+
   &:hover {
-    border-color: #22D3EE;
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
+    opacity: 1;
   }
-  
+
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-  
-  @media (max-width: 768px) {
-    width: 100px;
-    min-width: 100px;
-    max-width: 100px;
-    height: 60px;
-  }
 `;
 
 const VideoThumbnailOverlay = styled.div`
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 30px;
-  height: 30px;
-  background-color: #22D3EE;
-  border-radius: 50%;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
-  color: #050814;
-  
+  color: #f8f4eb;
+  background: rgba(31, 28, 24, 0.28);
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
   &::before {
-    content: '▶';
-    margin-left: 2px;
+    content: 'Play';
   }
 `;
 
@@ -172,75 +112,58 @@ const NavigationButton = styled.button`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  ${props => props.direction === 'left' ? 'left: 20px;' : 'right: 20px;'}
-  background-color: rgba(34, 211, 238, 0.9);
-  color: #050814;
-  border: none;
-  border-radius: 50%;
+  ${props => props.direction === 'left' ? 'left: 18px;' : 'right: 18px;'}
+  background-color: rgba(248, 244, 235, 0.86);
+  color: #25221d;
+  border: 1px solid rgba(37, 34, 29, 0.18);
   cursor: pointer;
-  width: 50px;
-  height: 50px;
-  font-size: 24px;
-  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  font-size: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
   z-index: 10;
-  
+
   &:hover {
-    background-color: #F97316;
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 0 20px rgba(249, 115, 22, 0.5);
-  }
-  
-  @media (max-width: 768px) {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
+    background-color: #f8f4eb;
+    color: #7f4d2f;
   }
 `;
 
 const FullScreenButton = styled.button`
   position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: rgba(34, 211, 238, 0.9);
-  color: #050814;
-  border: none;
-  border-radius: 8px;
+  top: 18px;
+  right: 18px;
+  background-color: rgba(248, 244, 235, 0.86);
+  color: #25221d;
+  border: 1px solid rgba(37, 34, 29, 0.18);
   padding: 8px 12px;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 0.68rem;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
   transition: all 0.3s ease;
   z-index: 10;
-  
+
   &:hover {
-    background-color: #F97316;
-    box-shadow: 0 0 16px rgba(249, 115, 22, 0.6);
+    color: #7f4d2f;
+    background: #f8f4eb;
   }
 `;
 
 const FullScreenOverlay = styled.div`
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.95);
+  inset: 0;
+  background: rgba(31, 28, 24, 0.96);
   z-index: 2000;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 40px;
-  
-  @media (max-width: 768px) {
-    padding: 20px;
-  }
 `;
 
 const FullScreenContent = styled.div`
@@ -250,7 +173,7 @@ const FullScreenContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   img {
     max-width: 100%;
     max-height: 95vh;
@@ -260,61 +183,47 @@ const FullScreenContent = styled.div`
 
 const CloseButton = styled.button`
   position: absolute;
-  top: -50px;
+  top: -48px;
   right: 0;
-  background: rgba(34, 211, 238, 0.9);
-  color: #050814;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: 600;
+  background: #f8f4eb;
+  color: #25221d;
+  border: 1px solid rgba(37, 34, 29, 0.18);
+  padding: 9px 14px;
+  font-size: 0.72rem;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    background: #F97316;
-  }
-  
-  @media (max-width: 768px) {
-    top: -40px;
-    padding: 8px 16px;
-    font-size: 14px;
-  }
 `;
 
 const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: contain;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: opacity 0.3s ease;
   opacity: ${props => props.loaded ? 1 : 0};
 `;
 
 const VideoFrame = styled.iframe`
   width: 100%;
   height: 100%;
-  min-height: 500px;
+  min-height: 460px;
   border: none;
-  border-radius: 12px;
-  
+
   @media (max-width: 768px) {
-    min-height: 350px;
-  }
-  
-  @media (max-width: 480px) {
-    min-height: 250px;
+    min-height: 320px;
   }
 `;
 
 const LoadingSpinner = styled.div`
-  width: 40px;
-  height: 40px;
-  border: 3px solid #1F2937;
-  border-top: 3px solid #22D3EE;
+  width: 36px;
+  height: 36px;
+  border: 2px solid rgba(248, 244, 235, 0.35);
+  border-top: 2px solid #f8f4eb;
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  
+
   @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
@@ -322,9 +231,8 @@ const LoadingSpinner = styled.div`
 `;
 
 const EmptyState = styled.div`
-  grid-column: 1 / -1; /* Span all columns */
   text-align: center;
-  color: #fff;
+  color: #5c5549;
   font-size: 16px;
   padding: 40px 20px;
 `;
@@ -340,8 +248,6 @@ const MediaSection = ({ mediaList = [] }) => {
 
   const handleImageLoad = (index, event) => {
     setLoadedImages(prev => new Set(prev).add(index));
-    
-    // Track image dimensions
     const img = event.target;
     const aspectRatio = img.naturalWidth / img.naturalHeight;
     const newDimensions = {
@@ -349,83 +255,53 @@ const MediaSection = ({ mediaList = [] }) => {
       [index]: { width: img.naturalWidth, height: img.naturalHeight, aspectRatio }
     };
     setImageDimensions(newDimensions);
-    
-    // Update max dimensions
     setMaxDimensions(prev => ({
       width: Math.max(prev.width, img.naturalWidth),
       height: Math.max(prev.height, img.naturalHeight)
     }));
   };
 
-  const isEmbedCode = (media) => {
-    return typeof media === 'string' && media.trim().startsWith('<iframe');
-  };
-
+  const isEmbedCode = (media) => typeof media === 'string' && media.trim().startsWith('<iframe');
   const extractSrcFromIframe = (iframeString) => {
     const srcMatch = iframeString.match(/src=["']([^"']+)["']/);
     return srcMatch ? srcMatch[1] : '';
   };
-
   const getYouTubeThumbnail = (iframeString) => {
     const videoSrc = extractSrcFromIframe(iframeString);
-    // Extract YouTube video ID from embed URL
     const youtubeMatch = videoSrc.match(/youtube\.com\/embed\/([^?]+)/);
-    if (youtubeMatch && youtubeMatch[1]) {
-      const videoId = youtubeMatch[1];
-      return `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
-    }
-    return null;
+    return youtubeMatch?.[1] ? `https://img.youtube.com/vi/${youtubeMatch[1]}/mqdefault.jpg` : null;
   };
 
-  const goToNext = () => {
+  const goToNext = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % mediaList.length);
-  };
+  }, [mediaList.length]);
+  const goToPrev = () => setCurrentIndex((prev) => (prev - 1 + mediaList.length) % mediaList.length);
+  const goToIndex = (index) => setCurrentIndex(index);
 
-  const goToPrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + mediaList.length) % mediaList.length);
-  };
-
-  const goToIndex = (index) => {
-    setCurrentIndex(index);
-  };
-
-  // Auto-advance for images (5 seconds) - but not in full-screen mode
   useEffect(() => {
     const currentMedia = mediaList[currentIndex];
     const isVideo = isEmbedCode(currentMedia);
 
-    if (!isVideo && !isFullScreen) {
-      const goToNextSlide = () => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % mediaList.length);
-      };
-      
-      // Set timer for images
-      imageTimerRef.current = setTimeout(() => {
-        goToNextSlide();
-      }, 5000); // 5 seconds
-
+    if (!isVideo && !isFullScreen && mediaList.length > 1) {
+      imageTimerRef.current = setTimeout(goToNext, 5000);
       return () => {
         if (imageTimerRef.current) {
           clearTimeout(imageTimerRef.current);
         }
       };
     }
-  }, [currentIndex, mediaList, isFullScreen]);
+  }, [currentIndex, mediaList, isFullScreen, goToNext]);
 
-  // Handle empty or invalid mediaList
   if (!mediaList || mediaList.length === 0) {
     return (
       <MediaContainer>
-        <EmptyState>
-          No media available for this project
-        </EmptyState>
+        <EmptyState>No media available for this project.</EmptyState>
       </MediaContainer>
     );
   }
 
-  // Calculate container height based on max dimensions and aspect ratio
-  const containerHeight = maxDimensions.height > 0 
-    ? Math.min(Math.max(maxDimensions.height * 0.6, 500), 700) 
+  const containerHeight = maxDimensions.height > 0
+    ? Math.min(Math.max(maxDimensions.height * 0.6, 500), 700)
     : 600;
 
   return (
@@ -433,15 +309,13 @@ const MediaSection = ({ mediaList = [] }) => {
       <CarouselContainer height={containerHeight}>
         {mediaList.map((media, index) => {
           const isActive = index === currentIndex;
-          
-          // Check if this is an iframe embed code
+
           if (isEmbedCode(media)) {
             const videoSrc = extractSrcFromIframe(media);
-            // Add autoplay and auto-advance parameters
-            const autoplaySrc = videoSrc.includes('?') 
+            const autoplaySrc = videoSrc.includes('?')
               ? `${videoSrc}&autoplay=1&mute=0`
               : `${videoSrc}?autoplay=1&mute=0`;
-            
+
             return (
               <MediaItem key={index} active={isActive}>
                 <VideoFrame
@@ -455,107 +329,77 @@ const MediaSection = ({ mediaList = [] }) => {
             );
           }
 
-          // Handle regular images
           const isLoaded = loadedImages.has(index);
-          
+
           return (
             <MediaItem key={index} active={isActive}>
               {!isLoaded && isActive && <LoadingSpinner />}
               <Image
                 src={`${process.env.PUBLIC_URL}${media}`}
-                alt={`Project Media ${index + 1}`}
+                alt={`Project media ${index + 1}`}
                 loaded={isLoaded}
                 onLoad={(e) => handleImageLoad(index, e)}
               />
             </MediaItem>
           );
         })}
-        
+
         {mediaList.length > 1 && (
           <>
-            <NavigationButton direction="left" onClick={goToPrev}>
-              ‹
+            <NavigationButton direction="left" onClick={goToPrev} aria-label="Previous media">
+              &lt;
             </NavigationButton>
-            <NavigationButton direction="right" onClick={goToNext}>
-              ›
+            <NavigationButton direction="right" onClick={goToNext} aria-label="Next media">
+              &gt;
             </NavigationButton>
           </>
         )}
         {!isEmbedCode(mediaList[currentIndex]) && (
           <FullScreenButton onClick={() => setIsFullScreen(true)}>
-            ⛶ View Full Size
+            View full size
           </FullScreenButton>
         )}
       </CarouselContainer>
-      
+
       {mediaList.length > 1 && (
-        <ThumbnailWrapper>
-          <ThumbnailContainer>
-            {mediaList.map((media, index) => {
+        <ThumbnailContainer>
+          {mediaList.map((media, index) => {
             const isVideo = isEmbedCode(media);
-            
+
             if (isVideo) {
               const thumbnailUrl = getYouTubeThumbnail(media);
-              
               return (
                 <Thumbnail
                   key={index}
                   active={index === currentIndex}
                   onClick={() => goToIndex(index)}
+                  aria-label={`Show video ${index + 1}`}
                 >
-                  {thumbnailUrl ? (
-                    <>
-                      <img
-                        src={thumbnailUrl}
-                        alt={`Video Thumbnail ${index + 1}`}
-                      />
-                      <VideoThumbnailOverlay />
-                    </>
-                  ) : (
-                    <>
-                      <div style={{ 
-                        width: '100%', 
-                        height: '100%', 
-                        background: 'linear-gradient(135deg, #7d5a7d, #AD88C6)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: 'white',
-                        fontSize: '12px',
-                        fontWeight: 'bold'
-                      }}>
-                        VIDEO
-                      </div>
-                      <VideoThumbnailOverlay />
-                    </>
-                  )}
+                  {thumbnailUrl && <img src={thumbnailUrl} alt={`Video thumbnail ${index + 1}`} />}
+                  <VideoThumbnailOverlay />
                 </Thumbnail>
               );
             }
-            
-            // For images, show actual thumbnail
+
             return (
               <Thumbnail
                 key={index}
                 active={index === currentIndex}
                 onClick={() => goToIndex(index)}
+                aria-label={`Show media ${index + 1}`}
               >
-                <img
-                  src={`${process.env.PUBLIC_URL}${media}`}
-                  alt={`Thumbnail ${index + 1}`}
-                />
+                <img src={`${process.env.PUBLIC_URL}${media}`} alt={`Thumbnail ${index + 1}`} />
               </Thumbnail>
             );
           })}
-          </ThumbnailContainer>
-        </ThumbnailWrapper>
+        </ThumbnailContainer>
       )}
-      
+
       {isFullScreen && !isEmbedCode(mediaList[currentIndex]) && (
         <FullScreenOverlay onClick={() => setIsFullScreen(false)}>
           <FullScreenContent onClick={(e) => e.stopPropagation()}>
             <CloseButton onClick={() => setIsFullScreen(false)}>
-              Close ✕
+              Close
             </CloseButton>
             <img
               src={`${process.env.PUBLIC_URL}${mediaList[currentIndex]}`}

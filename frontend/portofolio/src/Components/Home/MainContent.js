@@ -1,191 +1,111 @@
-import React, { useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import React from 'react';
+import styled from 'styled-components';
 
 const MainContentWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 50px 50px 120px 50px;
+  display: grid;
+  grid-template-columns: minmax(260px, 0.85fr) minmax(320px, 1.15fr);
+  align-items: end;
+  gap: clamp(32px, 7vw, 96px);
+  padding: clamp(56px, 9vw, 110px) clamp(18px, 5vw, 72px) 120px;
   flex: 1;
-  text-align: center;
-  max-width: 1000px;
+  max-width: 1440px;
   margin: 0 auto;
   width: 100%;
-  
-  @media (max-width: 768px) {
-    padding: 50px 50px 100px 50px;
-  }
-`;
 
-const rotate = keyframes`
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  @media (max-width: 860px) {
+    grid-template-columns: 1fr;
+    padding-bottom: 104px;
+  }
 `;
 
 const ProfileSection = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
-  perspective: 1000px;
+  align-items: flex-start;
+  gap: 18px;
 `;
 
 const ProfileImageWrapper = styled.div`
   position: relative;
-  width: 220px;
-  height: 220px;
-  margin-bottom: 15px;
-  cursor: pointer;
-  
-  @media (max-width: 768px) {
-    width: 180px;
-    height: 180px;
-  }
-`;
-
-const Ring = styled.div`
-  position: absolute;
-  border-radius: 50%;
-  border: 3px solid;
-  animation: ${rotate} ${props => props.duration}s linear infinite;
-  
-  &.outer-ring {
-    width: 220px;
-    height: 220px;
-    border-color: #A855F7 transparent #22D3EE transparent;
-    top: 0;
-    left: 0;
-  }
-  
-  &.inner-ring {
-    width: 190px;
-    height: 190px;
-    border-color: #22D3EE transparent #A855F7 transparent;
-    top: 15px;
-    left: 15px;
-    animation-direction: reverse;
-  }
-`;
-
-const FlipCard = styled.div`
-  position: absolute;
-  width: 160px;
-  height: 160px;
-  top: 30px;
-  left: 30px;
-  transform-style: preserve-3d;
-  transition: transform 0.8s;
-  transform: ${props => props.isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'};
-  
-  @media (max-width: 768px) {
-    width: 130px;
-    height: 130px;
-    top: 25px;
-    left: 25px;
-  }
-`;
-
-const FlipCardFace = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: 50%;
+  width: min(100%, 430px);
+  aspect-ratio: 4 / 5;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #0B1120;
-  border: 3px solid #4B5563;
-`;
+  background: #ddd4c7;
 
-const FlipCardFront = styled(FlipCardFace)`
+  @media (max-width: 768px) {
+    width: min(100%, 360px);
+  }
+
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    filter: saturate(0.78) contrast(0.96);
   }
 `;
 
-const FlipCardBack = styled(FlipCardFace)`
-  transform: rotateY(180deg);
-  
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    padding: 10px;
-  }
+const Caption = styled.p`
+  margin: 0;
+  max-width: 430px;
+  color: #6c6255;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.72rem;
+  line-height: 1.7;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 `;
 
 const Name = styled.h1`
-  font-size: clamp(2.5em, 7vw, 5em);
-  color: #F9FAFB;
-  margin: 0 0 20px 0;
-  font-family: "Pixelify Sans", sans-serif;
-  font-weight: 900;
-  text-shadow: 0 0 18px rgba(34, 211, 238, 0.35);
+  font-size: clamp(4rem, 11vw, 9.5rem);
+  color: #25221d;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  line-height: 0.88;
+  letter-spacing: -0.03em;
 `;
 
 const SelfIntro = styled.div`
-  font-size: clamp(16px, 2vw, 22px);
-  color: #E5E7EB;
-  margin-bottom: 18px;
-  font-family: "Ubuntu Sans Mono", monospace;
-  font-optical-sizing: auto;
-  font-weight: 700;
-  font-style: normal;
-  text-align: center;
-  line-height: 1.7;
-  max-width: 900px;
-`;
-
-const Highlight = styled.span`
-  color: ${props => props.color || '#22D3EE'};
-  font-weight: 900;
-  text-shadow: 0 0 10px ${props => props.color === '#A855F7' ? 'rgba(168, 85, 247, 0.4)' : 'rgba(34, 211, 238, 0.4)'};
+  font-size: clamp(1.1rem, 2.4vw, 2rem);
+  color: #3b352c;
+  margin: 28px 0 28px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  line-height: 1.35;
+  max-width: 820px;
 `;
 
 const ChipsRow = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 8px;
+  margin-bottom: 34px;
   flex-wrap: wrap;
 `;
 
 const Chip = styled.div`
-  background: rgba(17, 24, 39, 0.6);
-  border: 1px solid #4B5563;
-  border-radius: 20px;
-  padding: 8px 16px;
-  font-size: clamp(13px, 1.5vw, 16px);
-  color: #E5E7EB;
-  font-family: "Ubuntu Sans Mono", monospace;
-  font-weight: 500;
+  border: 1px solid rgba(37, 34, 29, 0.25);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 0.72rem;
+  color: #4d463c;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   white-space: nowrap;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    background: rgba(31, 41, 55, 0.8);
-    border-color: #22D3EE;
-    box-shadow: 0 0 12px rgba(34, 211, 238, 0.3);
-  }
 `;
 
 const IconWrapper = styled.div`
-  font-size: 20px;
-  color: #E5E7EB;
+  font-size: 0.75rem;
+  color: #25221d;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 15px;
-  font-family: "Ubuntu Sans Mono", monospace;
-  font-optical-sizing: auto;
-  font-weight: 700;
-  font-style: normal;
+  gap: 18px;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   flex-wrap: wrap;
 `;
 
@@ -194,92 +114,78 @@ const IconContainer = styled.div`
   align-items: center;
   position: relative;
   cursor: pointer;
-  padding: 8px 12px;
+  padding: 0 0 5px;
   gap: 8px;
-  transition: background-color 0.3s ease;
-  border-radius: 5px;
+  border-bottom: 1px solid rgba(37, 34, 29, 0.28);
+  transition: color 0.3s ease, border-color 0.3s ease;
 
   &:hover {
-    background-color: #1F2937;
-    color: #22D3EE;
+    color: #7f4d2f;
+    border-color: #7f4d2f;
   }
 `;
 
 const Icon = styled.img`
-  width: 28px;
-  height: 28px;
+  width: 17px;
+  height: 17px;
+  filter: grayscale(1) contrast(1.3);
+`;
+
+const TextBlock = styled.div`
+  align-self: center;
 `;
 
 const MainContent = () => {
-    const [isFlipped, setIsFlipped] = useState(false);
-    
-    const handleEmailClick = () => {
-      window.location.href = 'mailto:zguo295@wisc.edu'; // Update with your email address
-    };
-  
-    const handleLinkClick = (link) => () => {
-      window.open(link, '_blank'); // Update with your GitHub URL
-    };
-  
-    return (
-      <MainContentWrapper>
-        <ProfileSection>
-          <ProfileImageWrapper onClick={() => setIsFlipped(!isFlipped)}>
-            <Ring className="outer-ring" duration={8} />
-            <Ring className="inner-ring" duration={6} />
-            <FlipCard isFlipped={isFlipped}>
-              <FlipCardFront>
-                <img src={`${process.env.PUBLIC_URL}/favicon/human_me.jpg`} alt="Olly Guo" />
-              </FlipCardFront>
-              <FlipCardBack>
-                <img src={`${process.env.PUBLIC_URL}/favicon/homeicon.png`} alt="Animated Icon" />
-              </FlipCardBack>
-            </FlipCard>
-          </ProfileImageWrapper>
-          <Name>I'm Olly Guo.</Name>
-        </ProfileSection>
+  const handleEmailClick = () => {
+    window.location.href = 'mailto:zguo295@wisc.edu';
+  };
+
+  const handleLinkClick = (link) => () => {
+    window.open(link, '_blank');
+  };
+
+  return (
+    <MainContentWrapper>
+      <ProfileSection>
+        <ProfileImageWrapper>
+          <img src={`${process.env.PUBLIC_URL}/favicon/human_me.jpg`} alt="Olly Guo" />
+        </ProfileImageWrapper>
+        <Caption>
+          Computational behavior, immersive systems, game design, and the small traces people leave when they move through virtual spaces.
+        </Caption>
+      </ProfileSection>
+      <TextBlock>
+        <Name>Olly Guo</Name>
         <SelfIntro>
-          I aim to use <Highlight color="#A855F7">AI/ML methods</Highlight> to understand <Highlight>human behavior</Highlight> and create <Highlight>virtual interaction systems</Highlight> that treat each user as a <Highlight color="#A855F7">unique individual</Highlight> rather than a normal user.
+          I study how individual behavior appears inside interactive systems, then use AI/ML, VR, and game design to build experiences that adapt to people instead of flattening them into an average user.
         </SelfIntro>
         <ChipsRow>
-          <Chip>CS @ UW–Madison</Chip>
-          <Chip>VR/ML for User Behavior</Chip>
-          <Chip>Game Design + HCI</Chip>
+          <Chip>CS @ UW-Madison</Chip>
+          <Chip>Prospective PhD 2026</Chip>
+          <Chip>VR / ML / HCI</Chip>
+          <Chip>Game design</Chip>
         </ChipsRow>
         <IconWrapper>
           <IconContainer onClick={handleEmailClick}>
-            <Icon
-              src={`${process.env.PUBLIC_URL}/Icons/mail.png`}
-              alt="Email"
-              onMouseOver={(e) => (e.currentTarget.src = `${process.env.PUBLIC_URL}/Icons/mailHover.png`)}
-              onMouseOut={(e) => (e.currentTarget.src = `${process.env.PUBLIC_URL}/Icons/mail.png`)}
-            />
+            <Icon src={`${process.env.PUBLIC_URL}/Icons/mail.png`} alt="Email" />
             <div>Email</div>
           </IconContainer>
           <IconContainer onClick={handleLinkClick('https://github.com/OllieII')}>
-            <Icon
-              src={`${process.env.PUBLIC_URL}/Icons/Github.png`}
-              alt="GitHub"
-            />
+            <Icon src={`${process.env.PUBLIC_URL}/Icons/Github.png`} alt="GitHub" />
             <div>GitHub</div>
           </IconContainer>
           <IconContainer onClick={handleLinkClick('https://www.linkedin.com/in/olly-guo-62016b248/')}>
-            <Icon
-              src={`${process.env.PUBLIC_URL}/Icons/linkedin.png`}
-              alt="LinkedIn"
-            />
+            <Icon src={`${process.env.PUBLIC_URL}/Icons/linkedin.png`} alt="LinkedIn" />
             <div>LinkedIn</div>
           </IconContainer>
           <IconContainer onClick={handleLinkClick('https://www.instagram.com/sisyphus49ollie/')}>
-            <Icon
-              src={`${process.env.PUBLIC_URL}/Icons/instagram.png`}
-              alt="Instagram"
-            />
+            <Icon src={`${process.env.PUBLIC_URL}/Icons/instagram.png`} alt="Instagram" />
             <div>Instagram</div>
           </IconContainer>
         </IconWrapper>
-      </MainContentWrapper>
-    );
-  };
-  
-  export default MainContent;
+      </TextBlock>
+    </MainContentWrapper>
+  );
+};
+
+export default MainContent;

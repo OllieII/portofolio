@@ -1,22 +1,10 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import MainContent from './MainContent';
 
-const bounce = keyframes`
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-10px);
-  }
-  60% {
-    transform: translateY(-5px);
-  }
-`;
-
 const AppWrapper = styled.div`
-  background: linear-gradient(180deg, #050814 0%, #111827 45%, #1F2937 100%);
-  min-height: 100vh;
+  background: #f8f4eb;
+  min-height: calc(100vh - 58px);
   width: 100%;
   box-sizing: border-box;
   overflow-x: hidden;
@@ -25,47 +13,44 @@ const AppWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-bottom: 0;
   position: relative;
 `;
 
 const ScrollIndicator = styled.div`
   position: absolute;
-  bottom: 80px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 34px;
+  right: clamp(18px, 5vw, 72px);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   cursor: pointer;
   z-index: 10;
-  animation: ${bounce} 2s infinite;
   transition: opacity 0.3s ease;
-  
+
   &:hover {
-    opacity: 0.7;
+    opacity: 0.65;
   }
-  
+
   @media (max-width: 768px) {
-    bottom: 60px;
+    bottom: 24px;
   }
 `;
 
 const ScrollText = styled.span`
-  color: #22D3EE;
-  font-family: "Ubuntu Sans Mono", monospace;
-  font-size: 0.9rem;
-  font-weight: 500;
+  color: #5c5549;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
 `;
 
 const ScrollArrow = styled.div`
-  width: 24px;
-  height: 24px;
-  border-left: 2px solid #22D3EE;
-  border-bottom: 2px solid #22D3EE;
+  width: 18px;
+  height: 18px;
+  border-left: 1px solid #5c5549;
+  border-bottom: 1px solid #5c5549;
   transform: rotate(-45deg);
 `;
 
@@ -81,7 +66,7 @@ export const Home = () => {
     <AppWrapper>
       <MainContent />
       <ScrollIndicator onClick={handleScrollDown}>
-        <ScrollText>Scroll Down</ScrollText>
+        <ScrollText>Selected work</ScrollText>
         <ScrollArrow />
       </ScrollIndicator>
     </AppWrapper>
@@ -89,5 +74,3 @@ export const Home = () => {
 };
 
 export default Home;
-
-

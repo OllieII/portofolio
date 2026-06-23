@@ -4,168 +4,176 @@ import styled from 'styled-components';
 const Container = styled.div`
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(180deg, #050814 0%, #111827 45%, #1F2937 100%);
-  padding: 80px 40px 40px;
+  background: #f8f4eb;
+  padding: clamp(42px, 7vw, 92px) clamp(18px, 5vw, 72px) 72px;
   box-sizing: border-box;
-  
-  @media (max-width: 768px) {
-    padding: 70px 20px 30px;
-  }
 `;
 
 const CVWrapper = styled.div`
-  max-width: 960px;
-  margin: 40px auto 80px;
-  padding: 32px 40px;
-  border-radius: 24px;
-  background: radial-gradient(circle at top, #020617 0, #020617 40%, #020617 100%);
-  border: 1px solid #111827;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.75);
-
-  @media (max-width: 768px) {
-    padding: 24px 18px;
-    border-radius: 16px;
-    margin: 20px auto 40px;
-  }
+  max-width: 1120px;
+  margin: 0 auto 80px;
 `;
 
 const Header = styled.div`
-  text-align: center;
-  margin-bottom: 32px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+  display: grid;
+  grid-template-columns: minmax(260px, 0.95fr) minmax(320px, 1.05fr);
+  gap: clamp(30px, 6vw, 86px);
+  align-items: end;
+  padding: 42px 0 52px;
+  border-bottom: 1px solid rgba(37, 34, 29, 0.18);
+
+  @media (max-width: 820px) {
+    grid-template-columns: 1fr;
+    padding-top: 24px;
+  }
+`;
+
+const Eyebrow = styled.p`
+  margin: 0 0 18px;
+  color: #7f4d2f;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 `;
 
 const Name = styled.h1`
-  font-size: 2.2em;
-  color: #F9FAFB;
-  margin: 0 0 12px 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
-  font-weight: 700;
-  
-  @media (max-width: 768px) {
-    font-size: 1.8em;
-  }
+  font-size: clamp(3.8rem, 10vw, 8.2rem);
+  color: #25221d;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+`;
+
+const Intro = styled.p`
+  color: #3b352c;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.2rem, 2.2vw, 1.85rem);
+  line-height: 1.38;
+  margin: 0 0 28px;
 `;
 
 const ContactInfo = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  font-size: 0.85em;
-  color: #9CA3AF;
-  font-family: "Ubuntu Sans Mono", monospace;
-  
+  gap: 10px 18px;
+  font-size: 0.75rem;
+  color: #5c5549;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
   a {
-    color: #38BDF8;
+    color: #25221d;
     text-decoration: none;
-    transition: color 0.2s;
-    
+    border-bottom: 1px solid rgba(37, 34, 29, 0.28);
+    padding-bottom: 3px;
+    transition: color 0.2s, border-color 0.2s;
+
     &:hover {
-      color: #A855F7;
+      color: #7f4d2f;
+      border-color: #7f4d2f;
     }
-  }
-  
-  span {
-    user-select: none;
-  }
-  
-  @media (max-width: 768px) {
-    font-size: 0.75em;
-    gap: 8px;
   }
 `;
 
 const Section = styled.section`
   display: grid;
-  grid-template-columns: 180px minmax(0, 1fr);
-  gap: 16px 32px;
-  padding: 24px 0;
-  border-top: 1px solid rgba(148, 163, 184, 0.25);
-
-  &:first-of-type {
-    border-top: none;
-    padding-top: 8px;
-  }
+  grid-template-columns: minmax(150px, 220px) minmax(0, 1fr);
+  gap: 18px clamp(28px, 5vw, 70px);
+  padding: clamp(28px, 4vw, 48px) 0;
+  border-bottom: 1px solid rgba(37, 34, 29, 0.16);
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    gap: 8px;
-    padding: 18px 0;
   }
 `;
 
 const SectionTitle = styled.h2`
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 0.74rem;
   font-weight: 700;
-  color: #A855F7;
+  color: #7f4d2f;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
-  
-  @media (max-width: 768px) {
-    margin-bottom: 8px;
-  }
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 `;
 
 const SectionBody = styled.div`
-  font-size: 0.9rem;
-  color: #E5E7EB;
-  line-height: 1.7;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+  font-size: 0.95rem;
+  color: #4d463c;
+  line-height: 1.75;
+  font-family: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   text-align: left;
 `;
 
 const ExperienceItem = styled.div`
-  margin-bottom: 20px;
-  
+  margin-bottom: 28px;
+
   &:last-child {
     margin-bottom: 0;
   }
 `;
 
 const ExperienceHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 16px;
-  flex-wrap: wrap;
-  margin-bottom: 6px;
+  align-items: baseline;
+  margin-bottom: 8px;
+
+  @media (max-width: 720px) {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
 `;
 
 const ExperienceRole = styled.div`
-  font-weight: 600;
-  color: #F9FAFB;
-  font-size: 0.95rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  color: #25221d;
+  font-size: clamp(1.22rem, 2vw, 1.72rem);
+  line-height: 1.1;
   text-align: left;
 `;
 
 const ExperienceOrg = styled.div`
-  color: #38BDF8;
-  font-size: 0.85rem;
-  margin-top: 2px;
+  color: #7f4d2f;
+  font-size: 0.78rem;
+  margin-top: 6px;
   text-align: left;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 `;
 
 const ExperienceDates = styled.div`
-  font-size: 0.8rem;
-  color: #9CA3AF;
+  font-size: 0.78rem;
+  color: #6c6255;
   white-space: nowrap;
   text-align: right;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+
+  @media (max-width: 720px) {
+    text-align: left;
+  }
 `;
 
 const BulletList = styled.ul`
-  margin: 6px 0 0;
+  margin: 8px 0 0;
   padding-left: 1.1rem;
   text-align: left;
-  
+
   li {
-    color: #D1D5DB;
-    line-height: 1.7;
-    margin-bottom: 5px;
-    
+    color: #4d463c;
+    line-height: 1.72;
+    margin-bottom: 6px;
+
     &:last-child {
       margin-bottom: 0;
     }
@@ -176,57 +184,54 @@ const OrderedList = styled.ol`
   margin: 0;
   padding-left: 1.3rem;
   text-align: left;
-  
+
   li {
-    color: #D1D5DB;
-    line-height: 1.7;
-    margin-bottom: 12px;
-    
+    color: #4d463c;
+    line-height: 1.72;
+    margin-bottom: 14px;
+
     &:last-child {
       margin-bottom: 0;
     }
-    
+
     em {
-      font-style: italic;
+      color: #25221d;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.12em;
+      font-style: normal;
     }
   }
 `;
 
 const CourseworkText = styled.div`
   margin-top: 8px;
-  font-size: 0.88rem;
-  line-height: 1.7;
+  font-size: 0.92rem;
+  line-height: 1.72;
   text-align: left;
-  
-  strong {
-    font-weight: 600;
-  }
+  color: #5c5549;
+`;
+
+const Footer = styled.div`
+  text-align: right;
+  margin-top: 34px;
 `;
 
 const DownloadButton = styled.a`
   display: inline-block;
-  background: linear-gradient(135deg, #A855F7, #22D3EE);
-  color: white;
-  padding: 12px 28px;
-  border-radius: 8px;
+  background: #25221d;
+  color: #f8f4eb;
+  padding: 12px 20px;
+  border-radius: 999px;
   text-decoration: none;
-  font-size: 0.9em;
-  font-weight: 600;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   transition: all 0.3s ease;
-  margin-top: 32px;
-  text-align: center;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
-  cursor: pointer;
-  border: none;
-  
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(168, 85, 247, 0.4);
-  }
-  
-  @media (max-width: 768px) {
-    padding: 10px 24px;
-    font-size: 0.85em;
+    background: #7f4d2f;
   }
 `;
 
@@ -244,20 +249,25 @@ export function CV() {
     return <Container>Loading...</Container>;
   }
 
+  const researchSummary = cvData.research_interests?.slice(0, 2).join(' ');
+
   return (
     <Container>
       <CVWrapper>
         <Header>
-          <Name>{cvData.name}</Name>
-          <ContactInfo>
-            <a href={`mailto:${cvData.contact.email}`}>{cvData.contact.email}</a>
-            <span>•</span>
-            <span>{cvData.contact.location}</span>
-            <span>•</span>
-            <a href={`https://${cvData.contact.portfolio}`} target="_blank" rel="noopener noreferrer">Portfolio</a>
-            <span>•</span>
-            <a href={`https://${cvData.contact.github}`} target="_blank" rel="noopener noreferrer">GitHub</a>
-          </ContactInfo>
+          <div>
+            <Eyebrow>Curriculum vitae</Eyebrow>
+            <Name>{cvData.name}</Name>
+          </div>
+          <div>
+            <Intro>{researchSummary}</Intro>
+            <ContactInfo>
+              <a href={`mailto:${cvData.contact.email}`}>{cvData.contact.email}</a>
+              <span>{cvData.contact.location}</span>
+              <a href={`https://${cvData.contact.portfolio}`} target="_blank" rel="noopener noreferrer">Portfolio</a>
+              <a href={`https://${cvData.contact.github}`} target="_blank" rel="noopener noreferrer">GitHub</a>
+            </ContactInfo>
+          </div>
         </Header>
 
         {cvData.research_interests && cvData.research_interests.length > 0 && (
@@ -282,14 +292,12 @@ export function CV() {
                   <ExperienceHeader>
                     <div>
                       <ExperienceRole>{edu.degree}</ExperienceRole>
-                      <ExperienceOrg>{edu.school} · {edu.location}</ExperienceOrg>
+                      <ExperienceOrg>{edu.school} / {edu.location}</ExperienceOrg>
                     </div>
                     <ExperienceDates>{edu.duration}</ExperienceDates>
                   </ExperienceHeader>
                   {edu.relevant_coursework && (
-                    <CourseworkText>
-                      {edu.relevant_coursework}
-                    </CourseworkText>
+                    <CourseworkText>{edu.relevant_coursework}</CourseworkText>
                   )}
                 </ExperienceItem>
               ))}
@@ -337,7 +345,7 @@ export function CV() {
                   <ExperienceHeader>
                     <div>
                       <ExperienceRole>{exp.title}</ExperienceRole>
-                      <ExperienceOrg>{exp.company} · {exp.location}</ExperienceOrg>
+                      <ExperienceOrg>{exp.company} / {exp.location}</ExperienceOrg>
                     </div>
                     <ExperienceDates>{exp.duration}</ExperienceDates>
                   </ExperienceHeader>
@@ -376,7 +384,7 @@ export function CV() {
                   <ExperienceHeader>
                     <div>
                       <ExperienceRole>{inv.title}</ExperienceRole>
-                      <ExperienceOrg>{inv.company} · {inv.location}</ExperienceOrg>
+                      <ExperienceOrg>{inv.company} / {inv.location}</ExperienceOrg>
                     </div>
                     <ExperienceDates>{inv.duration}</ExperienceDates>
                   </ExperienceHeader>
@@ -419,11 +427,11 @@ export function CV() {
           </Section>
         )}
 
-        <div style={{ textAlign: 'center', marginTop: '32px', paddingTop: '24px', borderTop: '1px solid rgba(148, 163, 184, 0.25)' }}>
+        <Footer>
           <DownloadButton href={`${process.env.PUBLIC_URL}/CV_Olly.pdf`} download="CV_Olly.pdf">
             Download PDF Version
           </DownloadButton>
-        </div>
+        </Footer>
       </CVWrapper>
     </Container>
   );

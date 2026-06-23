@@ -1,14 +1,13 @@
-/* Projects Page Styles */
 .projects-container {
   min-height: 100vh;
-  background: linear-gradient(180deg, #050814 0%, #111827 45%, #1F2937 100%);
-  padding: 40px 20px;
+  background: #f8f4eb;
+  padding: clamp(46px, 7vw, 96px) clamp(18px, 5vw, 72px);
   position: relative;
 }
 
 .section {
   max-width: 1400px;
-  margin: 0 auto 60px auto;
+  margin: 0 auto 92px auto;
 }
 
 .section:last-child {
@@ -18,91 +17,91 @@
 .section.research,
 .section.games,
 .section.experience {
-  background: rgba(11, 17, 32, 0.6);
-  border-radius: 24px;
-  padding: 40px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(75, 85, 99, 0.3);
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  border: 0;
 }
 
-@media (max-width: 768px) {
-  .section.research,
-  .section.games,
-  .section.experience {
-    padding: 30px 20px;
-    border-radius: 20px;
-  }
+.section.games,
+.section.experience {
+  border-top: 1px solid rgba(37, 34, 29, 0.16);
+  padding-top: 80px;
 }
 
 .section-title {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
-  font-size: 2.5em;
-  font-weight: 700;
-  color: #F9FAFB;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.4rem, 6vw, 5.8rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: #25221d;
   text-align: left;
-  margin-bottom: 30px;
-  padding-bottom: 15px;
-  border-bottom: 3px solid transparent;
-  border-image: linear-gradient(90deg, #A855F7, #22D3EE, transparent) 1;
-  text-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+  margin: 0 0 22px;
+  padding-bottom: 0;
+  border-bottom: 0;
 }
 
-.section-title.research {
-  border-image: linear-gradient(90deg, #A855F7, #22D3EE, transparent) 1;
-  color: #A855F7;
-}
-
-.section-title.games {
-  border-image: linear-gradient(90deg, #22D3EE, #A855F7, transparent) 1;
-  color: #22D3EE;
-}
-
+.section-title.research,
+.section-title.games,
 .section-title.experience {
-  border-image: linear-gradient(90deg, #F97316, #FACC15, transparent) 1;
-  color: #F97316;
+  color: #25221d;
 }
 
 .section-description {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
-  font-size: 1.1em;
-  color: #D1D5DB;
-  line-height: 1.8;
+  font-family: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: clamp(0.98rem, 1.3vw, 1.15rem);
+  color: #5c5549;
+  line-height: 1.75;
   text-align: left;
-  margin: -10px 0 30px 0;
-  max-width: 100%;
+  margin: 0 0 34px auto;
+  max-width: 720px;
   font-weight: 400;
-}
-
-@media (max-width: 768px) {
-  .section-description {
-    font-size: 1em;
-    line-height: 1.7;
-    margin: -5px 0 25px 0;
-  }
+  border-left: 1px solid rgba(37, 34, 29, 0.2);
+  padding-left: 22px;
 }
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(18px, 2.5vw, 34px);
+  row-gap: clamp(54px, 7vw, 96px);
+  align-items: start;
   padding: 0;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
-@media (max-width: 768px) {
-  .section-title {
-    font-size: 2em;
-    margin-bottom: 20px;
-  }
-  
+@media (max-width: 1180px) {
   .projects-grid {
     grid-template-columns: 1fr;
-    gap: 30px;
-  }
-  
-  .section {
-    margin-bottom: 40px;
+    row-gap: 54px;
   }
 }
-  
+
+@media (max-width: 768px) {
+  .projects-container {
+    padding-top: 56px;
+  }
+
+  .section-description {
+    font-size: 1em;
+    line-height: 1.7;
+    margin: 0 0 28px 0;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 38px;
+  }
+
+  .section {
+    margin-bottom: 62px;
+  }
+
+  .section.games,
+  .section.experience {
+    padding-top: 56px;
+  }
+}

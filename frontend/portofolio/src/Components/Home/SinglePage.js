@@ -6,93 +6,88 @@ import Projects from '../Project/Projects';
 
 const PageContainer = styled.div`
   width: 100%;
+  background: #f8f4eb;
 `;
 
 const Section = styled.section`
   scroll-margin-top: 100px;
-  
+
   @media (max-width: 768px) {
     scroll-margin-top: 80px;
   }
 `;
 
 const AboutSection = styled.div`
-  background: #050814;
-  padding: 60px 40px;
+  background: #f8f4eb;
+  padding: 78px clamp(18px, 5vw, 72px);
   width: 100%;
   margin: 0 auto;
+  border-top: 1px solid rgba(37, 34, 29, 0.14);
 `;
 
 const AboutTitle = styled.h2`
-  font-size: clamp(2em, 4vw, 3em);
-  color: #F9FAFB;
-  font-family: "Pixelify Sans", sans-serif;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 40px;
-  text-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+  font-size: clamp(2.3rem, 6vw, 5.6rem);
+  color: #25221d;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  text-align: left;
+  margin: 0;
+  max-width: 760px;
 `;
 
 const CardsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 1px;
   max-width: 1400px;
-  margin: 0 auto;
-  
+  margin: 52px auto 0;
+  background: rgba(37, 34, 29, 0.18);
+  border: 1px solid rgba(37, 34, 29, 0.18);
+
   @media (max-width: 1024px) {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
 `;
 
 const InfoCard = styled.div`
-  background: #0B1120;
-  border: 1px solid #4B5563;
-  border-radius: 16px;
-  padding: 30px;
-  transition: all 0.3s ease;
+  background: #f8f4eb;
+  padding: clamp(26px, 4vw, 46px);
+  transition: background 0.3s ease;
   cursor: default;
-  
+
   &:hover {
-    transform: translateY(-5px);
-    border-color: ${props => props.accentColor || '#22D3EE'};
-    box-shadow: 0 8px 24px ${props => props.accentColor === '#A855F7' 
-      ? 'rgba(168, 85, 247, 0.3)' 
-      : props.accentColor === '#F97316'
-        ? 'rgba(249, 115, 22, 0.3)'
-        : 'rgba(34, 211, 238, 0.3)'};
+    background: #efe7da;
   }
 `;
 
 const CardTitle = styled.h3`
-  font-size: clamp(1.3em, 2vw, 1.6em);
-  color: ${props => props.accentColor || '#22D3EE'};
-  font-family: "Pixelify Sans", sans-serif;
+  font-size: 0.76rem;
+  color: #7f4d2f;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   font-weight: 700;
-  margin-bottom: 15px;
-  text-shadow: 0 0 8px ${props => props.accentColor === '#A855F7' 
-    ? 'rgba(168, 85, 247, 0.4)' 
-    : props.accentColor === '#F97316'
-      ? 'rgba(249, 115, 22, 0.4)'
-      : 'rgba(34, 211, 238, 0.4)'};
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0 0 24px;
 `;
 
 const CardText = styled.p`
-  font-size: clamp(15px, 1.5vw, 18px);
-  color: #E5E7EB;
-  font-family: "Ubuntu Sans Mono", monospace;
-  line-height: 1.6;
+  font-size: clamp(1rem, 1.45vw, 1.28rem);
+  color: #3b352c;
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.55;
   margin: 0;
 `;
 
 const Separator = styled.div`
   width: 100%;
-  height: 80px;
-  background: linear-gradient(90deg, #111827, #1F2937, #111827);
+  height: 120px;
+  background: #1f1c18;
   position: relative;
   display: flex;
   align-items: center;
@@ -100,37 +95,11 @@ const Separator = styled.div`
   overflow: hidden;
 
   &::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 10%;
-    right: 10%;
-    height: 3px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.5) 20%,
-      rgba(255, 255, 255, 0.8) 50%,
-      rgba(255, 255, 255, 0.5) 80%,
-      transparent
-    );
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-  }
-
-  &::after {
-    content: '◆';
-    position: relative;
-    z-index: 1;
-    font-size: 24px;
-    color: #F9FAFB;
-    background: linear-gradient(135deg, #22D3EE, #A855F7);
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    content: 'Selected work';
+    color: #f8f4eb;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2rem, 7vw, 6rem);
+    letter-spacing: -0.04em;
   }
 `;
 
@@ -138,7 +107,6 @@ export function SinglePage() {
   const location = useLocation();
 
   useEffect(() => {
-    // Handle scroll to specific category when coming from project detail
     if (location.state?.scrollTo) {
       const category = location.state.scrollTo;
       setTimeout(() => {
@@ -155,28 +123,24 @@ export function SinglePage() {
       <Section id="about">
         <Home />
         <AboutSection>
-          <AboutTitle>About Me</AboutTitle>
+          <AboutTitle>Research as a way of noticing the person inside the system.</AboutTitle>
           <CardsContainer>
-            <InfoCard accentColor="#A855F7">
-              <CardTitle accentColor="#A855F7">Student</CardTitle>
+            <InfoCard>
+              <CardTitle>Position</CardTitle>
               <CardText>
-                Computer Science student with Game Design minor. 
-                Graduating Dec 2025 from UW–Madison. 
-                Prospective PhD student in Fall 2026.
+                Computer Science student with a Game Design minor at UW-Madison, graduating Dec 2025 and preparing for PhD research in Fall 2026.
               </CardText>
             </InfoCard>
-            <InfoCard accentColor="#22D3EE">
-              <CardTitle accentColor="#22D3EE">Game Studio</CardTitle>
+            <InfoCard>
+              <CardTitle>Method</CardTitle>
               <CardText>
-                Experience working in game studios and as an independent developer. 
-                Developed various games including titles shipped to Steam.
+                I use behavioral telemetry, machine learning, virtual reality, and interactive design to study how people decide, move, persist, quit, and learn.
               </CardText>
             </InfoCard>
-            <InfoCard accentColor="#F97316">
-              <CardTitle accentColor="#F97316">ML + UX</CardTitle>
+            <InfoCard>
+              <CardTitle>Practice</CardTitle>
               <CardText>
-                Using Machine Learning to analyze User Experience and complex behavioral correlations. 
-                Interested in adaptive systems.
+                I also build games and experimental systems, treating design choices as hypotheses about attention, emotion, and player agency.
               </CardText>
             </InfoCard>
           </CardsContainer>

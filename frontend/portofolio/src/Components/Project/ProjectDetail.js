@@ -9,8 +9,8 @@ export const FontSizeContext = createContext();
 
 const PageWrapper = styled.div`
   min-height: 100vh;
-  background: #050814;
-  padding: 40px 20px;
+  background: #f8f4eb;
+  padding: 34px clamp(18px, 5vw, 72px) 72px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -20,12 +20,12 @@ const Container = styled.div`
   max-width: 1400px;
   width: 100%;
   display: flex;
-  gap: 20px;
+  gap: clamp(24px, 4vw, 54px);
   margin: 0 auto;
   position: relative;
   flex: 1;
   flex-direction: row-reverse;
-  
+
   @media (max-width: 768px) {
     flex-direction: column;
   }
@@ -35,13 +35,9 @@ const MainContent = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 28px;
   min-height: 100%;
-  
-  @media (max-width: 1024px) {
-    margin-left: 0;
-  }
-  
+
   @media (max-width: 768px) {
     width: 100%;
   }
@@ -49,34 +45,36 @@ const MainContent = styled.div`
 
 const DetailHeader = styled.div`
   position: sticky;
-  top: 80px;
+  top: 58px;
   z-index: 90;
-  background: rgba(5, 8, 20, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid #374151;
-  padding: 16px 0;
+  background: rgba(248, 244, 235, 0.9);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(37, 34, 29, 0.14);
+  padding: 16px 0 18px;
   margin: 0 0 20px 0;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 20px;
-  
+
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 12px;
-    top: 60px;
+    top: 48px;
   }
 `;
 
 const BackLink = styled.button`
   background: transparent;
-  border: 1px solid #4B5563;
+  border: 1px solid rgba(37, 34, 29, 0.22);
   border-radius: 999px;
-  padding: 8px 16px;
-  color: #E5E7EB;
-  font-size: 14px;
-  font-family: "Ubuntu Sans Mono", monospace;
-  font-weight: 500;
+  padding: 9px 14px;
+  color: #25221d;
+  font-size: 0.72rem;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -85,30 +83,26 @@ const BackLink = styled.button`
   white-space: nowrap;
   justify-self: start;
   width: fit-content;
-  
+
   &:hover {
-    border-color: #22D3EE;
-    color: #22D3EE;
-    background: rgba(34, 211, 238, 0.1);
-  }
-  
-  &:active {
-    transform: scale(0.98);
+    border-color: #7f4d2f;
+    color: #7f4d2f;
+    background: #efe7da;
   }
 `;
 
 const ProjectTitle = styled.h1`
   margin: 0;
-  color: #F9FAFB;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
-  font-size: clamp(1.2rem, 3vw, 1.8rem);
-  font-weight: 700;
-  letter-spacing: 0.02em;
+  color: #25221d;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.4rem, 3vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
   text-align: center;
   grid-column: 2;
-  
+
   @media (max-width: 768px) {
-    font-size: 1.2rem;
     grid-column: 1;
     text-align: left;
   }
@@ -128,7 +122,7 @@ const FontControls = styled.div`
   flex-direction: column;
   gap: 8px;
   z-index: 100;
-  
+
   @media (max-width: 768px) {
     bottom: 20px;
     right: 20px;
@@ -136,48 +130,39 @@ const FontControls = styled.div`
 `;
 
 const FontButton = styled.button`
-  background: rgba(17, 24, 39, 0.95);
-  border: 1px solid #4B5563;
+  background: rgba(248, 244, 235, 0.95);
+  border: 1px solid rgba(37, 34, 29, 0.22);
   border-radius: 50%;
   width: 45px;
   height: 45px;
-  color: #E5E7EB;
-  font-size: 18px;
+  color: #25221d;
+  font-size: 14px;
   font-weight: 700;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  
+
   &:hover {
-    border-color: #22D3EE;
-    color: #22D3EE;
-    background: rgba(31, 41, 55, 0.95);
-    transform: scale(1.1);
+    border-color: #7f4d2f;
+    color: #7f4d2f;
+    background: #efe7da;
+    transform: scale(1.08);
   }
-  
-  &:active {
-    transform: scale(0.95);
-  }
-  
+
   &:disabled {
     opacity: 0.4;
     cursor: not-allowed;
+
     &:hover {
-      border-color: #4B5563;
-      color: #E5E7EB;
-      background: rgba(17, 24, 39, 0.95);
+      border-color: rgba(37, 34, 29, 0.22);
+      color: #25221d;
+      background: rgba(248, 244, 235, 0.95);
       transform: scale(1);
     }
-  }
-  
-  @media (max-width: 768px) {
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
   }
 `;
 
@@ -187,7 +172,6 @@ export const ProjectDetail = () => {
   const [projectData, setProjectData] = useState(null);
   const [fontSize, setFontSize] = useState(130);
 
-  // Map project IDs to their categories
   const projectCategories = {
     '1': 'games',
     '2': 'research',
@@ -199,13 +183,12 @@ export const ProjectDetail = () => {
   };
 
   useEffect(() => {
-    // Scroll to top when component mounts or id changes
     window.scrollTo(0, 0);
   }, [id]);
 
   useEffect(() => {
     const url = `${process.env.PUBLIC_URL}/ProjectDescription/project${id}.json`;
-    
+
     fetch(url)
       .then(async (response) => {
         if (!response.ok) {
@@ -215,7 +198,6 @@ export const ProjectDetail = () => {
       })
       .then((data) => {
         setProjectData(data);
-        // Scroll to top after content loads to prevent browser from jumping to bottom
         setTimeout(() => window.scrollTo(0, 0), 0);
       })
       .catch((err) => {
@@ -254,7 +236,7 @@ export const ProjectDetail = () => {
             <MainContent>
               <DetailHeader>
                 <BackLink onClick={handleGoBack}>
-                  ← Back to Projects
+                  Back to projects
                 </BackLink>
                 <ProjectTitle>{projectData.title || 'Project Details'}</ProjectTitle>
               </DetailHeader>

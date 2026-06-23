@@ -2,77 +2,45 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Nav = styled.div`
-  width: 250px;
-  background: #050814;
-  border: 1px solid #4B5563;
-  border-radius: 18px;
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.7);
+  width: 230px;
+  background: rgba(248, 244, 235, 0.92);
+  border-left: 1px solid rgba(37, 34, 29, 0.18);
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 20px 10px;
-  position: fixed;
-  top: 90px;
-  left: 20px;
+  padding: 8px 0 8px 18px;
+  position: sticky;
+  top: 94px;
   height: fit-content;
-  max-height: calc(100vh - 110px);
+  max-height: calc(100vh - 120px);
   overflow-y: auto;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
   z-index: 50;
-  
-  @media (max-width: 1024px) {
-    width: 200px;
-    left: 10px;
-    padding: 15px 8px;
-  }
-  
+
   @media (max-width: 768px) {
     display: none;
   }
-  
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-  
-  &::-webkit-scrollbar-track {
-    background: #1F2937;
-    border-radius: 3px;
-  }
-  
-  &::-webkit-scrollbar-thumb {
-    background: #22D3EE;
-    border-radius: 3px;
-  }
 `;
 
-const NavItem = styled.div`
-  width: 90%;
-  min-height: 45px;
-  background: #0B1120;
-  border: 1px solid #374151;
-  margin: 8px 0;
-  border-radius: 999px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const NavItem = styled.button`
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(37, 34, 29, 0.12);
   cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 10px;
-  color: #E5E7EB;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+  transition: color 0.25s ease, padding-left 0.25s ease;
+  padding: 14px 0;
+  color: #5c5549;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   font-weight: 600;
-  font-size: 0.9rem;
-  text-align: center;
-  white-space: normal;
-  word-wrap: break-word;
-  
+  font-size: 0.72rem;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: left;
+
   &:hover {
-    background: linear-gradient(90deg, #A855F7, #22D3EE);
-    color: #F9FAFB;
-    border: none;
-    transform: translateX(5px);
-    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
+    color: #7f4d2f;
+    padding-left: 8px;
   }
 `;
 
@@ -87,7 +55,7 @@ const NavBar = ({ subtitles }) => {
   return (
     <Nav>
       {subtitles.map((subtitle, index) => (
-        <NavItem 
+        <NavItem
           key={index}
           onClick={() => handleNavClick(index)}
         >
