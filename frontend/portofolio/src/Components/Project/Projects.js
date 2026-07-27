@@ -1,103 +1,212 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import ProjectCard from './ProjectCard';
+import projectData from '../../content/projects';
+import { lensConfig, siteText } from '../../content/site';
 import './css/Projects.css';
 
 function Projects() {
-  const [sectionData, setSectionData] = useState(null);
+  const [searchParams] = useSearchParams();
+  const requestedLens = searchParams.get('lens') || 'all';
+  const activeLens = lensConfig[requestedLens] ? requestedLens : 'all';
+  const isLensView = activeLens !== 'all';
 
-  useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}/sections.json`)
-      .then(response => response.json())
-      .then(data => setSectionData(data))
-      .catch(err => console.error('Failed to load section data:', err));
-  }, []);
+  const projectLink = project => (
+    activeLens === 'all'
+      ? `/projects/${project.id}`
+      : `/projects/${project.id}?lens=${activeLens}`
+  );
 
-  const researchProjects = [
-    { id: 2, media: `${process.env.PUBLIC_URL}/img/Waddle/1.jpg`, title: 'Behavioral Analysis in Virtual Reality', brief: 'Head movement and telemetry analysis for predicting performance, hesitation, and early quitting in immersive tasks.', meta: 'VR telemetry / ML', signal: 'Predicting early quitting from motion traces' },
-    { id: 3, media: `${process.env.PUBLIC_URL}/img/GOA/GOA0.png`, title: 'Virtual Theatre: Beyond the Garden of Adrian', brief: 'An immersive theatre study where narrative, embodiment, and spatial interaction become the research material.', meta: 'VR theatre / interaction', signal: 'Studying actor-audience presence in VR' },
-    { id: 4, media: `${process.env.PUBLIC_URL}/img/POMDP/output.png`, title: 'Partially Observable Markov Decision Process', brief: 'Comparing Nash Q-learning, DQN, and fictitious play in multi-agent reinforcement learning environments.', meta: 'RL / multi-agent systems', signal: 'Solving strategy under uncertainty' },
-    { id: 5, media: `${process.env.PUBLIC_URL}/img/Milky/Milky1.png`, title: 'Probe the Milky Way Density Structure', brief: 'Computational modeling of galactic density distributions, using data analysis to make structure visible.', meta: 'Astrophysics / modeling', signal: 'Turning observation data into structure' },
-  ];
+  const renderCard = (project, index, category = project.category) => {
+    const lensCopy = project.lenses?.[activeLens];
 
-  const gameProjects = [
-    { id: 1, media: `${process.env.PUBLIC_URL}/img/LOM/Lom0.png`, title: 'Library of Meialia', brief: 'A 2D roguelike with 80+ skills, 50+ items, and 20+ mobs across 4 biomes. Lead Narrative Designer role.', meta: 'Steam game / narrative', signal: 'Narrative systems inside roguelike play' },
-    { id: 6, media: `${process.env.PUBLIC_URL}/img/OtherSide/0.png`, title: 'The Otherside', brief: 'A puzzle game combining word solving, chase mechanics, and maze exploration. Game and level design lead.', meta: 'Puzzle / level design', signal: 'Language puzzles under pressure' },
-  ];
+    return (
+      <ProjectCard
+        key={project.id}
+        index={index + 1}
+        media={project.media}
+        link={projectLink(project)}
+        title={project.title}
+        brief={lensCopy?.summary || project.brief}
+        category={category}
+        meta={project.meta}
+        signal={lensCopy?.emphasis || project.signal}
+        evidence={lensCopy?.featuredEvidence}
+        tags={project.tags}
+      />
+    );
+  };
 
-  const experienceProjects = [
-    { id: 7, media: `${process.env.PUBLIC_URL}/img/CS639/0.png`, title: 'CS639 Deep Learning for Computer Vision', brief: 'Implemented CNNs, GANs, and object detection algorithms from scratch using PyTorch and NumPy.', meta: 'Computer vision / PyTorch', signal: 'Building core vision models from scratch' },
-  ];
-
-  if (!sectionData) {
-    return <div className="projects-container">Loading...</div>;
-  }
+  const lensProjects = [...projectData].sort((a, b) => {
+    const aOrder = a.lenses?.[activeLens]?.order ?? 99;
+    const bOrder = b.lenses?.[activeLens]?.order ?? 99;
+    return aOrder - bOrder;
+  });
 
   return (
     <div className="projects-container">
-      <div className="section research">
-        <h2 className="section-title research">{sectionData.research.title}</h2>
-        <p className="section-description">
-          {sectionData.research.description}
-        </p>
-        <div className="projects-grid">
-          {researchProjects.map((project, index) => (
-            <ProjectCard 
-              key={project.id} 
-              index={index + 1}
-              media={project.media} 
-              link={`/portofolio/projects/${project.id}`} 
-              title={project.title}
-              brief={project.brief}
-              category="research"
-              meta={project.meta}
-              signal={project.signal}
-            />
+      <div className="lens-switcher-group">
+        <p className="lens-switcher-label">{siteText.work.viewAsLabel}</p>
+        <div className="lens-switcher" aria-label={siteText.work.viewAsLabel}>
+          {Object.entries(lensConfig).map(([key, lens]) => (
+            <Link
+              key={key}
+              to={key === 'all' ? '/#projects' : `/?lens=${key}#projects`}
+              className={`lens-switcher-link ${activeLens === key ? 'active' : ''}`}
+              aria-current={activeLens === key ? 'page' : undefined}
+            >
+              {lens.label}
+            </Link>
           ))}
         </div>
       </div>
 
-      <div className="section games">
-        <h2 className="section-title games">{sectionData.games.title}</h2>
-        <p className="section-description">
-          {sectionData.games.description}
-        </p>
-        <div className="projects-grid">
-          {gameProjects.map((project, index) => (
-            <ProjectCard 
-              key={project.id} 
-              index={index + 1}
-              media={project.media} 
-              link={`/portofolio/projects/${project.id}`} 
-              title={project.title}
-              brief={project.brief}
-              category="games"
-              meta={project.meta}
-              signal={project.signal}
-            />
-          ))}
-        </div>
-      </div>
+      {activeLens === 'product' ? (
+        <div className="section product product-lens-board">
+          <div className="lens-view-header">
+            <h2 className="section-title product">{siteText.productView.title}</h2>
+            <div className="lens-view-copy">
+              {siteText.productView.introduction.map(paragraph => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
 
-      {experienceProjects.length > 0 && (
-        <div className="section experience">
-          <h2 className="section-title experience">{sectionData.experience.title}</h2>
+          <section className="product-workflow" aria-labelledby="product-capabilities-title">
+            <p className="research-section-label" id="product-capabilities-title">
+              {siteText.productView.capabilitiesLabel}
+            </p>
+            <div className="product-workflow-grid">
+              {siteText.productView.capabilities.map((capability, index) => (
+                <article className="product-capability" key={capability.stage}>
+                  <p className="product-capability-number">
+                    {String(index + 1).padStart(2, '0')}
+                  </p>
+                  <h3>{capability.stage}</h3>
+                  <ul>
+                    {capability.evidence.map(item => <li key={item}>{item}</li>)}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <div className="lens-project-heading">
+            <p className="research-section-label">{siteText.productView.projectsLabel}</p>
+          </div>
+          <div className="projects-grid lens-grid">
+            {lensProjects.map((project, index) => renderCard(project, index, activeLens))}
+          </div>
+        </div>
+      ) : activeLens === 'research' ? (
+        <div className="section research research-lens-board">
+          <div className="lens-view-header">
+            <h2 className="section-title research">{siteText.researchView.title}</h2>
+            <div className="lens-view-copy">
+              {siteText.researchView.introduction.map(paragraph => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
+
+          <div className="research-thread" aria-label="Current research thread">
+            <span>{siteText.researchView.threadLabel}</span>
+            <p>{siteText.researchView.thread}</p>
+          </div>
+
+          <div className="research-thread research-approach" aria-label="Research approach">
+            <span>{siteText.researchView.approachLabel}</span>
+            <p>{siteText.researchView.approach}</p>
+          </div>
+
+          <div className="research-project-list">
+            {lensProjects.map((project, index) => {
+              const isFeatured = index === 0;
+              const researchFocus = isFeatured
+                ? siteText.researchView.coreQuestion
+                : project.lenses.research.emphasis;
+              const methods = isFeatured
+                ? siteText.researchView.methods
+                : project.tags.join(' / ');
+              const evidence = project.lenses.research.featuredEvidence;
+              const relevance = project.lenses.research.summary;
+
+              return (
+                <article className="research-featured" key={project.id}>
+                  <div
+                    className="research-featured-media"
+                    style={{ backgroundImage: `url(${project.media})` }}
+                    aria-hidden="true"
+                  />
+                  <div className="research-featured-copy">
+                    <p className="research-section-label">
+                      {isFeatured
+                        ? siteText.researchView.featuredLabel
+                        : siteText.researchView.projectLabel}
+                    </p>
+                    <p className="research-card-number">{String(index + 1).padStart(2, '0')}</p>
+                    <h3>{project.title}</h3>
+                    <div className="research-evidence-block">
+                      <span>
+                        {isFeatured
+                          ? siteText.researchView.coreQuestionLabel
+                          : siteText.researchView.focusLabel}
+                      </span>
+                      <p>{researchFocus}</p>
+                    </div>
+                    <div className="research-evidence-block">
+                      <span>{siteText.researchView.methodsLabel}</span>
+                      <p>{methods}</p>
+                    </div>
+                    <div className="research-evidence-block">
+                      <span>{siteText.researchView.evidenceLabel}</span>
+                      <p>{evidence}</p>
+                    </div>
+                    <div className="research-evidence-block">
+                      <span>{siteText.researchView.relevanceLabel}</span>
+                      <p>{relevance}</p>
+                    </div>
+                    <Link to={projectLink(project)} className="research-case-link">
+                      {siteText.buttons.openCaseStudy} <span>&rarr;</span>
+                    </Link>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+
+          <div className="research-methods">
+            <p className="research-section-label">{siteText.researchView.methodsListLabel}</p>
+            <div className="research-method-list">
+              {siteText.researchView.methodsList.map(method => (
+                <span key={method}>{method}</span>
+              ))}
+            </div>
+          </div>
+
+          <div className="research-archive-link">
+            <span>{siteText.researchView.archiveLabel}</span>
+            <Link to="/#projects">{siteText.buttons.viewAllProjects} <span>&rarr;</span></Link>
+          </div>
+        </div>
+      ) : isLensView ? (
+        <div className={`section ${activeLens}`}>
+          <h2 className={`section-title ${activeLens}`}>{lensConfig[activeLens].title}</h2>
           <p className="section-description">
-            {sectionData.experience.description}
+            {lensConfig[activeLens].description}
+          </p>
+          <div className="projects-grid lens-grid">
+            {lensProjects.map((project, index) => renderCard(project, index, activeLens))}
+          </div>
+        </div>
+      ) : (
+        <div className="section all-work">
+          <h2 className="section-title">{lensConfig.all.title}</h2>
+          <p className="section-description">
+            {lensConfig.all.description}
           </p>
           <div className="projects-grid">
-            {experienceProjects.map((project, index) => (
-              <ProjectCard 
-                key={project.id} 
-                index={index + 1}
-                media={project.media} 
-                link={`/portofolio/projects/${project.id}`} 
-                title={project.title}
-                brief={project.brief}
-                category="experience"
-                meta={project.meta}
-                signal={project.signal}
-              />
-            ))}
+            {projectData.map((project, index) => renderCard(project, index))}
           </div>
         </div>
       )}

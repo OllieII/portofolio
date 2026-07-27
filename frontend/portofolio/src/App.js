@@ -9,6 +9,7 @@ import { ProjectDetail } from './Components/Project/ProjectDetail';
 import CV from './Components/CV/CV';
 import UCSCPortfolio from './Components/UCSC/UCSCPortfolio';
 import { initGA, logPageView } from './analytics';
+import { siteText } from './content/site';
 
 function Analytics() {
   const location = useLocation();
@@ -31,7 +32,7 @@ function App() {
   return (
     <>
       <Helmet>
-        <title>Home</title>
+        <title>{siteText.seo.defaultTitle}</title>
         <link rel="icon" type="image/png" href={`${process.env.PUBLIC_URL}/favicon/homeicon.png`} />
       </Helmet>
       
@@ -46,8 +47,8 @@ function App() {
         <Routes>
           <Route path="/" element={<SinglePage />} />
           <Route path="/cv" element={<CV />} />
-          <Route path="/portofolio/ucsc-cm-portfolio-2026" element={<UCSCPortfolio />} />
-          <Route path="/portofolio/projects/:id" element={<ProjectDetail />} />
+          <Route path="/ucsc-cm-portfolio-2026" element={<UCSCPortfolio />} />
+          <Route path="/projects/:id" element={<ProjectDetail />} />
         </Routes>
       </main>
     </>
@@ -56,7 +57,7 @@ function App() {
 
 function AppWrapper() {
   return (
-    <Router basename="/portofolio">
+    <Router basename="/portfolio">
       <Analytics />
       <App />
     </Router>

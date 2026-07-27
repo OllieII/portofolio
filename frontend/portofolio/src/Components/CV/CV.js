@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import styled from 'styled-components';
+import cvData from '../../content/cv-data.json';
 
 const Container = styled.div`
   width: 100%;
@@ -267,20 +268,12 @@ const DownloadButton = styled.a`
 `;
 
 export function CV() {
-  const [cvData, setCvData] = useState(null);
+  const researchSummary = cvData.research_interests?.slice(0, 2).join(' ');
 
-  useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}/cv-data.json`)
-      .then(response => response.json())
-      .then(data => setCvData(data))
-      .catch(err => console.error('Failed to load CV data:', err));
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   }, []);
 
-  if (!cvData) {
-    return <Container>Loading...</Container>;
-  }
-
-  const researchSummary = cvData.research_interests?.slice(0, 2).join(' ');
   const renderProjectLink = (item) => item.projectLink && (
     <EntryLink href={item.projectLink}>View related project</EntryLink>
   );

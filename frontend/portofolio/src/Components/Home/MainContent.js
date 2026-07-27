@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { siteText } from '../../content/site';
 
 const MainContentWrapper = styled.div`
   display: grid;
@@ -148,39 +149,36 @@ const MainContent = () => {
     <MainContentWrapper>
       <ProfileSection>
         <ProfileImageWrapper>
-          <img src={`${process.env.PUBLIC_URL}/favicon/human_me.jpg`} alt="Olly Guo" />
+          <img src={`${process.env.PUBLIC_URL}/favicon/human_me.jpg`} alt={siteText.homepage.portraitAlt} />
         </ProfileImageWrapper>
         <Caption>
-          Computational behavior, immersive systems, game design, and the small traces people leave when they move through virtual spaces.
+          {siteText.homepage.caption}
         </Caption>
       </ProfileSection>
       <TextBlock>
-        <Name>Olly Guo</Name>
+        <Name>{siteText.homepage.name}</Name>
         <SelfIntro>
-          I study how individual behavior appears inside interactive systems, then use AI/ML, VR, and game design to build experiences that adapt to people instead of flattening them into an average user.
+          {siteText.homepage.introduction}
         </SelfIntro>
         <ChipsRow>
-          <Chip>MSCS @ UIUC</Chip>
-          <Chip>UW-Madison CS alum</Chip>
-          <Chip>VR / ML / HCI</Chip>
-          <Chip>Game design</Chip>
+          {siteText.homepage.chips.map(chip => <Chip key={chip}>{chip}</Chip>)}
         </ChipsRow>
         <IconWrapper>
           <IconContainer onClick={handleEmailClick}>
             <Icon src={`${process.env.PUBLIC_URL}/Icons/mail.png`} alt="Email" />
-            <div>Email</div>
+            <div>{siteText.homepage.contactLinks.email}</div>
           </IconContainer>
           <IconContainer onClick={handleLinkClick('https://github.com/OllieII')}>
             <Icon src={`${process.env.PUBLIC_URL}/Icons/Github.png`} alt="GitHub" />
-            <div>GitHub</div>
+            <div>{siteText.homepage.contactLinks.github}</div>
           </IconContainer>
           <IconContainer onClick={handleLinkClick('https://www.linkedin.com/in/olly-guo-62016b248/')}>
             <Icon src={`${process.env.PUBLIC_URL}/Icons/linkedin.png`} alt="LinkedIn" />
-            <div>LinkedIn</div>
+            <div>{siteText.homepage.contactLinks.linkedin}</div>
           </IconContainer>
           <IconContainer onClick={handleLinkClick('https://www.instagram.com/sisyphus49ollie/')}>
             <Icon src={`${process.env.PUBLIC_URL}/Icons/instagram.png`} alt="Instagram" />
-            <div>Instagram</div>
+            <div>{siteText.homepage.contactLinks.instagram}</div>
           </IconContainer>
         </IconWrapper>
       </TextBlock>

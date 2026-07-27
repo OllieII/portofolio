@@ -88,23 +88,23 @@ const ContentWrapper = styled.div`
   text-align: left;
 `;
 
-const SubTitleSection = ({ subtitles }) => {
+const SubTitleSection = ({ sections }) => {
   const fontSize = useContext(FontSizeContext);
 
-  const renderContent = (subtitle) => {
-    const title = subtitle.title.toLowerCase();
+  const renderContent = (section) => {
+    const title = section.heading.toLowerCase();
     const isTechStack = title.includes('tech stack') || title.includes('technology');
     const isResponsibility = title.includes('responsibility') || title.includes('contribution') || title.includes('role');
 
     if (isTechStack) {
-      const techs = subtitle.content
+      const techs = section.body
         .split(/[,;\n]/)
         .map(t => t.trim())
         .filter(t => t.length > 0);
 
       return (
         <>
-          <h3>{subtitle.title}</h3>
+          <h3>{section.heading}</h3>
           <TechStackGrid>
             {techs.map((tech, i) => (
               <TechPill key={i}>{tech}</TechPill>
@@ -114,15 +114,15 @@ const SubTitleSection = ({ subtitles }) => {
       );
     }
 
-    if (isResponsibility && subtitle.content.includes('\n')) {
-      const items = subtitle.content
+    if (isResponsibility && section.body.includes('\n')) {
+      const items = section.body
         .split('\n')
         .map(item => item.trim())
         .filter(item => item.length > 0);
 
       return (
         <>
-          <h3>{subtitle.title}</h3>
+          <h3>{section.heading}</h3>
           <ContentWrapper>
             <ul>
               {items.map((item, i) => (
@@ -134,11 +134,11 @@ const SubTitleSection = ({ subtitles }) => {
       );
     }
 
-    const paragraphs = subtitle.content.split('\n\n').filter(p => p.trim().length > 0);
+    const paragraphs = section.body.split('\n\n').filter(p => p.trim().length > 0);
 
     return (
       <>
-        <h3>{subtitle.title}</h3>
+        <h3>{section.heading}</h3>
         <ContentWrapper>
           {paragraphs.map((para, i) => (
             <p key={i} dangerouslySetInnerHTML={{ __html: para.trim() }} />
@@ -150,9 +150,9 @@ const SubTitleSection = ({ subtitles }) => {
 
   return (
     <SectionContainer>
-      {subtitles.map((subtitle, index) => (
+      {sections.map((section, index) => (
         <SubTitle id={`subtitle-${index}`} key={index} fontSize={fontSize}>
-          {renderContent(subtitle)}
+          {renderContent(section)}
         </SubTitle>
       ))}
     </SectionContainer>

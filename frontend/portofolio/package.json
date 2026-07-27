@@ -1,5 +1,5 @@
 {
-  "name": "portofolio",
+  "name": "portfolio",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -42,5 +42,5 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "http://ollieii.github.io/portofolio"
+  "homepage": "https://ollieii.github.io/portfolio"
 }

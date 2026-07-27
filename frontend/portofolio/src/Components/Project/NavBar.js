@@ -44,7 +44,7 @@ const NavItem = styled.button`
   }
 `;
 
-const NavBar = ({ subtitles }) => {
+const NavBar = ({ sections }) => {
   const handleNavClick = (index) => {
     const element = document.getElementById(`subtitle-${index}`);
     if (element) {
@@ -54,12 +54,12 @@ const NavBar = ({ subtitles }) => {
 
   return (
     <Nav>
-      {subtitles.map((subtitle, index) => (
+      {sections.map((section, index) => (
         <NavItem
           key={index}
           onClick={() => handleNavClick(index)}
         >
-          {subtitle.title}
+          {section.heading}
         </NavItem>
       ))}
     </Nav>

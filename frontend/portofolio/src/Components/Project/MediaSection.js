@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import styled from 'styled-components';
+import { siteText } from '../../content/site';
 
 const MediaContainer = styled.div`
   width: 100%;
@@ -295,7 +296,7 @@ const MediaSection = ({ mediaList = [] }) => {
   if (!mediaList || mediaList.length === 0) {
     return (
       <MediaContainer>
-        <EmptyState>No media available for this project.</EmptyState>
+        <EmptyState>{siteText.projectDetail.noMedia}</EmptyState>
       </MediaContainer>
     );
   }
@@ -356,7 +357,7 @@ const MediaSection = ({ mediaList = [] }) => {
         )}
         {!isEmbedCode(mediaList[currentIndex]) && (
           <FullScreenButton onClick={() => setIsFullScreen(true)}>
-            View full size
+            {siteText.buttons.viewFullSize}
           </FullScreenButton>
         )}
       </CarouselContainer>
@@ -399,7 +400,7 @@ const MediaSection = ({ mediaList = [] }) => {
         <FullScreenOverlay onClick={() => setIsFullScreen(false)}>
           <FullScreenContent onClick={(e) => e.stopPropagation()}>
             <CloseButton onClick={() => setIsFullScreen(false)}>
-              Close
+              {siteText.buttons.close}
             </CloseButton>
             <img
               src={`${process.env.PUBLIC_URL}${mediaList[currentIndex]}`}

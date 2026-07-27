@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import MainContent from './MainContent';
+import { siteText } from '../../content/site';
 
 const AppWrapper = styled.div`
   background: #f8f4eb;
@@ -66,7 +67,7 @@ export const Home = () => {
     <AppWrapper>
       <MainContent />
       <ScrollIndicator onClick={handleScrollDown}>
-        <ScrollText>Selected work</ScrollText>
+        <ScrollText>{siteText.homepage.scrollPrompt}</ScrollText>
         <ScrollArrow />
       </ScrollIndicator>
     </AppWrapper>

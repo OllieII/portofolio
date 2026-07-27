@@ -1,9 +1,11 @@
 import React, { useState, useEffect, createContext } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from './NavBar';
 import MediaSection from './MediaSection';
 import SubTitleSection from './SubTitleSection';
+import { getProjectById } from '../../content/projects';
+import { lensConfig, siteText } from '../../content/site';
 
 export const FontSizeContext = createContext();
 
@@ -64,6 +66,14 @@ const DetailHeader = styled.div`
   }
 `;
 
+const NavigationContext = styled.div`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-self: start;
+`;
+
 const BackLink = styled.button`
   background: transparent;
   border: 1px solid rgba(37, 34, 29, 0.22);
@@ -91,6 +101,16 @@ const BackLink = styled.button`
   }
 `;
 
+const LensContext = styled.span`
+  color: #7f4d2f;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  text-transform: uppercase;
+`;
+
 const ProjectTitle = styled.h1`
   margin: 0;
   color: #25221d;
@@ -105,6 +125,66 @@ const ProjectTitle = styled.h1`
   @media (max-width: 768px) {
     grid-column: 1;
     text-align: left;
+  }
+`;
+
+const LensLead = styled.p`
+  color: #5c5549;
+  font-family: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: clamp(0.84rem, 1.1vw, 1rem);
+  line-height: 1.5;
+  margin: 0;
+  max-width: 680px;
+  text-align: center;
+  grid-column: 2;
+
+  @media (max-width: 768px) {
+    grid-column: 1;
+    text-align: left;
+  }
+`;
+
+const LensEvidence = styled.aside`
+  display: grid;
+  grid-template-columns: minmax(150px, 0.25fr) minmax(0, 1fr);
+  gap: 18px;
+  border: 1px solid rgba(37, 34, 29, 0.18);
+  background: rgba(239, 231, 218, 0.46);
+  padding: clamp(18px, 3vw, 28px);
+
+  span {
+    color: #7f4d2f;
+    font-size: 0.68rem;
+    line-height: 1.45;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    font-weight: 700;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  strong {
+    color: #25221d;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.15rem, 2vw, 1.6rem);
+    font-weight: 400;
+    line-height: 1.3;
+  }
+
+  p {
+    color: #5c5549;
+    font-size: 0.96rem;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
   }
 `;
 
@@ -169,46 +249,34 @@ const FontButton = styled.button`
 export const ProjectDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [projectData, setProjectData] = useState(null);
+  const [searchParams] = useSearchParams();
+  const projectData = getProjectById(id);
   const [fontSize, setFontSize] = useState(130);
-
-  const projectCategories = {
-    '1': 'games',
-    '2': 'research',
-    '3': 'research',
-    '4': 'research',
-    '5': 'research',
-    '6': 'games',
-    '7': 'experience'
-  };
+  const requestedLens = searchParams.get('lens');
+  const activeLens = requestedLens && lensConfig[requestedLens] && requestedLens !== 'all'
+    ? requestedLens
+    : null;
+  const lensCopy = activeLens ? projectData?.lenses?.[activeLens] : null;
+  const originalSections = projectData?.details?.sections || [];
+  const preferredSectionOrder = activeLens
+    ? lensConfig[activeLens].detailSectionOrder || []
+    : [];
+  const detailSections = preferredSectionOrder.length > 0
+    ? [...originalSections].sort((a, b) => {
+        const aIndex = preferredSectionOrder.indexOf(a.heading);
+        const bIndex = preferredSectionOrder.indexOf(b.heading);
+        const aPriority = aIndex === -1 ? preferredSectionOrder.length : aIndex;
+        const bPriority = bIndex === -1 ? preferredSectionOrder.length : bIndex;
+        return aPriority - bPriority;
+      })
+    : originalSections;
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
 
-  useEffect(() => {
-    const url = `${process.env.PUBLIC_URL}/ProjectDescription/project${id}.json`;
-
-    fetch(url)
-      .then(async (response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status} while fetching ${url}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setProjectData(data);
-        setTimeout(() => window.scrollTo(0, 0), 0);
-      })
-      .catch((err) => {
-        console.error('Failed to load project data:', err);
-        setProjectData(null);
-      });
-  }, [id]);
-
   const handleGoBack = () => {
-    const category = projectCategories[id];
-    navigate('/', { state: { scrollTo: category } });
+    navigate(activeLens ? `/?lens=${activeLens}#projects` : '/#projects');
   };
 
   const increaseFontSize = () => {
@@ -223,27 +291,53 @@ export const ProjectDetail = () => {
     <FontSizeContext.Provider value={fontSize}>
       <PageWrapper fontSize={fontSize}>
         <FontControls>
-          <FontButton onClick={increaseFontSize} disabled={fontSize >= 150} title="Increase font size">
+          <FontButton onClick={increaseFontSize} disabled={fontSize >= 150} title={siteText.projectDetail.increaseFontSize}>
             A+
           </FontButton>
-          <FontButton onClick={decreaseFontSize} disabled={fontSize <= 70} title="Decrease font size">
+          <FontButton onClick={decreaseFontSize} disabled={fontSize <= 70} title={siteText.projectDetail.decreaseFontSize}>
             A-
           </FontButton>
         </FontControls>
-        {projectData && (
+        {projectData ? (
           <Container>
-            <NavBar subtitles={projectData.subtitles} />
+            <NavBar sections={detailSections} />
             <MainContent>
               <DetailHeader>
-                <BackLink onClick={handleGoBack}>
-                  Back to projects
-                </BackLink>
-                <ProjectTitle>{projectData.title || 'Project Details'}</ProjectTitle>
+                <NavigationContext>
+                  <BackLink onClick={handleGoBack}>
+                    {siteText.buttons.backToProjects}
+                  </BackLink>
+                  {activeLens && (
+                    <LensContext>
+                      {siteText.work.lensContextLabel}: {lensConfig[activeLens].label}
+                    </LensContext>
+                  )}
+                </NavigationContext>
+                <ProjectTitle>{projectData.title || siteText.projectDetail.fallbackTitle}</ProjectTitle>
+                {lensCopy?.emphasis && <LensLead>{lensCopy.emphasis}</LensLead>}
               </DetailHeader>
               <Content>
-                <MediaSection mediaList={projectData.mediaList || projectData.media} />
-                <SubTitleSection subtitles={projectData.subtitles} />
+                {lensCopy && (
+                  <LensEvidence>
+                    <span>First evidence through this lens</span>
+                    <div>
+                      <strong>{lensCopy.featuredEvidence}</strong>
+                      <p>{lensCopy.summary}</p>
+                    </div>
+                  </LensEvidence>
+                )}
+                <MediaSection mediaList={projectData.details.media} />
+                <SubTitleSection sections={detailSections} />
               </Content>
+            </MainContent>
+          </Container>
+        ) : (
+          <Container>
+            <MainContent>
+              <DetailHeader>
+                <BackLink onClick={() => navigate('/#projects')}>{siteText.buttons.backToProjects}</BackLink>
+                <ProjectTitle>{siteText.projectDetail.notFoundTitle}</ProjectTitle>
+              </DetailHeader>
             </MainContent>
           </Container>
         )}

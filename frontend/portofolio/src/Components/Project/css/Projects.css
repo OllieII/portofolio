@@ -5,9 +5,60 @@
   position: relative;
 }
 
+.lens-switcher-group {
+  max-width: 1400px;
+  margin: 0 auto 42px;
+}
+
+.lens-switcher-label {
+  color: #5c5549;
+  font-size: 0.68rem;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+
+.lens-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.lens-switcher-link {
+  color: #3b352c;
+  border: 1px solid rgba(37, 34, 29, 0.18);
+  background: rgba(248, 244, 235, 0.64);
+  padding: 10px 13px;
+  text-decoration: none;
+  font-size: 0.72rem;
+  line-height: 1.25;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-weight: 700;
+  transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.lens-switcher-link:hover,
+.lens-switcher-link.active {
+  color: #7f4d2f;
+  border-color: rgba(127, 77, 47, 0.36);
+  background: #efe7da;
+}
+
 .section {
   max-width: 1400px;
   margin: 0 auto 92px auto;
+  scroll-margin-top: 100px;
+}
+
+@media (max-width: 768px) {
+  .section {
+    scroll-margin-top: 80px;
+  }
 }
 
 .section:last-child {
@@ -16,7 +67,9 @@
 
 .section.research,
 .section.games,
-.section.experience {
+.section.experience,
+.section.product,
+.section.creative {
   background: transparent;
   border-radius: 0;
   padding: 0;
@@ -45,7 +98,9 @@
 
 .section-title.research,
 .section-title.games,
-.section-title.experience {
+.section-title.experience,
+.section-title.product,
+.section-title.creative {
   color: #25221d;
 }
 
@@ -73,10 +128,393 @@
   margin: 0 auto;
 }
 
+.research-lens-board,
+.product-lens-board {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(34px, 5vw, 62px);
+}
+
+.lens-view-header {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: end;
+  border-bottom: 1px solid rgba(37, 34, 29, 0.16);
+  padding-bottom: clamp(30px, 4vw, 48px);
+}
+
+.lens-view-copy {
+  color: #5c5549;
+  font-family: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: clamp(1rem, 1.35vw, 1.18rem);
+  line-height: 1.75;
+  max-width: 760px;
+}
+
+.lens-view-copy p {
+  margin: 0;
+}
+
+.lens-view-copy p + p {
+  margin-top: 14px;
+}
+
+.product-workflow {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.product-workflow-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid rgba(37, 34, 29, 0.18);
+  border-left: 1px solid rgba(37, 34, 29, 0.18);
+}
+
+.product-capability {
+  min-width: 0;
+  border-right: 1px solid rgba(37, 34, 29, 0.18);
+  border-bottom: 1px solid rgba(37, 34, 29, 0.18);
+  padding: clamp(18px, 2.5vw, 28px);
+}
+
+.product-capability-number {
+  color: #7f4d2f;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.4rem;
+  line-height: 1;
+  margin: 0 0 22px;
+}
+
+.product-capability h3 {
+  color: #25221d;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.2rem, 2vw, 1.65rem);
+  font-weight: 400;
+  line-height: 1.08;
+  margin: 0 0 15px;
+}
+
+.product-capability ul {
+  color: #5c5549;
+  font-family: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin: 0;
+  padding-left: 18px;
+}
+
+.product-capability li + li {
+  margin-top: 5px;
+}
+
+.lens-project-heading {
+  border-top: 1px solid rgba(37, 34, 29, 0.16);
+  padding-top: 24px;
+}
+
+.research-thread {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.28fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+  border: 1px solid rgba(37, 34, 29, 0.16);
+  background: rgba(239, 231, 218, 0.46);
+  padding: clamp(18px, 3vw, 26px);
+}
+
+.research-thread span,
+.research-section-label {
+  color: #7f4d2f;
+  font-size: 0.7rem;
+  line-height: 1.45;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-weight: 700;
+  margin: 0;
+}
+
+.research-thread p {
+  color: #25221d;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.25rem, 2.1vw, 2rem);
+  line-height: 1.18;
+  margin: 0;
+}
+
+.research-approach {
+  margin-top: calc(clamp(34px, 5vw, 62px) * -0.45);
+}
+
+.research-featured {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.92fr) minmax(0, 1.08fr);
+  border: 1px solid rgba(37, 34, 29, 0.18);
+  background: rgba(248, 244, 235, 0.62);
+}
+
+.research-project-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(34px, 5vw, 62px);
+}
+
+.research-featured-media {
+  min-height: clamp(340px, 42vw, 560px);
+  background-size: cover;
+  background-position: center;
+  filter: saturate(0.82) contrast(0.98);
+}
+
+.research-featured-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: clamp(28px, 4vw, 54px);
+}
+
+.research-card-number {
+  color: #25221d;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 3.2vw, 3.4rem);
+  line-height: 0.9;
+  margin: 0;
+}
+
+.research-featured h3 {
+  color: #25221d;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 4vw, 4rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  margin: 0;
+}
+
+.research-evidence-block {
+  display: grid;
+  grid-template-columns: minmax(132px, 0.28fr) minmax(0, 1fr);
+  gap: 18px;
+  border-top: 1px solid rgba(37, 34, 29, 0.14);
+  padding-top: 16px;
+}
+
+.research-evidence-block span {
+  color: #7f4d2f;
+  font-size: 0.7rem;
+  line-height: 1.55;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-weight: 700;
+}
+
+.research-evidence-block p {
+  color: #3b352c;
+  font-family: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: clamp(0.98rem, 1.25vw, 1.08rem);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.research-case-link {
+  color: #25221d;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  border-bottom: 1px solid rgba(37, 34, 29, 0.32);
+  padding-bottom: 5px;
+  text-decoration: none;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-weight: 700;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.research-case-link span {
+  transition: transform 0.25s ease;
+}
+
+.research-case-link:hover,
+.research-support-card:hover .research-case-link {
+  color: #7f4d2f;
+  border-color: #7f4d2f;
+}
+
+.research-case-link:hover span,
+.research-support-card:hover .research-case-link span {
+  transform: translateX(5px);
+}
+
+.research-supporting {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.research-subsection-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: end;
+}
+
+.research-subsection-heading h3 {
+  color: #25221d;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.6rem, 3vw, 3rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin: 0;
+  max-width: 620px;
+  text-align: right;
+}
+
+.research-supporting-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.research-support-card {
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: flex-start;
+  border: 1px solid rgba(37, 34, 29, 0.18);
+  background: rgba(248, 244, 235, 0.64);
+  padding: clamp(22px, 3vw, 32px);
+  color: #25221d;
+  text-decoration: none;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.research-support-card:hover {
+  background: #efe7da;
+  border-color: rgba(127, 77, 47, 0.36);
+  transform: translateY(-2px);
+}
+
+.research-support-card h4 {
+  color: #25221d;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.35rem, 2.2vw, 2rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+  margin: 0;
+}
+
+.research-support-card p {
+  color: #5c5549;
+  font-family: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.62;
+  margin: 0;
+}
+
+.research-support-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.research-support-tags span,
+.research-method-list span {
+  color: #5c5549;
+  border: 1px solid rgba(37, 34, 29, 0.18);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 0.68rem;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-weight: 700;
+}
+
+.research-case-link.compact {
+  margin-top: 4px;
+}
+
+.research-methods,
+.research-archive-link {
+  border-top: 1px solid rgba(37, 34, 29, 0.16);
+  padding-top: 24px;
+}
+
+.research-method-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.research-archive-link {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: center;
+}
+
+.research-archive-link > span {
+  color: #7f4d2f;
+  font-size: 0.7rem;
+  line-height: 1.45;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-weight: 700;
+}
+
+.research-archive-link a {
+  color: #25221d;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(37, 34, 29, 0.32);
+  padding-bottom: 5px;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-weight: 700;
+}
+
 @media (max-width: 1180px) {
   .projects-grid {
     grid-template-columns: 1fr;
     row-gap: 54px;
+  }
+
+  .research-featured {
+    grid-template-columns: 1fr;
+  }
+
+  .research-featured-media {
+    min-height: 360px;
+  }
+
+  .research-supporting-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-workflow-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .research-support-card {
+    min-height: 0;
   }
 }
 
@@ -103,5 +541,29 @@
   .section.games,
   .section.experience {
     padding-top: 56px;
+  }
+
+  .lens-view-header,
+  .research-thread,
+  .research-evidence-block {
+    grid-template-columns: 1fr;
+  }
+
+  .research-subsection-heading,
+  .research-archive-link {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .research-subsection-heading h3 {
+    text-align: left;
+  }
+
+  .research-featured-media {
+    min-height: 260px;
+  }
+
+  .product-workflow-grid {
+    grid-template-columns: 1fr;
   }
 }

@@ -4,7 +4,7 @@ const path = require('path');
 
 const port = Number(process.env.PORT || 3000);
 const buildDir = path.join(__dirname, 'build');
-const basePath = '/portofolio';
+const basePath = '/portfolio';
 
 const mimeTypes = {
   '.html': 'text/html; charset=utf-8',

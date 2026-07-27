@@ -1,19 +1,12 @@
 // BlogList.js
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import BlogPost from './BlogPost';
 import Tag from './Tag';
+import blogPosts from '../../content/blog-posts.json';
 
 const BlogList = () => {
-  const [posts, setPosts] = useState([]);
+  const posts = blogPosts;
   const [selectedTag, setSelectedTag] = useState(null);
-
-  useEffect(() => {
-    // Fetch the blog data from the JSON file
-    fetch(`${process.env.PUBLIC_URL}/Blogs/Blog1.json`)
-      .then(response => response.json())
-      .then(data => setPosts(data))
-      .catch(error => console.error('Error fetching blog data:', error));
-  }, []);
 
   const handleTagClick = (tag) => {
     setSelectedTag(tag);

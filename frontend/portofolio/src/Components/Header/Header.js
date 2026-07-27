@@ -1,85 +1,39 @@
 import React from 'react';
 import './Header.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { siteText } from '../../content/site';
 
 export function Header(){
     const location = useLocation();
     const navigate = useNavigate();
-    const isMainPage = location.pathname === '/' || location.pathname === '/portofolio';
+    const isMainPage = location.pathname === '/' || location.pathname === '/portfolio';
 
-    const handleNavClick = (sectionId) => (e) => {
-      e.preventDefault();
-      if (!isMainPage) {
-        navigate('/');
-        setTimeout(() => {
-          const element = document.getElementById(sectionId);
-          if (element) {
-            const headerOffset = 80;
-            const elementPosition = element.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-          }
-        }, 100);
-      } else {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          const headerOffset = 80;
-          const elementPosition = element.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-        }
-      }
+    const scrollToTarget = (target) => {
+      const element = document.getElementById(target)
+        || document.querySelector(`.section.${target}`);
+
+      element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
 
-    const handleProjectSubNavClick = (category) => (e) => {
+    const handleNavClick = (target) => (e) => {
       e.preventDefault();
-      if (!isMainPage) {
-        navigate('/');
-        setTimeout(() => {
-          const projectsElement = document.getElementById('projects');
-          if (projectsElement) {
-            const headerOffset = 80;
-            const elementPosition = projectsElement.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-            setTimeout(() => {
-              const categoryElement = document.querySelector(`.section-title.${category}`);
-              if (categoryElement) {
-                const categoryPosition = categoryElement.getBoundingClientRect().top;
-                const categoryOffset = categoryPosition + window.pageYOffset - headerOffset - 20;
-                window.scrollTo({ top: categoryOffset, behavior: 'smooth' });
-              }
-            }, 300);
-          }
-        }, 100);
-      } else {
-        const projectsElement = document.getElementById('projects');
-        if (projectsElement) {
-          const headerOffset = 80;
-          const elementPosition = projectsElement.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-          setTimeout(() => {
-            const categoryElement = document.querySelector(`.section-title.${category}`);
-            if (categoryElement) {
-              const categoryPosition = categoryElement.getBoundingClientRect().top;
-              const categoryOffset = categoryPosition + window.pageYOffset - headerOffset - 20;
-              window.scrollTo({ top: categoryOffset, behavior: 'smooth' });
-            }
-          }, 300);
-        }
+      const targetHash = `#${target}`;
+
+      if (!isMainPage || location.search || location.hash !== targetHash) {
+        navigate(`/${targetHash}`);
+        return;
       }
+
+      scrollToTarget(target);
     };
 
     return (
       <header className="header">
         <nav>
           <ul className="nav-list">
-            <li className="nav-item"><a href="#about" onClick={handleNavClick('about')}>About</a></li>
-            <li className="nav-item"><a href="#research" onClick={handleProjectSubNavClick('research')}>Research</a></li>
-            <li className="nav-item"><a href="#games" onClick={handleProjectSubNavClick('games')}>Games</a></li>
-            <li className="nav-item"><a href="#experience" onClick={handleProjectSubNavClick('experience')}>Other Projects</a></li>
-            <li className="nav-item"><Link to="/cv">CV</Link></li>
+            <li className="nav-item"><Link to="/#about" onClick={handleNavClick('about')}>{siteText.navigation.about}</Link></li>
+            <li className="nav-item"><Link to="/#projects" onClick={handleNavClick('projects')}>{siteText.navigation.work}</Link></li>
+            <li className="nav-item"><Link to="/cv">{siteText.navigation.cv}</Link></li>
           </ul>
         </nav>
       </header>
