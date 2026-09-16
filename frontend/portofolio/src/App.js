@@ -7,6 +7,7 @@ import { Header } from './Components/Header/Header';
 import { SinglePage } from './Components/Home/SinglePage';
 import { ProjectDetail } from './Components/Project/ProjectDetail';
 import CV from './Components/CV/CV';
+import { BlogIndex, BlogArticle } from './Components/Blog/BlogPages';
 import UCSCPortfolio from './Components/UCSC/UCSCPortfolio';
 import { initGA, logPageView } from './analytics';
 import { siteText } from './content/site';
@@ -47,6 +48,8 @@ function App() {
         <Routes>
           <Route path="/" element={<SinglePage />} />
           <Route path="/cv" element={<CV />} />
+          <Route path="/blog" element={<BlogIndex />} />
+          <Route path="/blog/:slug" element={<BlogArticle />} />
           <Route path="/ucsc-cm-portfolio-2026" element={<UCSCPortfolio />} />
           <Route path="/projects/:id" element={<ProjectDetail />} />
         </Routes>

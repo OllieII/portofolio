@@ -3,6 +3,7 @@
 **/coverage/
 *.log
 .tmp/
+.npm-cache/
 .DS_Store
 .env
 .env.local

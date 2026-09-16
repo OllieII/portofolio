@@ -11,8 +11,10 @@
     "react-dom": "^18.3.1",
     "react-ga4": "^2.1.0",
     "react-helmet": "^6.1.0",
+    "react-markdown": "^9.1.0",
     "react-router-dom": "^6.24.0",
     "react-scripts": "^5.0.1",
+    "remark-gfm": "^4.0.1",
     "styled-components": "^6.1.11",
     "web-vitals": "^2.1.4"
   },
@@ -42,5 +44,14 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://ollieii.github.io/portfolio"
+  "homepage": "https://ollieii.github.io/portfolio",
+  "jest": {
+    "transformIgnorePatterns": [],
+    "moduleNameMapper": {
+      "^unist-util-visit-parents/do-not-use-color$": "<rootDir>/node_modules/unist-util-visit-parents/lib/color.js",
+      "^#minpath$": "<rootDir>/node_modules/vfile/lib/minpath.browser.js",
+      "^#minproc$": "<rootDir>/node_modules/vfile/lib/minproc.browser.js",
+      "^#minurl$": "<rootDir>/node_modules/vfile/lib/minurl.browser.js"
+    }
+  }
 }

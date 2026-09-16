@@ -34,6 +34,7 @@ export function Header(){
             <li className="nav-item"><Link to="/#about" onClick={handleNavClick('about')}>{siteText.navigation.about}</Link></li>
             <li className="nav-item"><Link to="/#projects" onClick={handleNavClick('projects')}>{siteText.navigation.work}</Link></li>
             <li className="nav-item"><Link to="/cv">{siteText.navigation.cv}</Link></li>
+            <li className="nav-item"><Link to="/blog" aria-current={location.pathname.startsWith('/blog') ? 'page' : undefined}>{siteText.navigation.blog}</Link></li>
           </ul>
         </nav>
       </header>

@@ -6,6 +6,7 @@ export const siteText = {
     about: 'About',
     work: 'Work',
     cv: 'CV',
+    blog: 'Blog',
   },
   homepage: {
     name: 'Olly Guo',
